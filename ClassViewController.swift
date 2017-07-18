@@ -18,6 +18,7 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
     
     @IBOutlet weak var importanceSlider: UISlider!
     
+    @IBOutlet weak var viewTasksButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,11 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
             navigationItem.title = class1.name
             nameTextField.text = class1.name
             importanceSlider.value = class1.importance
+            viewTasksButton.isHidden = false;
+        }
+        
+        else{
+            viewTasksButton.isHidden = true;
         }
 
         
