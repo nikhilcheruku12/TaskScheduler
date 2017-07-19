@@ -17,6 +17,7 @@ class Class: NSObject, NSCoding{
     
     var name: String;
     var importance: Float;
+       
     
     init?(name: String, importance: Float) {
         self.name = name;

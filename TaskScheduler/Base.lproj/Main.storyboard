@@ -147,29 +147,21 @@
         <!--Your Tasks-->
         <scene sceneID="f9w-9x-sJs">
             <objects>
-                <tableViewController id="6gP-Pm-w4R" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="OlE-eJ-Sot">
+                <tableViewController storyboardIdentifier="TaskTableViewController" id="6gP-Pm-w4R" customClass="TaskTableViewController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="OlE-eJ-Sot">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fML-pT-X3o">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskTableViewCell" rowHeight="90" id="fML-pT-X3o" customClass="TaskTableViewCell" customModule="TaskScheduler" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fML-pT-X3o" id="Pxu-Ma-HAZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskViewCell" rowHeight="90" id="KyB-2L-ITg" customClass="TaskViewCell">
-                                <rect key="frame" x="0.0" y="72" width="375" height="90"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KyB-2L-ITg" id="mRd-sl-hDq">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fML-pT-X3o" id="Pxu-Ma-HAZ" customClass="ClassTableViewCell" customModule="TaskScheduler" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Im-br-kzE">
-                                            <rect key="frame" x="123" y="17" width="129" height="54"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lii-2J-Njq">
+                                            <rect key="frame" x="108" y="8" width="165" height="63"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -177,6 +169,10 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="lii-2J-Njq" id="8JO-dr-KlG"/>
+                                    <segue destination="eKI-Qq-hHZ" kind="show" identifier="ShowDetail" id="O14-MR-JEv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -187,7 +183,7 @@
                     <navigationItem key="navigationItem" title="Your Tasks" id="XLC-o7-o5A">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="IZi-7e-eMq">
                             <connections>
-                                <segue destination="TMU-Hc-Lxy" kind="presentation" id="JOD-bK-EiL"/>
+                                <segue destination="TMU-Hc-Lxy" kind="presentation" identifier="AddItem" id="JOD-bK-EiL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -196,10 +192,10 @@
             </objects>
             <point key="canvasLocation" x="5498.3999999999996" y="-23.838080959520241"/>
         </scene>
-        <!--View Controller-->
+        <!--Task View Controller-->
         <scene sceneID="3M9-JU-z4t">
             <objects>
-                <viewController id="eKI-Qq-hHZ" sceneMemberID="viewController">
+                <viewController id="eKI-Qq-hHZ" customClass="TaskViewController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ekL-2o-rJb"/>
                         <viewControllerLayoutGuide type="bottom" id="64b-UK-7yS"/>
@@ -295,11 +291,29 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="taK-Wc-nPE">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="n1p-8q-wda"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="FWo-Yg-jUW"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="n1p-8q-wda">
+                            <connections>
+                                <action selector="cancel:" destination="eKI-Qq-hHZ" id="1aa-qT-5yz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="FWo-Yg-jUW">
+                            <connections>
+                                <segue destination="MrT-0a-e9p" kind="unwind" unwindAction="unwindToTaskListWithSender:" id="lga-ZI-e3f"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="n1p-8q-wda" id="p85-2D-RPc"/>
+                        <outlet property="dueDatePicker" destination="YUa-Mh-Rfk" id="1Rn-xY-svY"/>
+                        <outlet property="hoursTextField" destination="Bpi-BE-baa" id="wlH-ey-4qZ"/>
+                        <outlet property="minutesTextField" destination="4g0-6V-FVC" id="toJ-v6-gLP"/>
+                        <outlet property="nameTextField" destination="B0G-25-5AO" id="7HD-Tg-c1w"/>
+                        <outlet property="percentageSlider" destination="wG3-t2-waf" id="1ZK-DU-VaB"/>
+                        <outlet property="saveButton" destination="FWo-Yg-jUW" id="IGd-Q7-imb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Di-nM-NAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="MrT-0a-e9p" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="7348" y="-24.7376311844078"/>
         </scene>
@@ -308,7 +322,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="21J-6X-97v" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9Jh-X7-feM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Jh-X7-feM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -326,7 +340,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iS5-J0-3AJ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cmQ-3f-g2L">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cmQ-3f-g2L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -373,13 +387,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="44o-Pv-jcd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6408.8000000000002" y="-24.7376311844078"/>
+            <point key="canvasLocation" x="6394" y="326"/>
         </scene>
     </scenes>
     <resources>
         <image name="red" width="112" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dPH-rt-Se2"/>
+        <segue reference="lQr-is-LcV"/>
+        <segue reference="O14-MR-JEv"/>
     </inferredMetricsTieBreakers>
 </document>
