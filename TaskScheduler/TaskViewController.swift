@@ -30,7 +30,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
-        class1 = Class(name: "sdsd", importance:5.0)
+       // class1 = Class(name: "sdsd", importance:5.0)
         
         if let task1 = task1 {
             navigationItem.title = task1.name
@@ -69,6 +69,8 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         super.prepare(for: segue, sender: sender);
+        
+
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return

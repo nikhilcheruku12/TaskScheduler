@@ -56,6 +56,18 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         super.prepare(for: segue, sender: sender);
+        print("segue is happening in ClassViewController")
+        
+        if let destinationViewController = segue.destination as? TaskTableViewController{
+            destinationViewController.class1 = class1;
+            print("Class name in TableTaskViewController: = " + (class1?.name)!)
+        }else if  let destinationViewController = segue.destination as? UINavigationController {
+            let myVC = destinationViewController.viewControllers.first as! TaskTableViewController
+            myVC.class1 = class1
+        } else{
+            print("TaskViewController was not destinationviewcontroller")
+        }
+        
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return

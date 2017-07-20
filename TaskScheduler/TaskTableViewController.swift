@@ -10,7 +10,7 @@ import UIKit
 import os.log
 class TaskTableViewController: UITableViewController {
     var tasks = [Task]();
-    
+     var class1: Class?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -136,11 +136,21 @@ class TaskTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         super.prepare(for: segue, sender: sender)
+        if let destinationViewController = segue.destination as? TaskViewController{
+            destinationViewController.class1 = class1;
+            print("Class name in TableTaskViewController: = " + (class1?.name)!)
+        } else if  let destinationViewController = segue.destination as? UINavigationController {
+           let myVC = destinationViewController.viewControllers.first as! TaskViewController
+            myVC.class1 = class1
+        }else{
+            print("TaskViewController was not destinationviewcontroller")
+        }
         
         switch(segue.identifier ?? "") {
             
         case "AddItem":
             os_log("Adding a new Task.", log: OSLog.default, type: .debug)
+            
             
         case "ShowDetail":
             guard let TaskDetailViewController = segue.destination as? TaskViewController else {
