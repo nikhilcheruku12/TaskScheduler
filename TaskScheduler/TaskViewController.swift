@@ -38,6 +38,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
             percentageSlider.value = task1.percentage
             hoursTextField.text =  String(Int(floor(task1.duration)))
             minutesTextField.text =  String(Int(60 * (task1.duration - Float(Int(floor(task1.duration))))))
+            dueDatePicker.date = task1.dueDate
            // minutesTextField.text = tas
         }
             
