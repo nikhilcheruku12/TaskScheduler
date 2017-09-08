@@ -13,18 +13,17 @@ class TaskTableViewController: UITableViewController {
      var class1: Class?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
+                // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         navigationItem.leftBarButtonItem = editButtonItem
-        
-        if let savedtasks = loadtasks() {
-            tasks += savedtasks
+        if let classtemp = class1{
+                tasks = classtemp.tasks 
         }
-            
+        
+        
         /*else{
             loadSampletasks()
         }*/
@@ -89,6 +88,9 @@ class TaskTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     // Override to support conditional editing of the table view.

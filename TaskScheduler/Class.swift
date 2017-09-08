@@ -13,11 +13,12 @@ class Class: NSObject, NSCoding{
     struct PropertyKey {
         static let name = "name"
         static let importance = "importance"
+        static let taskKey = "task"
     }
     
     var name: String;
     var importance: Float;
-       
+    var tasks = [Task]();
     
     init?(name: String, importance: Float) {
         self.name = name;
@@ -28,32 +29,51 @@ class Class: NSObject, NSCoding{
         }
     }
     
+    init?(name: String, importance: Float, tasks: [Task]) {
+        self.name = name;
+        self.importance = importance;
+        self.tasks = tasks
+        if name.isEmpty || importance < 0  {
+            return nil
+        }
+    }
+    
     //MARK: NSCoding
     func encode(with aCoder: NSCoder) {
         aCoder.encode(name, forKey: PropertyKey.name)
         aCoder.encode(importance, forKey: PropertyKey.importance)
+        aCoder.encode(tasks, forKey:PropertyKey.taskKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
         
         // The name is required. If we cannot decode a name string, the initializer should fail.
         guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
-            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the name for a class object.", log: OSLog.default, type: .debug)
             return nil
         }
         
         // Because photo is an optional property of Meal, just use conditional cast.
          let importance = aDecoder.decodeFloat(forKey: PropertyKey.importance) 
         
+       guard let tasks = aDecoder.decodeObject(forKey: PropertyKey.taskKey) as? [Task] else{
+            os_log("Unable to decode tasks for Class Object", log: OSLog.default, type: .debug)
+            return nil
+        }
         
+        //let tasks = aDecoder.decodeObject(forKey: PropertyKey.taskKey) as? [Task]
         // Must call designated initializer.
         /*if(importance == nil){
             print("importance is nil")
              importance = 10.0
         }*/
        
-        self.init(name: name, importance: importance)
+        self.init(name: name, importance: importance, tasks: tasks)
         
+    }
+    
+    func addTask (task: Task){
+        tasks.append(task)
     }
     
     //MARK: Archiving Paths

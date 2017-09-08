@@ -84,6 +84,10 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         let dueDate = dueDatePicker.date;
         task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate);
         
+        if let classtemp = class1 {
+            classtemp.addTask(task: task1!)
+        }
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

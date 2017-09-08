@@ -45,7 +45,7 @@ class Task: NSObject, NSCoding{
         aCoder.encode(dueDate,forKey: PropertyKey.dueDate)
     }
     
-    required convenience init?(coder aDecoder: NSCoder) {
+   public required convenience init?(coder aDecoder: NSCoder) {
         
         // The name is required. If we cannot decode a name string, the initializer should fail.
         guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
