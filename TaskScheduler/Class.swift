@@ -56,7 +56,7 @@ class Class: NSObject, NSCoding{
         // Because photo is an optional property of Meal, just use conditional cast.
          let importance = aDecoder.decodeFloat(forKey: PropertyKey.importance) 
         
-       guard let tasks = aDecoder.decodeObject(forKey: PropertyKey.taskKey) as? [Task] else{
+       guard var tasks = aDecoder.decodeObject(forKey: PropertyKey.taskKey) as? [Task] else{
             os_log("Unable to decode tasks for Class Object", log: OSLog.default, type: .debug)
             return nil
         }

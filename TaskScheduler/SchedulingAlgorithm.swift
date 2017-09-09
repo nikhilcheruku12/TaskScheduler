@@ -25,6 +25,7 @@ class SchedulingAlgorithm {
     
     init?(tasks: [Task]?){
         requestAccessToCalendar()
+       // ekCalendar = EKCalendar(for: .event, eventStore: eventStore)
         self.tasks = tasks
         
     }
@@ -46,11 +47,16 @@ class SchedulingAlgorithm {
         while pq.count != 0{
             if let t = pq.pop(){
                 print("_______________")
+                print("name: ")
                 print(t.name)
+                print("dueDate: ")
                 print(t.dueDate)
+                print("weight: ")
                 print(t.weight)
+                print("startDate: ")
                 print(t.startDate)
                 print("_______________")
+              //  writeEventToCalendar(firstTask: t)
             }
         }
     }
@@ -82,6 +88,26 @@ class SchedulingAlgorithm {
         }
     }
     
+    func writeEventToCalendar(firstTask: Task) {
+        if let calendarForEvent = eventStore.calendar(withIdentifier: self.ekCalendar.calendarIdentifier)
+        {
+            let newEvent = EKEvent(eventStore: eventStore)
+            
+            newEvent.calendar = calendarForEvent
+            newEvent.title = firstTask.name
+            newEvent.startDate = firstTask.startDate
+            newEvent.endDate = firstTask.dueDate
+            
+            // Save the calendar using the Event Store instance
+            
+            do {
+                try eventStore.save(newEvent, span: .thisEvent, commit: true)
+                
+            } catch let error as NSError {
+                print("failed to save event with error : \(error)")
+            }
+        }
+    }
     func loadPriorityQueue(){
         
     }
