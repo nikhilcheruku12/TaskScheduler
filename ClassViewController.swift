@@ -72,7 +72,12 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
             os_log("The save button was not pressed in ClassViewController, cancelling", log: OSLog.default, type: .debug)
             return
         }
-        class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, tasks: (class1?.tasks)!);
+        if let tasksArray = class1?.tasks{
+             class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, tasks: tasksArray);
+        } else{
+              class1 = Class(name:nameTextField.text!, importance:importanceSlider.value)
+        }
+       
 
     }
     

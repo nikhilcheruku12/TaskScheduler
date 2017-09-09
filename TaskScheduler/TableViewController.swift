@@ -192,7 +192,7 @@ class TableViewController: UITableViewController {
         classes += [class1,class2];
     }
     
-    private func saveClasses() {
+    public func saveClasses() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(classes, toFile: Class.ArchiveURL.path)
         if isSuccessfulSave {
             os_log("Classes successfully saved.", log: OSLog.default, type: .debug)

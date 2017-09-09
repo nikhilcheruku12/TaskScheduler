@@ -106,7 +106,9 @@ class TaskTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             tasks.remove(at: indexPath.row)
+            class1?.tasks.remove(at: indexPath.row)
             savetasks()
+            //saveclasses()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate Task, insert it into the array, and add a new row to the table view
