@@ -69,10 +69,10 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
         }
         
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
-            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            os_log("The save button was not pressed in ClassViewController, cancelling", log: OSLog.default, type: .debug)
             return
         }
-        class1 = Class(name:nameTextField.text!, importance:importanceSlider.value);
+        class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, tasks: (class1?.tasks)!);
 
     }
     
