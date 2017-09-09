@@ -37,7 +37,7 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
 
         
         
-        updateSaveButtonState()
+        //updateSaveButtonState()
         // Do any additional setup after loading the view.
     }
 
@@ -84,7 +84,7 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // Disable the Save button while editing.
-        saveButton.isEnabled = false
+        //saveButton.isEnabled = false
        print("begin")
         
     }
@@ -92,7 +92,7 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
     func textFieldDidEndEditing(_ textField: UITextField) {
         // Disable the Save button while editing.
         
-        updateSaveButtonState()
+        //updateSaveButtonState()
         navigationItem.title = nameTextField.text
         print("end")
     }

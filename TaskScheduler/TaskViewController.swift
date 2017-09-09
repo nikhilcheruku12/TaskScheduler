@@ -30,7 +30,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
-       // class1 = Class(name: "sdsd", importance:5.0)
+      
         
         if let task1 = task1 {
             navigationItem.title = task1.name
@@ -39,7 +39,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
             hoursTextField.text =  String(Int(floor(task1.duration)))
             minutesTextField.text =  String(Int(60 * (task1.duration - Float(Int(floor(task1.duration))))))
             dueDatePicker.date = task1.dueDate
-           // minutesTextField.text = tas
+           
         }
             
         
