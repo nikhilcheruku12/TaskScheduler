@@ -9,13 +9,16 @@
 import Foundation
 import os.log
 
-class Task: NSObject, NSCoding{
+class Task: NSObject, NSCoding, Comparable{
     struct PropertyKey {
         static let name = "name"
         static let percentage = "percentage"
         static let class1 = "class1"
         static let duration = "duration"
         static let dueDate = "dueDate"
+        //james and maya
+        static let daysBeforeToStart = "daysBeforeToStart"
+        static let weight = "weight"
     }
     
     var name: String;
@@ -23,7 +26,10 @@ class Task: NSObject, NSCoding{
     var class1: Class;
     var duration: Float;
     var dueDate: Date;
-
+    //james and maya
+    var daysBeforeToStart: Int?;
+    var startDate: Date
+    var weight : Float = 0.0
     
     init?(name: String, percentage: Float, class1:Class, duration:Float, dueDate:Date) {
         self.name = name;
@@ -34,6 +40,9 @@ class Task: NSObject, NSCoding{
         if name.isEmpty || percentage < 0   {
             return nil
         }
+        //james and maya
+        
+        startDate = Date(timeInterval: TimeInterval(-duration*3600), since: dueDate)
     }
     
     //MARK: NSCoding
@@ -43,30 +52,35 @@ class Task: NSObject, NSCoding{
         aCoder.encode(class1,forKey: PropertyKey.class1 )
         aCoder.encode(duration,forKey: PropertyKey.duration)
         aCoder.encode(dueDate,forKey: PropertyKey.dueDate)
+        aCoder.encode(daysBeforeToStart,forKey: PropertyKey.daysBeforeToStart)
+        aCoder.encode(weight,forKey: PropertyKey.weight)
     }
     
-   public required convenience init?(coder aDecoder: NSCoder) {
+    required convenience init?(coder aDecoder: NSCoder) {
         
         // The name is required. If we cannot decode a name string, the initializer should fail.
         guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
-            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the name for a task object.", log: OSLog.default, type: .debug)
             return nil
         }
         
-        // Because photo is an optional property of Meal, just use conditional cast.
         let percentage = aDecoder.decodeFloat(forKey: PropertyKey.percentage)
         
         guard let class1 = aDecoder.decodeObject(forKey: PropertyKey.class1) as? Class else {
-            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the name for a task object.", log: OSLog.default, type: .debug)
             return nil
         }
         
         let duration = aDecoder.decodeFloat(forKey: PropertyKey.duration)
         
         guard let dueDate = aDecoder.decodeObject(forKey: PropertyKey.dueDate) as? Date else {
-            os_log("Unable to decode the name for a Meal object.", log: OSLog.default, type: .debug)
+            os_log("Unable to decode the name for a task object.", log: OSLog.default, type: .debug)
             return nil
         }
+        
+        //TODO
+        //for daysBeforeToStart,startdate,weight declaration
+        
         // Must call designated initializer.
         /*if(percentage == nil){
          print("percentage is nil")
@@ -82,4 +96,37 @@ class Task: NSObject, NSCoding{
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("tasks")
     
+    
+    
+    //comparator
+    static func < (lhs: Task, rhs: Task) -> Bool {
+        if lhs.dueDate < rhs.dueDate{
+            return false
+        }
+        else if  lhs.dueDate > rhs.dueDate{
+            return true
+        }else{
+            if lhs.weight < rhs.weight {
+                return true
+            }
+            else if lhs.weight > rhs.weight{
+                return false
+            }
+            else{
+                if lhs.startDate < rhs.startDate{
+                    return false
+                }
+                else{
+                    return true
+                }
+            }
+        }
+        
+    }
+    static func == (lhs: Task, rhs: Task) -> Bool {
+        if (lhs.dueDate == rhs.dueDate) && (lhs.weight == rhs.weight) && (lhs.startDate == rhs.startDate) {
+            return true
+        }
+        return false
+    }
 }

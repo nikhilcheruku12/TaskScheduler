@@ -32,6 +32,19 @@ class TableViewController: UITableViewController {
         
     }
 
+    //james maya
+    @IBAction func testing(_ sender: UIButton) {
+        let schedulingAlgorithm : SchedulingAlgorithm?
+        if let tasks = NSKeyedUnarchiver.unarchiveObject(withFile: Task.ArchiveURL.path) as? [Task]{
+            schedulingAlgorithm = SchedulingAlgorithm(tasks: tasks)!
+            schedulingAlgorithm!.initializeVirtualCal()
+        }
+
+    }
+
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

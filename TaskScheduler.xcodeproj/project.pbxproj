@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E24CC2E1F6491A6001FD3C6 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24CC2D1F6491A6001FD3C6 /* PriorityQueue.swift */; };
+		5E24CC301F649228001FD3C6 /* SchedulingAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24CC2F1F649228001FD3C6 /* SchedulingAlgorithm.swift */; };
 		9B1F41191F0FDE3E000B3076 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F41181F0FDE3E000B3076 /* AppDelegate.swift */; };
 		9B1F411B1F0FDE3E000B3076 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F411A1F0FDE3E000B3076 /* ViewController.swift */; };
 		9B1F411E1F0FDE3E000B3076 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B1F411C1F0FDE3E000B3076 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E24CC2D1F6491A6001FD3C6 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		5E24CC2F1F649228001FD3C6 /* SchedulingAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulingAlgorithm.swift; sourceTree = "<group>"; };
 		9B1F41151F0FDE3E000B3076 /* TaskScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B1F41181F0FDE3E000B3076 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B1F411A1F0FDE3E000B3076 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				9B513C3D1F1DA32C005EA23C /* Task.swift */,
 				9B513C3F1F1DA6DE005EA23C /* TaskTableViewController.swift */,
 				9BFF60481F1DC3BC0085DA4A /* TaskTableViewCell.swift */,
+				5E24CC2D1F6491A6001FD3C6 /* PriorityQueue.swift */,
+				5E24CC2F1F649228001FD3C6 /* SchedulingAlgorithm.swift */,
 			);
 			path = TaskScheduler;
 			sourceTree = "<group>";
@@ -224,11 +230,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B513C3E1F1DA32C005EA23C /* Task.swift in Sources */,
+				5E24CC301F649228001FD3C6 /* SchedulingAlgorithm.swift in Sources */,
 				9B1F413B1F104B17000B3076 /* Class.swift in Sources */,
 				9BFF60491F1DC3BC0085DA4A /* TaskTableViewCell.swift in Sources */,
 				9B513C3C1F1DA019005EA23C /* TaskViewController.swift in Sources */,
 				9B1F41411F13E5CE000B3076 /* TableViewController.swift in Sources */,
 				9B1F413F1F104CD9000B3076 /* ClassViewController.swift in Sources */,
+				5E24CC2E1F6491A6001FD3C6 /* PriorityQueue.swift in Sources */,
 				9B1F411B1F0FDE3E000B3076 /* ViewController.swift in Sources */,
 				9B513C401F1DA6DE005EA23C /* TaskTableViewController.swift in Sources */,
 				9B1F41191F0FDE3E000B3076 /* AppDelegate.swift in Sources */,
