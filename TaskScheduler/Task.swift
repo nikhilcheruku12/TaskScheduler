@@ -37,6 +37,8 @@ class Task: NSObject, NSCoding, Comparable{
         self.class1 = class1;
         self.duration = duration;
         self.dueDate = dueDate;
+        let timeInterval = floor(self.dueDate.timeIntervalSinceReferenceDate/60.0) * 60.0
+        self.dueDate = Date(timeIntervalSinceReferenceDate: timeInterval)
         if name.isEmpty || percentage < 0   {
             return nil
         }

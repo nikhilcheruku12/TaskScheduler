@@ -34,11 +34,15 @@ class TableViewController: UITableViewController {
 
     //james maya
     @IBAction func testing(_ sender: UIButton) {
-        let schedulingAlgorithm : SchedulingAlgorithm?
-        if let tasks = NSKeyedUnarchiver.unarchiveObject(withFile: Task.ArchiveURL.path) as? [Task]{
-            schedulingAlgorithm = SchedulingAlgorithm(tasks: tasks)!
-            schedulingAlgorithm!.initializeVirtualCal()
+        var tasks = [Task]()
+        for c in classes {
+            tasks += c.tasks
         }
+        let schedulingAlgorithm : SchedulingAlgorithm?
+        
+        schedulingAlgorithm = SchedulingAlgorithm(tasks: tasks)!
+        schedulingAlgorithm!.initializeVirtualCal()
+        
 
     }
 

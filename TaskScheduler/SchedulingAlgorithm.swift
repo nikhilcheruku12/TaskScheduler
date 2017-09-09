@@ -77,6 +77,7 @@ class SchedulingAlgorithm {
             print(events!.count)
             for e in self.events!{
                 print(e.title)
+                print(e.availability)
             }
         }
     }
