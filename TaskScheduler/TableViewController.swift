@@ -41,7 +41,7 @@ class TableViewController: UITableViewController {
         let schedulingAlgorithm : SchedulingAlgorithm?
         
         schedulingAlgorithm = SchedulingAlgorithm(tasks: tasks)!
-        schedulingAlgorithm!.initializeVirtualCal()
+        schedulingAlgorithm!.createVirtualCal()
         
 
     }

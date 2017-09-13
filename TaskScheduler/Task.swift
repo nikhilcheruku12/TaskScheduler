@@ -21,6 +21,12 @@ class Task: NSObject, NSCoding, Comparable{
         static let weight = "weight"
     }
     
+    struct SubTask{
+        var name: String
+        var sDate: Date
+        var eDate: Date
+    }
+    
     var name: String;
     var percentage: Float;
     var class1: Class;
@@ -30,6 +36,10 @@ class Task: NSObject, NSCoding, Comparable{
     var daysBeforeToStart: Int?;
     var startDate: Date
     var weight : Float = 0.0
+    //each task maintain an array of sub tasks for scheduling and reference
+    var subTasks = [SubTask]()
+    
+    
     
     init?(name: String, percentage: Float, class1:Class, duration:Float, dueDate:Date) {
         self.name = name;
@@ -130,5 +140,14 @@ class Task: NSObject, NSCoding, Comparable{
             return true
         }
         return false
+    }
+    
+    //hueristic function
+    static func assignWeightToTask(task: Task){
+        
+        let reward = 100 * (((0.6) * (task.percentage / 100)) + ((0.4) * (task.class1.importance / 10)))
+        let weight = Float(reward * reward) / Float(task.duration)
+        task.weight = weight
+        
     }
 }
