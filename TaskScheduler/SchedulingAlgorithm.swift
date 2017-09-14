@@ -34,18 +34,18 @@ class SchedulingAlgorithm {
         self.tasks = tasks
         initialVirtualCalAndAssignTasksToPQ()
         requestAccessToCalendar()
-        creatTaskCalendar()
+        createTaskCalendar()
     }
     
     
-    func creatTaskCalendar(){
+    func createTaskCalendar(){
         for cal in calendars{
-            if cal.title == "SchdeuledTaskCalendar" {
-                print("SchdeuledTaskCalendar already exist")
+            if cal.title == "ScheduledTaskCalendar" {
+                print("ScheduledTaskCalendar already exist")
                 return
             }
         }
-        taskCalendar.title = "SchdeuledTaskCalendar"
+        taskCalendar.title = "ScheduledTaskCalendar"
         // Access list of available sources from the Event Store
         let sourcesInEventStore = eventStore.sources
         // Filter the available sources and select the "Local" source to assign to the new calendar's
@@ -56,21 +56,21 @@ class SchedulingAlgorithm {
             }.first!
         
         // Save the calendar using the Event Store instance
-        print("creating ")
+        print("creating ScheduledTaskCalendar ")
         do {
             try eventStore.saveCalendar(taskCalendar, commit: true)
             UserDefaults.standard.set(taskCalendar.calendarIdentifier, forKey: "TaskSchedulerPrimaryCalendar")
-            print("creat success ")
+            print("create ScheduledTaskCalendar success ")
         } catch {
             let alert = UIAlertController(title: "Calendar could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(OKAction)
             
-            print("SchdeuledTaskCalendar cannot be created ")
+            print("ScheduledTaskCalendar cannot be created ")
         }
     }
     
-    //initialize array of interval struct with X number of haldHours between current and lastest due date
+    //initialize array of interval struct with X number of halfHours between current and lastest due date
     //assign weight to tasks and out tasks in pq
     func initialVirtualCalAndAssignTasksToPQ(){
         self.latestDateDue = Date()
@@ -89,7 +89,7 @@ class SchedulingAlgorithm {
                         self.latestDateDue = tempDate
                     }
                 }else{
-                    //task already dued
+                    //task already due
                 }
             }
         }
@@ -139,6 +139,12 @@ class SchedulingAlgorithm {
                     print("startDate: ")
                     print(t.startDate)
                     print("_______________")
+                    let success = addTaskToVirtualCalendar(task: t)
+                    if(!success) {
+                        //couldn't schedule task
+                        break
+                    }
+
                     //writeEventToCalendar(task: t)
                 }
             }
@@ -158,6 +164,40 @@ class SchedulingAlgorithm {
     }
     
     
+    func addTaskToVirtualCalendar(task: Task) -> Bool {
+
+        //can optimize this by not searching the entire vCal
+        for i in 0..<virtualCalendar.count {
+            //check task start/end dates
+            if(virtualCalendar[i].startDate > task.dueDate) {
+                //can't schedule the task
+                print("Cannot schedule \(task.name)")
+                return false
+            }
+            
+            if (virtualCalendar[i].startDate <= task.startDate &&
+                task.startDate < virtualCalendar[i].endDate) ||
+                (task.startDate <= virtualCalendar[i].startDate &&
+                    virtualCalendar[i].endDate <= task.dueDate) ||
+                (virtualCalendar[i].startDate < task.dueDate &&
+                    task.dueDate <= virtualCalendar[i].endDate)
+            {
+                //overwrite if you can, else go on to the next interval
+                if(virtualCalendar[i].status == "empty") {
+                    virtualCalendar[i].status = "task_" + task.name
+                    return true
+                    
+                    /*print("Virtual Calendar[\(i)]: [\(virtualCalendar[i].startDate), \(virtualCalendar[i].endDate)]")
+                     print("Task \(task.name): [\(task.startDate), \(task.dueDate)]") */
+                }
+                
+
+            }
+            
+        }
+        
+        return false
+    }
     
     //load all user's events between current date and latest dueDate
     func loadUserEvents(endDate: Date) {
@@ -166,6 +206,7 @@ class SchedulingAlgorithm {
         let eventsPredicate = eventStore.predicateForEvents(withStart: currentDate, end: endDate, calendars: nil)
         
         // Use the configured NSPredicate to find and return events in the store that match
+        //Returns [EKEvent]
         self.events = eventStore.events(matching: eventsPredicate).sorted(){
             (e1: EKEvent, e2: EKEvent) -> Bool in
             return e1.startDate.compare(e2.startDate) == ComparisonResult.orderedAscending
@@ -197,7 +238,7 @@ class SchedulingAlgorithm {
     //delete event based on its predicate (start, end dates)
     func deleteEventFromCalendar(task: Task){
         for cal in self.calendars {
-            if cal.title == "SchdeuledTaskCalendar"{
+            if cal.title == "ScheduledTaskCalendar"{
                 
               
             }
@@ -208,7 +249,7 @@ class SchedulingAlgorithm {
     func writeEventToCalendar(task: Task) {
         for cal in self.calendars {
             // 2
-            if cal.title == "SchdeuledTaskCalendar"{
+            if cal.title == "ScheduledTaskCalendar"{
                 let newEvent = EKEvent(eventStore: eventStore)
                 newEvent.calendar = cal
                 newEvent.title = task.name
