@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import UIKit
 import EventKit
 class SchedulingAlgorithm {
     var ekCalendar: EKCalendar!
     private let eventStore = EKEventStore()
     let calendars : [EKCalendar]
+    var taskCalendar : EKCalendar
     var events: [EKEvent]?
     var tasks: [Task]?
     var virtualCalendar = [VirtualInterval]()
@@ -27,14 +29,46 @@ class SchedulingAlgorithm {
     var wakeUpTime = 8
     
     init?(tasks: [Task]?){
+        taskCalendar = EKCalendar(for: .event, eventStore: eventStore)
         calendars = eventStore.calendars(for: EKEntityType.event)
         self.tasks = tasks
         initialVirtualCalAndAssignTasksToPQ()
         requestAccessToCalendar()
+        creatTaskCalendar()
     }
     
     
-    
+    func creatTaskCalendar(){
+        for cal in calendars{
+            if cal.title == "SchdeuledTaskCalendar" {
+                print("SchdeuledTaskCalendar already exist")
+                return
+            }
+        }
+        taskCalendar.title = "SchdeuledTaskCalendar"
+        // Access list of available sources from the Event Store
+        let sourcesInEventStore = eventStore.sources
+        // Filter the available sources and select the "Local" source to assign to the new calendar's
+        // source property
+        taskCalendar.source = sourcesInEventStore.filter{
+            (source: EKSource) -> Bool in
+            source.sourceType.rawValue == EKSourceType.local.rawValue
+            }.first!
+        
+        // Save the calendar using the Event Store instance
+        print("creating ")
+        do {
+            try eventStore.saveCalendar(taskCalendar, commit: true)
+            UserDefaults.standard.set(taskCalendar.calendarIdentifier, forKey: "TaskSchedulerPrimaryCalendar")
+            print("creat success ")
+        } catch {
+            let alert = UIAlertController(title: "Calendar could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(OKAction)
+            
+            print("SchdeuledTaskCalendar cannot be created ")
+        }
+    }
     
     //initialize array of interval struct with X number of haldHours between current and lastest due date
     //assign weight to tasks and out tasks in pq
@@ -105,10 +139,14 @@ class SchedulingAlgorithm {
                     print("startDate: ")
                     print(t.startDate)
                     print("_______________")
-                    //writeEventToCalendar(firstTask: t)
+                    //writeEventToCalendar(task: t)
                 }
             }
         }
+        
+        
+        
+        
         var temp = 0
         for i in virtualCalendar{
             print(temp)
@@ -146,7 +184,7 @@ class SchedulingAlgorithm {
                             e.endDate <= virtualCalendar[i].endDate)
                     {
                         
-                        virtualCalendar[i].status = "users"
+                        virtualCalendar[i].status = "users_" + e.title
                         
                         
                     }
@@ -157,11 +195,9 @@ class SchedulingAlgorithm {
     }
     
     //delete event based on its predicate (start, end dates)
-    func deleteEventFromCalendar(eventID: String){
+    func deleteEventFromCalendar(task: Task){
         for cal in self.calendars {
-            if cal.title == "Calendar"{
-
-                // Save the calendar using the Event Store instance
+            if cal.title == "SchdeuledTaskCalendar"{
                 
               
             }
@@ -169,15 +205,15 @@ class SchedulingAlgorithm {
 
     }
     
-    func writeEventToCalendar(firstTask: Task) {
+    func writeEventToCalendar(task: Task) {
         for cal in self.calendars {
             // 2
-            if cal.title == "Calendar"{
+            if cal.title == "SchdeuledTaskCalendar"{
                 let newEvent = EKEvent(eventStore: eventStore)
                 newEvent.calendar = cal
-                newEvent.title = firstTask.name
-                newEvent.startDate = firstTask.startDate
-                newEvent.endDate = firstTask.dueDate
+                newEvent.title = task.name
+                newEvent.startDate = task.startDate
+                newEvent.endDate = task.dueDate
                 
             // Save the calendar using the Event Store instance
             
