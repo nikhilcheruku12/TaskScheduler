@@ -10,15 +10,15 @@ import Foundation
 import UIKit
 import EventKit
 class SchedulingAlgorithm {
-    var ekCalendar: EKCalendar!
+    private var ekCalendar: EKCalendar!
     private let eventStore = EKEventStore()
-    let calendars : [EKCalendar]
-    var taskCalendar : EKCalendar
-    var events: [EKEvent]?
-    var tasks: [Task]?
-    var virtualCalendar = [VirtualInterval]()
-    var pq = PriorityQueue<Task>(ascending: false)
-    var latestDateDue: Date?
+    private let calendars : [EKCalendar]
+    private var taskCalendar : EKCalendar
+    private var events: [EKEvent]?
+    private var tasks: [Task]?
+    private var virtualCalendar = [VirtualInterval]()
+    private var pq = PriorityQueue<Task>(ascending: false)
+    private var latestDateDue: Date?
     
     struct VirtualInterval {
         var startDate: Date
@@ -37,8 +37,81 @@ class SchedulingAlgorithm {
         createTaskCalendar()
     }
     
+    public func schedule() -> String{
+        //put task in vCal
+        //frontLoad tasks
+        if self.latestDateDue != nil{
+            loadUserEvents(endDate: self.latestDateDue!)
+            while pq.count != 0{
+                if let t = pq.pop(){
+                    print("_______________")
+                    print("name: ")
+                    print(t.name)
+                    print("dueDate: ")
+                    print(t.dueDate)
+                    print("weight: ")
+                    print(t.weight)
+                    print("startDate: ")
+                    print(t.startDate)
+                    print("_______________")
+                    let success = addTaskToVirtualCalendar(task: t)
+                    if !success {
+                        //couldn't schedule task
+                        return ("Failed to schedule " + t.name + " try to start the task earlier or reduce duration")
+                    }
+                    
+                    //writeEventToCalendar(task: t)
+                }
+            }
+        }
+        
+        scheduleToRealCalendar()
+        return "Scheduled Succeed"
+    }
     
-    func createTaskCalendar(){
+    //delete tasks from currnet date to the lastest due date
+    public func deleteTasksFromCalendar(){
+        var arrayCal : [EKCalendar]?
+        for cal in self.calendars {
+            if cal.title == "ScheduledTaskCalendar"{
+                arrayCal = [EKCalendar]()
+                arrayCal?.append(cal)
+            }
+        }
+        print(arrayCal!)
+        let predicate = eventStore.predicateForEvents(withStart: Date(), end: self.latestDateDue!, calendars: arrayCal)
+        let events = eventStore.events(matching: predicate) as [EKEvent]!
+        if events != nil {
+            for e in events!{
+                do {
+                    try eventStore.remove(e, span: EKSpan.thisEvent, commit: true)
+                }catch let error {
+                    print("Error removing event: ", error)
+                }
+            }
+        }
+        
+        
+    }
+    
+    
+    public func printVirtualCalendar(){
+        var temp = 0
+        for i in virtualCalendar{
+            print(temp)
+            print("Start : \(i.startDate)")
+            print("End :  \(i.endDate)")
+            print("Status :  \(i.status)")
+            temp += 1
+        }
+    }
+    
+    //*****PRIVATE FUNCTIONS******
+    
+    
+    
+    //create ScheduledTaskCalendar if it does not exist in user calendar app
+    private func createTaskCalendar(){
         for cal in calendars{
             if cal.title == "ScheduledTaskCalendar" {
                 print("ScheduledTaskCalendar already exist")
@@ -72,7 +145,7 @@ class SchedulingAlgorithm {
     
     //initialize array of interval struct with X number of halfHours between current and lastest due date
     //assign weight to tasks and out tasks in pq
-    func initialVirtualCalAndAssignTasksToPQ(){
+    private func initialVirtualCalAndAssignTasksToPQ(){
         self.latestDateDue = Date()
         //find latest due date and push all tasks due in future into the pq
         //truncate current Date up to the whole hour date
@@ -121,86 +194,54 @@ class SchedulingAlgorithm {
     }
     
     
-    
-    func createVirtualCal(){
-        //put task in vCal
-        //frontLoad tasks
-        if self.latestDateDue != nil{
-            loadUserEvents(endDate: self.latestDateDue!)
-            while pq.count != 0{
-                if let t = pq.pop(){
-                    print("_______________")
-                    print("name: ")
-                    print(t.name)
-                    print("dueDate: ")
-                    print(t.dueDate)
-                    print("weight: ")
-                    print(t.weight)
-                    print("startDate: ")
-                    print(t.startDate)
-                    print("_______________")
-                    let success = addTaskToVirtualCalendar(task: t)
-                    if(!success) {
-                        //couldn't schedule task
-                        break
-                    }
 
-                    //writeEventToCalendar(task: t)
+    //virtual calendar ---->>> real calendar with name "ScheduledTaskCalendar"
+    private func scheduleToRealCalendar(){
+        var index = 0
+        while(index < virtualCalendar.count) {
+            let status = virtualCalendar[index].status
+            print("outerloop \(index) status: \(status)")
+            if status != "empty" && status != "sleep" && !status.contains("users") {
+                let startDate = virtualCalendar[index].startDate
+                var endDate = virtualCalendar[index].endDate
+                while(virtualCalendar[index].status == status && index < virtualCalendar.count-1){
+                    print("innerloop \(index) status: \(status)")
+                    endDate = virtualCalendar[index].endDate
+                    index += 1
                 }
+                let interval = VirtualInterval(startDate: startDate, endDate: endDate, status: status)
+                writeEventToCalendar(interval: interval)
+            } else {
+                index += 1
             }
         }
         
-        
-        
-        
-        var temp = 0
-        for i in virtualCalendar{
-            print(temp)
-            print("Start : \(i.startDate)")
-            print("End :  \(i.endDate)")
-            print("Status :  \(i.status)")
-            temp += 1
-        }
     }
-    
-    
-    func addTaskToVirtualCalendar(task: Task) -> Bool {
 
-        //can optimize this by not searching the entire vCal
-        for i in 0..<virtualCalendar.count {
-            //check task start/end dates
-            if(virtualCalendar[i].startDate > task.dueDate) {
-                //can't schedule the task
-                print("Cannot schedule \(task.name)")
-                return false
-            }
-            
-            if (virtualCalendar[i].startDate <= task.startDate &&
-                task.startDate < virtualCalendar[i].endDate) ||
-                (task.startDate <= virtualCalendar[i].startDate &&
-                    virtualCalendar[i].endDate <= task.dueDate) ||
-                (virtualCalendar[i].startDate < task.dueDate &&
-                    task.dueDate <= virtualCalendar[i].endDate)
-            {
-                //overwrite if you can, else go on to the next interval
-                if(virtualCalendar[i].status == "empty") {
-                    virtualCalendar[i].status = "task_" + task.name
+    
+    
+    //add a task to the virtual calendar (front load)
+    private func addTaskToVirtualCalendar(task: Task) -> Bool {
+        var duration = task.duration
+        for i in 0..<virtualCalendar.count{
+            task.earliestStartTime = Date() //TODO when user pick a earliest start time
+            if virtualCalendar[i].startDate >= task.earliestStartTime! && virtualCalendar[i].endDate <= task.dueDate && virtualCalendar[i].status == "empty" && duration > 0{
+                virtualCalendar[i].status = task.name
+                duration -= 0.5
+                if(duration == 0) {
                     return true
-                    
-                    /*print("Virtual Calendar[\(i)]: [\(virtualCalendar[i].startDate), \(virtualCalendar[i].endDate)]")
-                     print("Task \(task.name): [\(task.startDate), \(task.dueDate)]") */
                 }
-                
-
+            }
+            else if virtualCalendar[i].startDate > task.dueDate || task.dueDate < virtualCalendar[i].endDate{
+               return false
             }
             
         }
-        
         return false
     }
     
-    //load all user's events between current date and latest dueDate
-    func loadUserEvents(endDate: Date) {
+    //load all user's events between current date and latest dueDate to virtural calendar
+    private func loadUserEvents(endDate: Date) {
         let currentDate = Date()
         // Use an event store instance to create and properly configure an NSPredicate
         let eventsPredicate = eventStore.predicateForEvents(withStart: currentDate, end: endDate, calendars: nil)
@@ -225,7 +266,7 @@ class SchedulingAlgorithm {
                             e.endDate <= virtualCalendar[i].endDate)
                     {
                         
-                        virtualCalendar[i].status = "users_" + e.title
+                        virtualCalendar[i].status = "users " + e.title
                         
                         
                     }
@@ -235,27 +276,18 @@ class SchedulingAlgorithm {
         }
     }
     
-    //delete event based on its predicate (start, end dates)
-    func deleteEventFromCalendar(task: Task){
-        for cal in self.calendars {
-            if cal.title == "ScheduledTaskCalendar"{
-                
-              
-            }
-        }
 
-    }
-    
-    func writeEventToCalendar(task: Task) {
+    private func writeEventToCalendar(interval: VirtualInterval) {
         for cal in self.calendars {
             // 2
             if cal.title == "ScheduledTaskCalendar"{
                 let newEvent = EKEvent(eventStore: eventStore)
                 newEvent.calendar = cal
-                newEvent.title = task.name
-                newEvent.startDate = task.startDate
-                newEvent.endDate = task.dueDate
-                
+                newEvent.title = interval.status
+                newEvent.startDate = interval.startDate
+                newEvent.endDate = interval.endDate
+                print("***In write event to calendar: \(newEvent.title)")
+
             // Save the calendar using the Event Store instance
             
                 do {
@@ -268,11 +300,8 @@ class SchedulingAlgorithm {
         
        
     }
-    func loadPriorityQueue(){
-        
-    }
     
-    func requestAccessToCalendar() {
+    private func requestAccessToCalendar() {
         eventStore.requestAccess(to: EKEntityType.event, completion: {
             (accessGranted: Bool, error: Error?) in
             

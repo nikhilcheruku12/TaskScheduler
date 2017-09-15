@@ -39,10 +39,23 @@ class TableViewController: UITableViewController {
             tasks += c.tasks
         }
         let schedulingAlgorithm : SchedulingAlgorithm?
-        
         schedulingAlgorithm = SchedulingAlgorithm(tasks: tasks)!
-        schedulingAlgorithm!.createVirtualCal()
-        
+        schedulingAlgorithm?.deleteTasksFromCalendar()
+        let scheduleStatus = schedulingAlgorithm?.schedule()
+        if scheduleStatus!.contains("Failed") {
+            print("schedule task not success!!!!!!!!!!")
+            let alert = UIAlertController(title: scheduleStatus, message: "You Failed!", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(OKAction)
+            self.present(alert, animated: true, completion: nil)
+        }else {
+            print("Scheduled task SUCCESS!!!!!!!!!!")
+            let alert = UIAlertController(title: scheduleStatus, message: "Success!", preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(OKAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        schedulingAlgorithm?.printVirtualCalendar()
 
     }
 

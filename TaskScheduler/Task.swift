@@ -38,6 +38,8 @@ class Task: NSObject, NSCoding, Comparable{
     var weight : Float = 0.0
     //each task maintain an array of sub tasks for scheduling and reference
     var subTasks = [SubTask]()
+    var earliestStartTime : Date? 
+    
     
     
     
