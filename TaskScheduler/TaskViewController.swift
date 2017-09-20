@@ -24,6 +24,8 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
     
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     
+    @IBOutlet weak var earliestStartTimePicker: UIDatePicker!
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -39,7 +41,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
             hoursTextField.text =  String(Int(floor(task1.duration)))
             minutesTextField.text =  String(Int(60 * (task1.duration - Float(Int(floor(task1.duration))))))
             dueDatePicker.date = task1.dueDate
-           
+            earliestStartTimePicker.date = task1.earliestStartTime!
         }
             
         
@@ -82,10 +84,15 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         let minutes = Float(Int(minutesTextField.text!)!)/60.0;
         let duration = hours + minutes;
         let dueDate = dueDatePicker.date;
-        task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate);
+        let earliestStartTime = earliestStartTimePicker.date;
+        task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate, earliestStartTime:earliestStartTime);
         
         if let classtemp = class1 {
             classtemp.addTask(task: task1!)
+             os_log("task is being saved", log: OSLog.default, type: .debug)
+            
+        } else{
+             os_log("task is not being saved", log: OSLog.default, type: .debug)
         }
         
     }
