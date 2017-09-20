@@ -224,8 +224,8 @@ class SchedulingAlgorithm {
     private func addTaskToVirtualCalendar(task: Task) -> Bool {
         var duration = task.duration
         for i in 0..<virtualCalendar.count{
-            task.earliestStartTime = Date() //TODO when user pick a earliest start time
-            if virtualCalendar[i].startDate >= task.earliestStartTime! && virtualCalendar[i].endDate <= task.dueDate && virtualCalendar[i].status == "empty" && duration > 0{
+            //task.earliestStartDate = Date() //TODO when user pick a earliest start time
+            if virtualCalendar[i].startDate >= task.earliestStartDate! && virtualCalendar[i].endDate <= task.dueDate && virtualCalendar[i].status == "empty" && duration > 0{
                 virtualCalendar[i].status = task.name
                 duration -= 0.5
                 if(duration == 0) {

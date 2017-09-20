@@ -41,7 +41,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
             hoursTextField.text =  String(Int(floor(task1.duration)))
             minutesTextField.text =  String(Int(60 * (task1.duration - Float(Int(floor(task1.duration))))))
             dueDatePicker.date = task1.dueDate
-            earliestStartTimePicker.date = task1.earliestStartTime!
+            earliestStartTimePicker.date = task1.earliestStartDate!
         }
             
         
@@ -84,8 +84,10 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         let minutes = Float(Int(minutesTextField.text!)!)/60.0;
         let duration = hours + minutes;
         let dueDate = dueDatePicker.date;
-        let earliestStartTime = earliestStartTimePicker.date;
-        task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate, earliestStartTime:earliestStartTime);
+        var earliestStartDate = earliestStartTimePicker.date;
+        let timeIntervalEarliest = floor(earliestStartDate .timeIntervalSinceReferenceDate / 60) * 60 //truncate seconds 
+        earliestStartDate = Date(timeIntervalSinceReferenceDate: timeIntervalEarliest)
+        task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate, earliestStartDate:earliestStartDate);
         
         if let classtemp = class1 {
             classtemp.addTask(task: task1!)

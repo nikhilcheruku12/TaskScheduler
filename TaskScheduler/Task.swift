@@ -39,12 +39,12 @@ class Task: NSObject, NSCoding, Comparable{
     var weight : Float = 0.0
     //each task maintain an array of sub tasks for scheduling and reference
     var subTasks = [SubTask]()
-    var earliestStartTime : Date?
+    var earliestStartDate : Date?
     
     
     
     
-    init?(name: String, percentage: Float, class1:Class, duration:Float, dueDate:Date, earliestStartTime: Date) {
+    init?(name: String, percentage: Float, class1:Class, duration:Float, dueDate:Date, earliestStartDate: Date) {
         self.name = name;
         self.percentage = percentage;
         self.class1 = class1;
@@ -52,7 +52,7 @@ class Task: NSObject, NSCoding, Comparable{
         self.dueDate = dueDate;
         let timeInterval = floor(self.dueDate.timeIntervalSinceReferenceDate/60.0) * 60.0
         self.dueDate = Date(timeIntervalSinceReferenceDate: timeInterval)
-        self.earliestStartTime = earliestStartTime
+        self.earliestStartDate = earliestStartDate
         if name.isEmpty || percentage < 0   {
             return nil
         }
@@ -70,7 +70,7 @@ class Task: NSObject, NSCoding, Comparable{
         aCoder.encode(dueDate,forKey: PropertyKey.dueDate)
         aCoder.encode(daysBeforeToStart,forKey: PropertyKey.daysBeforeToStart)
         aCoder.encode(weight,forKey: PropertyKey.weight)
-        aCoder.encode(earliestStartTime, forKey: PropertyKey.earliestStartDate)
+        aCoder.encode(earliestStartDate, forKey: PropertyKey.earliestStartDate)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -95,7 +95,7 @@ class Task: NSObject, NSCoding, Comparable{
             return nil
         }
         
-        guard let earliestStartTime = aDecoder.decodeObject(forKey: PropertyKey.earliestStartDate) as? Date else {
+        guard let earliestStartDate = aDecoder.decodeObject(forKey: PropertyKey.earliestStartDate) as? Date else {
             os_log("Unable to decode earliestStartTime for a task object.", log: OSLog.default, type: .debug)
             return nil
         }
@@ -108,7 +108,7 @@ class Task: NSObject, NSCoding, Comparable{
          percentage = 10.0
          }*/
         
-        self.init(name: name, percentage: percentage,  class1:class1, duration:duration, dueDate:dueDate, earliestStartTime: earliestStartTime)
+        self.init(name: name, percentage: percentage,  class1:class1, duration:duration, dueDate:dueDate, earliestStartDate: earliestStartDate)
         
     }
     
