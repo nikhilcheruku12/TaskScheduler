@@ -12,7 +12,7 @@ import EventKit
 class SchedulingAlgorithm {
     private var ekCalendar: EKCalendar!
     private let eventStore = EKEventStore()
-    private let calendars : [EKCalendar]
+    private var calendars : [EKCalendar]
     private var taskCalendar : EKCalendar
     private var events: [EKEvent]?
     private var tasks: [Task]?
@@ -76,19 +76,23 @@ class SchedulingAlgorithm {
             if cal.title == "ScheduledTaskCalendar"{
                 arrayCal = [EKCalendar]()
                 arrayCal?.append(cal)
+                print(arrayCal!)
             }
         }
-        print(arrayCal!)
-        let predicate = eventStore.predicateForEvents(withStart: Date(), end: self.latestDateDue!, calendars: arrayCal)
-        let events = eventStore.events(matching: predicate) as [EKEvent]!
-        if events != nil {
-            for e in events!{
-                do {
-                    try eventStore.remove(e, span: EKSpan.thisEvent, commit: true)
-                }catch let error {
-                    print("Error removing event: ", error)
+        if(arrayCal != nil) {
+            let predicate = eventStore.predicateForEvents(withStart: Date(), end: self.latestDateDue!, calendars: arrayCal)
+            let events = eventStore.events(matching: predicate) as [EKEvent]!
+            if events != nil {
+                for e in events!{
+                    do {
+                        try eventStore.remove(e, span: EKSpan.thisEvent, commit: true)
+                    }catch let error {
+                        print("Error removing event: ", error)
+                    }
                 }
             }
+        } else {
+            print("arrayCal is nil")
         }
         
         
@@ -120,26 +124,38 @@ class SchedulingAlgorithm {
         }
         taskCalendar.title = "ScheduledTaskCalendar"
         // Access list of available sources from the Event Store
+        // Filter the available sources and select the "iCloud" source to assign to the new calendar's, or "Local" if iCloud is not available
         let sourcesInEventStore = eventStore.sources
-        // Filter the available sources and select the "Local" source to assign to the new calendar's
-        // source property
-        taskCalendar.source = sourcesInEventStore.filter{
+        let filteredEventStores = sourcesInEventStore.filter{
             (source: EKSource) -> Bool in
-            source.sourceType.rawValue == EKSourceType.local.rawValue
-            }.first!
+            source.sourceType.rawValue == EKSourceType.local.rawValue || source.title.lowercased().contains("icloud")
+        }
+        if filteredEventStores.count > 0 {
+            taskCalendar.source = filteredEventStores.first!
+        } else {
+            taskCalendar.source = sourcesInEventStore.filter{
+                (source: EKSource) -> Bool in
+                source.sourceType.rawValue == EKSourceType.subscribed.rawValue
+                }.first!
+        }
+    
         
-        // Save the calendar using the Event Store instance
         print("creating ScheduledTaskCalendar ")
+        // Save the calendar using the Event Store instance
         do {
             try eventStore.saveCalendar(taskCalendar, commit: true)
+            self.calendars = eventStore.calendars(for: .event)
             UserDefaults.standard.set(taskCalendar.calendarIdentifier, forKey: "TaskSchedulerPrimaryCalendar")
             print("create ScheduledTaskCalendar success ")
+            for cal in self.calendars {
+                print(cal.title)
+            }
         } catch {
             let alert = UIAlertController(title: "Calendar could not save", message: (error as NSError).localizedDescription, preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(OKAction)
             
-            print("ScheduledTaskCalendar cannot be created ")
+            print("ScheduledTaskCalendar cannot be created \(error)")
         }
     }
     
@@ -210,7 +226,9 @@ class SchedulingAlgorithm {
                     index += 1
                 }
                 let interval = VirtualInterval(startDate: startDate, endDate: endDate, status: status)
+                print("about to write to calendar")
                 writeEventToCalendar(interval: interval)
+                print("just wrote to calendar")
             } else {
                 index += 1
             }
@@ -279,6 +297,7 @@ class SchedulingAlgorithm {
 
     private func writeEventToCalendar(interval: VirtualInterval) {
         for cal in self.calendars {
+            print(cal.title)
             // 2
             if cal.title == "ScheduledTaskCalendar"{
                 let newEvent = EKEvent(eventStore: eventStore)

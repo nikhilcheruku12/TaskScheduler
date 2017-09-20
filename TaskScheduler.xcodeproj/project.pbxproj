@@ -176,6 +176,7 @@
 				TargetAttributes = {
 					9B1F41141F0FDE3E000B3076 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = C6N7NV7724;
 						ProvisioningStyle = Automatic;
 					};
 					9B1F41281F0FDE3F000B3076 = {
@@ -381,6 +382,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C6N7NV7724;
 				INFOPLIST_FILE = TaskScheduler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.usc.TaskScheduler;
@@ -393,6 +395,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C6N7NV7724;
 				INFOPLIST_FILE = TaskScheduler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.usc.TaskScheduler;

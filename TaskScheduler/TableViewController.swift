@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 import os.log
 class TableViewController: UITableViewController {
     var classes = [Class]();
@@ -21,15 +22,27 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         navigationItem.leftBarButtonItem = editButtonItem
         
-        if let savedClasses = loadClasses() {
+        loadSampleClasses()
+        let eventStore = EKEventStore()
+        eventStore.requestAccess(to: EKEntityType.event, completion: {
+            (accessGranted: Bool, error: Error?) in
+            
+            if accessGranted {
+                print("access granted")
+            } else {
+                print("access not granted")
+            }
+        })
+
+        
+        /*if let savedClasses = loadClasses() {
             classes += savedClasses
         }
         
         else{
             loadSampleClasses()
         }
-        
-        
+        */
     }
 
     //james maya
