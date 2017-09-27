@@ -162,12 +162,16 @@ class SchedulingAlgorithm {
     //initialize array of interval struct with X number of halfHours between current and lastest due date
     //assign weight to tasks and out tasks in pq
     private func initialVirtualCalAndAssignTasksToPQ(){
+        if self.tasks?.count == 0{
+            return
+        }
         self.latestDateDue = Date()
         //find latest due date and push all tasks due in future into the pq
         //truncate current Date up to the whole hour date
         var currentDate = Date()
         let timeIntervalCurrent = floor(currentDate .timeIntervalSinceReferenceDate / 3600.0) * 3600.0
         currentDate = Date(timeIntervalSinceReferenceDate: timeIntervalCurrent+3600)
+        
         if self.tasks != nil{
             for t in self.tasks!{
                 if(currentDate < t.dueDate){
