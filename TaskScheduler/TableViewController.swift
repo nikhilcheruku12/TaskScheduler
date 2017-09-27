@@ -51,6 +51,10 @@ class TableViewController: UITableViewController {
         for c in classes {
             tasks += c.tasks
         }
+        if(tasks.count < 1){
+            return
+        }
+        
         let schedulingAlgorithm : SchedulingAlgorithm?
         schedulingAlgorithm = SchedulingAlgorithm(tasks: tasks)!
         schedulingAlgorithm?.deleteTasksFromCalendar()
