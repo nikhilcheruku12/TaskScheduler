@@ -21,6 +21,8 @@ class SchedulingAlgorithm {
     private var latestDateDue: Date?
     private var freeTime = 0.0
     private var numTasks = 0
+    private var timeRemaining = 0.0
+    private var tasksRemaining = 0
     
     struct VirtualInterval {
         var startDate: Date
@@ -35,6 +37,7 @@ class SchedulingAlgorithm {
         calendars = eventStore.calendars(for: EKEntityType.event)
         self.tasks = tasks
         numTasks = (tasks?.count)!
+        tasksRemaining = (tasks?.count)!
         initialVirtualCalAndAssignTasksToPQ()
         requestAccessToCalendar()
         createTaskCalendar()
@@ -60,7 +63,9 @@ class SchedulingAlgorithm {
                     let success = addTaskToVirtualCalendar(task: t)
                     if !success {
                         //couldn't schedule task
-                        return ("Failed to schedule " + t.name + " try to start the task earlier or reduce duration")
+                        return ("You failed to schedule " + t.name + ". Please try to start the task earlier or reduce its duration and reschedule.")
+                    } else {
+                        tasksRemaining -= 1
                     }
                     
                     //writeEventToCalendar(task: t)
@@ -349,7 +354,9 @@ class SchedulingAlgorithm {
         return numTasks
     }
     
-    
+    public func getTasksRemaining() -> Int {
+        return tasksRemaining
+    }
     //use it later
     func updateCalendar(){
         

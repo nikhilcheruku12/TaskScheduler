@@ -75,9 +75,11 @@ class TableViewController: UITableViewController {
         schedulingAlgorithm = SchedulingAlgorithm(tasks: tasks)!
         schedulingAlgorithm?.deleteTasksFromCalendar()
         let scheduleStatus = schedulingAlgorithm?.schedule()
-        if scheduleStatus!.contains("Failed") {
+        if scheduleStatus!.contains("failed") {
             print("schedule task not success!!!!!!!!!!")
-            let alert = UIAlertController(title: scheduleStatus, message: "You Failed!", preferredStyle: .alert)
+            let tasksRemaining = schedulingAlgorithm!.getTasksRemaining()
+            let message = scheduleStatus! + " You still have \(tasksRemaining) tasks to schedule."
+            let alert = UIAlertController(title: "Scheduling Unsuccessful.", message: message, preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(OKAction)
             self.present(alert, animated: true, completion: nil)
