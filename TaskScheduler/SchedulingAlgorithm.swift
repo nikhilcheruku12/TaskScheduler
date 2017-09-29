@@ -66,26 +66,9 @@ class SchedulingAlgorithm {
         }
         
         scheduleToRealCalendar()
-        open(scheme: "calshow://")
         return "Scheduled Succeed"
     }
     
-    //show calendar app
-    //source from https://useyourloaf.com/blog/openurl-deprecated-in-ios10/
-    private func open(scheme: String) {
-        if let url = URL(string: scheme) {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:],
-                                          completionHandler: {
-                                            (success) in
-                                            print("Open \(scheme): \(success)")
-                })
-            } else {
-                let success = UIApplication.shared.openURL(url)
-                print("Open \(scheme): \(success)")
-            }
-        }
-    }
     //delete tasks from currnet date to the lastest due date
     public func deleteTasksFromCalendar(){
         var arrayCal : [EKCalendar]?

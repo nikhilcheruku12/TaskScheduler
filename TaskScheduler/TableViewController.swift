@@ -44,6 +44,22 @@ class TableViewController: UITableViewController {
         }
         */
     }
+    
+    //source from https://useyourloaf.com/blog/openurl-deprecated-in-ios10/
+    private func open(scheme: String) {
+        if let url = URL(string: scheme) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                                            print("Open \(scheme): \(success)")
+                })
+            } else {
+                let success = UIApplication.shared.openURL(url)
+                print("Open \(scheme): \(success)")
+            }
+        }
+    }
 
     //james maya
     @IBAction func testing(_ sender: UIButton) {
@@ -68,14 +84,19 @@ class TableViewController: UITableViewController {
         }else {
             print("Scheduled task SUCCESS!!!!!!!!!!")
             let alert = UIAlertController(title: scheduleStatus, message: "Success!", preferredStyle: .alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(OKAction)
+            alert.addAction(UIAlertAction(title: "Go to Calendar", style: .default, handler: { action in
+                self.open(scheme: "calshow://")
+            }))
+            
+            //let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            //alert.addAction(OKAction)
             self.present(alert, animated: true, completion: nil)
         }
         schedulingAlgorithm?.printVirtualCalendar()
 
     }
 
+    
     
     
     
