@@ -19,6 +19,8 @@ class SchedulingAlgorithm {
     private var virtualCalendar = [VirtualInterval]()
     private var pq = PriorityQueue<Task>(ascending: false)
     private var latestDateDue: Date?
+    private var freeTime = 0.0
+    private var numTasks = 0
     
     struct VirtualInterval {
         var startDate: Date
@@ -32,6 +34,7 @@ class SchedulingAlgorithm {
         taskCalendar = EKCalendar(for: .event, eventStore: eventStore)
         calendars = eventStore.calendars(for: EKEntityType.event)
         self.tasks = tasks
+        numTasks = (tasks?.count)!
         initialVirtualCalAndAssignTasksToPQ()
         requestAccessToCalendar()
         createTaskCalendar()
@@ -219,6 +222,9 @@ class SchedulingAlgorithm {
         while(index < virtualCalendar.count) {
             let status = virtualCalendar[index].status
             print("outerloop \(index) status: \(status)")
+            if status == "empty" {
+                freeTime += 0.5
+            }
             if status != "empty" && status != "sleep" && !status.contains("users") {
                 let startDate = virtualCalendar[index].startDate
                 var endDate = virtualCalendar[index].endDate
@@ -335,6 +341,13 @@ class SchedulingAlgorithm {
     }
     
     
+    public func getFreeTime() -> Double {
+        return freeTime
+    }
+    
+    public func getNumTasks() -> Int {
+        return numTasks
+    }
     
     
     //use it later

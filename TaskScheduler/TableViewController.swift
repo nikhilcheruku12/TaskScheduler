@@ -83,7 +83,10 @@ class TableViewController: UITableViewController {
             self.present(alert, animated: true, completion: nil)
         }else {
             print("Scheduled task SUCCESS!!!!!!!!!!")
-            let alert = UIAlertController(title: scheduleStatus, message: "Success!", preferredStyle: .alert)
+            let freeTime = schedulingAlgorithm!.getFreeTime()
+            let numTasks = schedulingAlgorithm!.getNumTasks()
+            let message = "Success! You have scheduled \(numTasks) task(s) and still have \(freeTime) hour(s) of free time to enjoy before your last task is due! Use that time wisely :)"
+            let alert = UIAlertController(title: scheduleStatus, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Go to Calendar", style: .default, handler: { action in
                 self.open(scheme: "calshow://")
             }))
