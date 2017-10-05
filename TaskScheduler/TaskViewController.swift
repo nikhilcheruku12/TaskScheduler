@@ -8,7 +8,7 @@
 
 import UIKit
 import os.log
-class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationControllerDelegate {
+class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var task1: Task?
     
@@ -18,9 +18,9 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
 
     @IBOutlet weak var percentageSlider: UISlider!
     
-    @IBOutlet weak var hoursTextField: UITextField!
+   // @IBOutlet weak var hoursTextField: UITextField!
     
-    @IBOutlet weak var minutesTextField: UITextField!
+   // @IBOutlet weak var minutesTextField: UITextField!
     
     @IBOutlet weak var dueDatePicker: UIDatePicker!
     
@@ -29,6 +29,13 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var hourPicker: UIPickerView!
+    @IBOutlet weak var minutePicker: UIPickerView!
+    
+    var hourArray: [String] = []
+    var minArray : [String] = ["0","30"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
@@ -47,12 +54,31 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         
         self.dueDatePicker.minimumDate = earliestStartTimePicker.date
         
+        hourPicker.tag = 0
+        minutePicker.tag = 1
+        self.hourPicker.dataSource = self
+        self.hourPicker.delegate = self
+        
+        self.minutePicker.dataSource = self
+        self.minutePicker.delegate = self 
+        
+        
+        
+        
+        for index in 0...100 {
+            let temp = "\(index)"
+            hourArray.append(contentsOf: [temp])
+        }
+        
         if let task1 = task1 {
             navigationItem.title = task1.name
             nameTextField.text = task1.name
             percentageSlider.value = task1.percentage
-            hoursTextField.text =  String(Int(floor(task1.duration)))
-            minutesTextField.text =  String(Int(60 * (task1.duration - Float(Int(floor(task1.duration))))))
+           // hoursTextField.text =  String(Int(floor(task1.duration)))
+            //minutesTextField.text =  String(Int(60 * (task1.duration - Float(Int(floor(task1.duration))))))
+            hourPicker.selectRow(Int(floor(task1.duration)), inComponent: 0, animated: true)
+            minutePicker.selectRow(Int(2 * (task1.duration - Float(Int(floor(task1.duration)))))
+                , inComponent: 0, animated: true)
             dueDatePicker.date = task1.dueDate
             earliestStartTimePicker.date = task1.earliestStartDate!
         }
@@ -92,6 +118,17 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
             return false
         }
         
+        if hourPicker.selectedRow(inComponent: 0) == 0 &&
+            minutePicker.selectedRow(inComponent: 0) == 0{
+            
+            let alertController = UIAlertController(title: "Invalid Input", message: "Duration cannot be 0 hrs and 0 mins", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "Close Alert", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            present(alertController, animated: true, completion: nil)
+            return false
+        }
+        
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return false
@@ -100,8 +137,10 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         if let task1 = task1{
             task1.name = nameTextField.text!;
             task1.percentage = percentageSlider.value;
-            let hours = Float(Int(hoursTextField.text!)!);
-            let minutes = Float(Int(minutesTextField.text!)!)/60.0;
+            //let hours = Float(Int(hoursTextField.text!)!);
+            let hours = Float(hourPicker.selectedRow(inComponent: 0))
+            //let minutes = Float(Int(minutesTextField.text!)!)/60.0;
+            let minutes = Float (minutePicker.selectedRow(inComponent: 0) * 30)/60.0
             task1.duration = hours + minutes;
             task1.dueDate = dueDatePicker.date;
             var earliestStartDate = earliestStartTimePicker.date;
@@ -113,8 +152,9 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         else{
             let name = nameTextField.text;
             let percentage = percentageSlider.value;
-            let hours = Float(Int(hoursTextField.text!)!);
-            let minutes = Float(Int(minutesTextField.text!)!)/60.0;
+            let hours = Float(hourPicker.selectedRow(inComponent: 0))
+            let minutes = Float (minutePicker.selectedRow(inComponent: 0) * 30)/60.0
+            print(minutes)
             let duration = hours + minutes;
             let dueDate = dueDatePicker.date;
             var earliestStartDate = earliestStartTimePicker.date;
@@ -139,12 +179,12 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    /*func textFieldDidBeginEditing(_ textField: UITextField) {
         // Disable the Save button while editing.
         saveButton.isEnabled = false
         print("begin")
         
-    }
+    }*/
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         // Disable the Save button while editing.
@@ -152,6 +192,40 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         updateSaveButtonState()
         navigationItem.title = nameTextField.text
         print("end")
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if !(textField.text?.isEmpty)!{
+        saveButton.isEnabled = true
+        
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if(pickerView.tag == 0){
+            return hourArray.count
+        }
+        return minArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == 0 {
+            let titleRow = hourArray[row]
+            return titleRow
+        } else if pickerView.tag == 1 {
+            let titleRow = minArray[row]
+            return titleRow
+        }
+        
+        return ""
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+       
     }
     
     

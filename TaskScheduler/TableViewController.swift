@@ -22,7 +22,7 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         navigationItem.leftBarButtonItem = editButtonItem
         
-        loadSampleClasses()
+        //loadSampleClasses()
         let eventStore = EKEventStore()
         eventStore.requestAccess(to: EKEntityType.event, completion: {
             (accessGranted: Bool, error: Error?) in
@@ -35,14 +35,14 @@ class TableViewController: UITableViewController {
         })
 
         
-        /*if let savedClasses = loadClasses() {
+        if let savedClasses = loadClasses() {
             classes += savedClasses
         }
         
         else{
             loadSampleClasses()
         }
-        */
+        
     }
     
     //source from https://useyourloaf.com/blog/openurl-deprecated-in-ios10/
