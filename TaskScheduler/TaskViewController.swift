@@ -34,6 +34,9 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         nameTextField.delegate = self
       
         // components.year = -18
+        let gregorian: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let currentDate: NSDate = NSDate()
+        let components: NSDateComponents = NSDateComponents()
         let minDate: NSDate = gregorian.date(byAdding: components as DateComponents, to: currentDate as Date, options: NSCalendar.Options(rawValue: 0))! as NSDate
         
         /*components.year = -150
@@ -129,7 +132,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         
         
         return true
-    }    
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
