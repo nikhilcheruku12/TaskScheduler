@@ -33,6 +33,16 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         super.viewDidLoad()
         nameTextField.delegate = self
       
+        // components.year = -18
+        let minDate: NSDate = gregorian.date(byAdding: components as DateComponents, to: currentDate as Date, options: NSCalendar.Options(rawValue: 0))! as NSDate
+        
+        /*components.year = -150
+         let maxDate: NSDate = gregorian.dateByAddingComponents(components as DateComponents, toDate: currentDate, options: NSCalendar.Options(rawValue: 0))!*/
+        
+        self.earliestStartTimePicker.minimumDate = minDate as Date
+        //self.datePicker.maximumDate = maxDate
+        
+        self.dueDatePicker.minimumDate = earliestStartTimePicker.date
         
         if let task1 = task1 {
             navigationItem.title = task1.name
@@ -68,37 +78,58 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        super.prepare(for: segue, sender: sender);
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if dueDatePicker.date<=earliestStartTimePicker.date {
+            
+            let alertController = UIAlertController(title: "Invalid Input", message: "Due Date should be greater then earliest start date", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "Close Alert", style: .default, handler: nil)
+            alertController.addAction(defaultAction)
+            
+            present(alertController, animated: true, completion: nil)
+            return false
+        }
         
-
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
-            return
+            return false
         }
-        let name = nameTextField.text;
-        let percentage = percentageSlider.value;
-        let hours = Float(Int(hoursTextField.text!)!);
-        let minutes = Float(Int(minutesTextField.text!)!)/60.0;
-        let duration = hours + minutes;
-        let dueDate = dueDatePicker.date;
-        var earliestStartDate = earliestStartTimePicker.date;
-        let timeIntervalEarliest = floor(earliestStartDate .timeIntervalSinceReferenceDate / 60) * 60 //truncate seconds 
-        earliestStartDate = Date(timeIntervalSinceReferenceDate: timeIntervalEarliest)
-        task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate, earliestStartDate:earliestStartDate);
         
-        if let classtemp = class1 {
-            classtemp.addTask(task: task1!)
-             os_log("task is being saved", log: OSLog.default, type: .debug)
+        if let task1 = task1{
+            task1.name = nameTextField.text!;
+            task1.percentage = percentageSlider.value;
+            let hours = Float(Int(hoursTextField.text!)!);
+            let minutes = Float(Int(minutesTextField.text!)!)/60.0;
+            task1.duration = hours + minutes;
+            task1.dueDate = dueDatePicker.date;
+            var earliestStartDate = earliestStartTimePicker.date;
+            let timeIntervalEarliest = floor(earliestStartDate .timeIntervalSinceReferenceDate / 60) * 60 //truncate seconds
+            earliestStartDate = Date(timeIntervalSinceReferenceDate: timeIntervalEarliest)
+            task1.earliestStartDate = earliestStartDate
+        }
             
-        } else{
-             os_log("task is not being saved", log: OSLog.default, type: .debug)
+        else{
+            let name = nameTextField.text;
+            let percentage = percentageSlider.value;
+            let hours = Float(Int(hoursTextField.text!)!);
+            let minutes = Float(Int(minutesTextField.text!)!)/60.0;
+            let duration = hours + minutes;
+            let dueDate = dueDatePicker.date;
+            var earliestStartDate = earliestStartTimePicker.date;
+            let timeIntervalEarliest = floor(earliestStartDate .timeIntervalSinceReferenceDate / 60) * 60 //truncate seconds
+            earliestStartDate = Date(timeIntervalSinceReferenceDate: timeIntervalEarliest)
+            task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate, earliestStartDate:earliestStartDate);
+            if let classtemp = class1 {
+                classtemp.addTask(task: task1!)
+                os_log("task is being saved", log: OSLog.default, type: .debug)
+                
+            } else{
+                os_log("task is not being saved", log: OSLog.default, type: .debug)
+            }
         }
         
-    }
-    
+        
+        return true
+    }    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
