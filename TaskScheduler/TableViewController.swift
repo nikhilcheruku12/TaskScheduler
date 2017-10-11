@@ -9,6 +9,7 @@
 import UIKit
 import EventKit
 import os.log
+import UserNotifications
 class TableViewController: UITableViewController {
     var classes = [Class]();
 
@@ -21,6 +22,8 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         navigationItem.leftBarButtonItem = editButtonItem
+        //notification
+        setNotification()
         
         //loadSampleClasses()
         let eventStore = EKEventStore()
@@ -44,6 +47,50 @@ class TableViewController: UITableViewController {
         }
         
     }
+    private func setNotification(){
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            if !granted {
+                print("Something went wrong")
+            }
+            print("setNotification succeed")
+        }
+        center.getNotificationSettings { (settings) in
+            if settings.authorizationStatus != .authorized {
+                // Notifications not allowed
+            }
+        }
+   
+
+    }
+    
+//    private func createNotification(){
+//        let content = UNMutableNotificationContent()
+//        content.title = "Don't forget"
+//        content.body = "Buy some milk"
+//        content.sound = UNNotificationSound.default()
+//        content.badge = 1
+//        let date = Date(timeIntervalSinceNow: 8)
+//        let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
+//
+//        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5 , repeats: false)
+//        //let triggerMinituely = Calendar.current.dateComponents([.minute,.second,], from: date)
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+//        let identifier = "LocalNotification"
+//        let request = UNNotificationRequest(identifier: identifier,
+//                                            content: content, trigger: trigger)
+//        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+//            if let error = error {
+//                // Something went wrong
+//                print ("Wrong \(error)")
+//            }
+//            print("setNotification added1")
+//        })
+//        print("setNotification added2")
+//    }
+    
+    
     
     //source from https://useyourloaf.com/blog/openurl-deprecated-in-ios10/
     private func open(scheme: String) {
@@ -63,6 +110,7 @@ class TableViewController: UITableViewController {
 
     //james maya
     @IBAction func testing(_ sender: UIButton) {
+        //createNotification()
         var tasks = [Task]()
         for c in classes {
             tasks += c.tasks
@@ -87,7 +135,7 @@ class TableViewController: UITableViewController {
             print("Scheduled task SUCCESS!!!!!!!!!!")
             let freeTime = schedulingAlgorithm!.getFreeTime()
             let numTasks = schedulingAlgorithm!.getNumTasks()
-            let message = "Success! You have scheduled \(numTasks) task(s) and still have \(freeTime) hour(s) of free time to enjoy before your last task is due! Use that time wisely :)"
+            let message = "Success! \nYou have scheduled \(numTasks) task(s) and still have \(freeTime) hour(s) of free time to enjoy before your last task is due!\n Use that time wisely :)"
             let alert = UIAlertController(title: scheduleStatus, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Go to Calendar", style: .default, handler: { action in
                 self.open(scheme: "calshow://")

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import EventKit
+import UserNotifications
 class SchedulingAlgorithm {
     private var ekCalendar: EKCalendar!
     private let eventStore = EKEventStore()
@@ -168,7 +169,7 @@ class SchedulingAlgorithm {
     }
     
     //initialize array of interval struct with X number of halfHours between current and lastest due date
-    //assign weight to tasks and out tasks in pq
+    //assign weight to tasks and put tasks in pq
     private func initialVirtualCalAndAssignTasksToPQ(){
         
         self.latestDateDue = Date()
@@ -226,22 +227,25 @@ class SchedulingAlgorithm {
         var index = 0
         while(index < virtualCalendar.count) {
             let status = virtualCalendar[index].status
-            print("outerloop \(index) status: \(status)")
+            //print("outerloop \(index) status: \(status)")
             if status == "empty" {
                 freeTime += 0.5
             }
             if status != "empty" && status != "sleep" && !status.contains("users") {
                 let startDate = virtualCalendar[index].startDate
                 var endDate = virtualCalendar[index].endDate
-                while(virtualCalendar[index].status == status && index < virtualCalendar.count-1){
-                    print("innerloop \(index) status: \(status)")
+                while(virtualCalendar[index].status == status && index < virtualCalendar.count){
+                    //print("innerloop \(index) status: \(status)")
                     endDate = virtualCalendar[index].endDate
                     index += 1
+                    if (index == virtualCalendar.count){
+                        break //index boundry check
+                    }
                 }
                 let interval = VirtualInterval(startDate: startDate, endDate: endDate, status: status)
-                print("about to write to calendar")
+                //print("about to write to calendar")
                 writeEventToCalendar(interval: interval)
-                print("just wrote to calendar")
+                //print("just wrote to calendar")
             } else {
                 index += 1
             }
@@ -260,6 +264,7 @@ class SchedulingAlgorithm {
                 virtualCalendar[i].status = task.name
                 duration -= 0.5
                 if(duration == 0) {
+                    createNotification(date: virtualCalendar[i].endDate, taskName: task.name)
                     return true
                 }
             }
@@ -357,6 +362,34 @@ class SchedulingAlgorithm {
     public func getTasksRemaining() -> Int {
         return tasksRemaining
     }
+    
+    private func createNotification(date: Date, taskName: String){
+        let content = UNMutableNotificationContent()
+        content.title = "Congratulation!"
+        content.body = "Your task \(taskName) should be finished by now.\nIf you haven't done so, please concider reschedule it."
+        content.sound = UNNotificationSound.default()
+        content.badge = 1
+        //let date1 = Date(timeIntervalSinceNow: 8)
+        let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
+        
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5 , repeats: false)
+        //let triggerMinituely = Calendar.current.dateComponents([.minute,.second,], from: date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
+        let request = UNNotificationRequest(identifier: taskName,
+                                            content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+            if let error = error {
+                // Something went wrong
+                print ("Wrong \(error)")
+            }
+            print("setNotification for \(taskName)")
+        })
+        print("setNotification for \(taskName) at \(date)")
+    }
+    
+    
+    
+    
     //use it later
     func updateCalendar(){
         
