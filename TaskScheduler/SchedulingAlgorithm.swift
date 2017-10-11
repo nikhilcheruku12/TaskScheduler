@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import EventKit
-import UserNotifications
 class SchedulingAlgorithm {
     private var ekCalendar: EKCalendar!
     private let eventStore = EKEventStore()
@@ -24,7 +23,7 @@ class SchedulingAlgorithm {
     private var numTasks = 0
     private var timeRemaining = 0.0
     private var tasksRemaining = 0
-    
+    private var notificationCenter = Notification()
     struct VirtualInterval {
         var startDate: Date
         var endDate : Date
@@ -181,7 +180,7 @@ class SchedulingAlgorithm {
         
         if self.tasks != nil{
             for t in self.tasks!{
-                if(currentDate < t.dueDate){
+                if(currentDate < t.dueDate && !t.isComplete()){
                     Task.assignWeightToTask(task: t)
                     pq.push(t) //add task to queue
                     let tempDate = t.dueDate
@@ -190,9 +189,12 @@ class SchedulingAlgorithm {
                     }
                 }else{
                     //task already due
+                    
+                    //set complete
                 }
             }
         }
+
         //truncate latest duedate down
         let timeIntervalLatest = floor((latestDateDue? .timeIntervalSinceReferenceDate)! / 3600.0) * 3600.0
         self.latestDateDue = Date(timeIntervalSinceReferenceDate: timeIntervalLatest)
@@ -264,7 +266,7 @@ class SchedulingAlgorithm {
                 virtualCalendar[i].status = task.name
                 duration -= 0.5
                 if(duration == 0) {
-                    createNotification(date: virtualCalendar[i].endDate, taskName: task.name)
+                    notificationCenter.createNotification(date: virtualCalendar[i].endDate, taskName: task.name)
                     return true
                 }
             }
@@ -363,29 +365,7 @@ class SchedulingAlgorithm {
         return tasksRemaining
     }
     
-    private func createNotification(date: Date, taskName: String){
-        let content = UNMutableNotificationContent()
-        content.title = "Congratulation!"
-        content.body = "Your task \(taskName) should be finished by now.\nIf you haven't done so, please concider reschedule it."
-        content.sound = UNNotificationSound.default()
-        content.badge = 1
-        //let date1 = Date(timeIntervalSinceNow: 8)
-        let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
-        
-        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5 , repeats: false)
-        //let triggerMinituely = Calendar.current.dateComponents([.minute,.second,], from: date)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-        let request = UNNotificationRequest(identifier: taskName,
-                                            content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
-            if let error = error {
-                // Something went wrong
-                print ("Wrong \(error)")
-            }
-            print("setNotification for \(taskName)")
-        })
-        print("setNotification for \(taskName) at \(date)")
-    }
+    
     
     
     

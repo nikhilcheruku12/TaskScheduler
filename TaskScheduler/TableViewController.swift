@@ -12,7 +12,7 @@ import os.log
 import UserNotifications
 class TableViewController: UITableViewController {
     var classes = [Class]();
-
+    var notificationCenter = Notification()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,7 +23,7 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         navigationItem.leftBarButtonItem = editButtonItem
         //notification
-        setNotification()
+        notificationCenter.setNotification()
         
         //loadSampleClasses()
         let eventStore = EKEventStore()
@@ -47,48 +47,7 @@ class TableViewController: UITableViewController {
         }
         
     }
-    private func setNotification(){
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound, .badge]) {
-            (granted, error) in
-            if !granted {
-                print("Something went wrong")
-            }
-            print("setNotification succeed")
-        }
-        center.getNotificationSettings { (settings) in
-            if settings.authorizationStatus != .authorized {
-                // Notifications not allowed
-            }
-        }
-   
-
-    }
     
-//    private func createNotification(){
-//        let content = UNMutableNotificationContent()
-//        content.title = "Don't forget"
-//        content.body = "Buy some milk"
-//        content.sound = UNNotificationSound.default()
-//        content.badge = 1
-//        let date = Date(timeIntervalSinceNow: 8)
-//        let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
-//
-//        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5 , repeats: false)
-//        //let triggerMinituely = Calendar.current.dateComponents([.minute,.second,], from: date)
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-//        let identifier = "LocalNotification"
-//        let request = UNNotificationRequest(identifier: identifier,
-//                                            content: content, trigger: trigger)
-//        UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
-//            if let error = error {
-//                // Something went wrong
-//                print ("Wrong \(error)")
-//            }
-//            print("setNotification added1")
-//        })
-//        print("setNotification added2")
-//    }
     
     
     
@@ -110,17 +69,24 @@ class TableViewController: UITableViewController {
 
     //james maya
     @IBAction func testing(_ sender: UIButton) {
-        //createNotification()
+        notificationCenter.createMilkNotification() //testing
         var tasks = [Task]()
         for c in classes {
             tasks += c.tasks
         }
-        if(tasks.count < 1){
+        var tasksToSchedule = 0
+        for t in tasks {
+            if (Date() < t.dueDate && !t.isComplete()){
+                tasksToSchedule += 1
+            }
+        }
+        if(tasksToSchedule < 1){
             return
         }
         
         let schedulingAlgorithm : SchedulingAlgorithm?
         schedulingAlgorithm = SchedulingAlgorithm(tasks: tasks)!
+        
         schedulingAlgorithm?.deleteTasksFromCalendar()
         let scheduleStatus = schedulingAlgorithm?.schedule()
         if scheduleStatus!.contains("failed") {

@@ -20,13 +20,10 @@ class Task: NSObject, NSCoding, Comparable{
         static let daysBeforeToStart = "daysBeforeToStart"
         static let weight = "weight"
         static let earliestStartDate = "earliestStartDate"
+        static let completeStatus = "completeStatus"
     }
     
-    struct SubTask{
-        var name: String
-        var sDate: Date
-        var eDate: Date
-    }
+   
     
     var name: String;
     var percentage: Float;
@@ -37,10 +34,8 @@ class Task: NSObject, NSCoding, Comparable{
     var daysBeforeToStart: Int?;
     var startDate: Date
     var weight : Float = 0.0
-    //each task maintain an array of sub tasks for scheduling and reference
-    var subTasks = [SubTask]()
     var earliestStartDate : Date?
-    
+    private var completeStatus = false
     
     
     
@@ -71,6 +66,7 @@ class Task: NSObject, NSCoding, Comparable{
         aCoder.encode(daysBeforeToStart,forKey: PropertyKey.daysBeforeToStart)
         aCoder.encode(weight,forKey: PropertyKey.weight)
         aCoder.encode(earliestStartDate, forKey: PropertyKey.earliestStartDate)
+        aCoder.encode(completeStatus, forKey: PropertyKey.completeStatus)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -100,7 +96,7 @@ class Task: NSObject, NSCoding, Comparable{
             return nil
         }
         //TODO
-        //for daysBeforeToStart,startdate,weight declaration
+        //for daysBeforeToStart,startdate,weight declaration completeStatus
         
         // Must call designated initializer.
         /*if(percentage == nil){
@@ -158,5 +154,13 @@ class Task: NSObject, NSCoding, Comparable{
         let weight = Float(reward * reward) / Float(task.duration)
         task.weight = weight
         
+    }
+    
+    
+    public func isComplete() -> Bool{
+        return completeStatus
+    }
+    public func setComplete(completeStatus: Bool){
+        self.completeStatus = completeStatus
     }
 }
