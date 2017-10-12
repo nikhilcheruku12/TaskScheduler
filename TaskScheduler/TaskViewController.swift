@@ -150,6 +150,11 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         }
             
         else{
+            if class1 != nil {
+                print("class not nil in TaskViewController")
+            } else{
+                print("class is nil in TaskViewController")
+            }
             let name = nameTextField.text;
             let percentage = percentageSlider.value;
             let hours = Float(hourPicker.selectedRow(inComponent: 0))

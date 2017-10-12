@@ -83,7 +83,7 @@ class TaskTableViewController: UITableViewController {
             }
             
             
-            savetasks()
+           // savetasks()
               print("Exits unwindToTaskList");
         }
     }
@@ -107,7 +107,7 @@ class TaskTableViewController: UITableViewController {
             // Delete the row from the data source
             tasks.remove(at: indexPath.row)
             class1?.tasks.remove(at: indexPath.row)
-            savetasks()
+            //savetasks()
             //saveclasses()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
@@ -139,6 +139,11 @@ class TaskTableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
+        if class1 != nil {
+            print("class not nil in TaskTableViewController")
+        } else{
+            print("class is nil in TaskTableViewController")
+        }
         super.prepare(for: segue, sender: sender)
         if let destinationViewController = segue.destination as? TaskViewController{
             destinationViewController.class1 = class1;
@@ -192,7 +197,7 @@ class TaskTableViewController: UITableViewController {
         tasks += [Task1,Task2];
     }*/
     
-    private func savetasks() {
+   /*private func savetasks() {
         print("Enters savetasks")
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tasks, toFile: Task.ArchiveURL.path)
         if isSuccessfulSave {
@@ -205,6 +210,6 @@ class TaskTableViewController: UITableViewController {
     
     private func loadtasks() -> [Task]?  {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Task.ArchiveURL.path) as? [Task]
-    }
+    }*/
     
 }

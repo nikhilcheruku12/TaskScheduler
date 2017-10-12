@@ -58,6 +58,24 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
         super.prepare(for: segue, sender: sender);
         print("segue is happening in ClassViewController")
         
+        if let button = sender as? UIBarButtonItem , button == cancelButton{
+            os_log("The save button was not pressed in ClassViewController, cancelling1", log: OSLog.default, type: .debug)
+            return
+        }
+        if let class1 = class1{
+            // class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, tasks: tasksArray);
+            class1.name = nameTextField.text!
+            class1.importance = importanceSlider.value;
+        } else{
+            class1 = Class(name:nameTextField.text!, importance:importanceSlider.value)
+        }
+
+        if class1 != nil {
+            print("class not nil in classViewController")
+        } else{
+            print("class is nil in classViewController")
+        }
+        
         if let destinationViewController = segue.destination as? TaskTableViewController{
             destinationViewController.class1 = class1;
             print("Class name in TableTaskViewController: = " + (class1?.name)!)
@@ -68,16 +86,7 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
             print("TaskViewController was not destinationviewcontroller")
         }
         
-        guard let button = sender as? UIBarButtonItem, button === saveButton else {
-            os_log("The save button was not pressed in ClassViewController, cancelling", log: OSLog.default, type: .debug)
-            return
-        }
-        if let tasksArray = class1?.tasks{
-             class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, tasks: tasksArray);
-        } else{
-              class1 = Class(name:nameTextField.text!, importance:importanceSlider.value)
-        }
-       
+        
 
     }
     
