@@ -16,13 +16,14 @@ class Class: NSObject, NSCoding{
         static let taskKey = "task"
     }
     
-    var name: String;
-    var importance: Float;
-    var tasks = [Task]();
+    var name: String
+    var importance: Float
+    var tasks: [Task]
     
     init?(name: String, importance: Float) {
         self.name = name;
         self.importance = importance;
+        self.tasks = [Task]()
         
         if name.isEmpty || importance < 0  {
             return nil
@@ -53,21 +54,14 @@ class Class: NSObject, NSCoding{
             return nil
         }
         
-        // Because photo is an optional property of Meal, just use conditional cast.
          let importance = aDecoder.decodeFloat(forKey: PropertyKey.importance) 
         
-       guard var tasks = aDecoder.decodeObject(forKey: PropertyKey.taskKey) as? [Task] else{
+       guard let tasks = aDecoder.decodeObject(forKey: PropertyKey.taskKey) as? [Task] else{
             os_log("Unable to decode tasks for Class Object", log: OSLog.default, type: .debug)
             return nil
         }
         
-        //let tasks = aDecoder.decodeObject(forKey: PropertyKey.taskKey) as? [Task]
-        // Must call designated initializer.
-        /*if(importance == nil){
-            print("importance is nil")
-             importance = 10.0
-        }*/
-       
+
         self.init(name: name, importance: importance, tasks: tasks)
         
     }
@@ -80,5 +74,5 @@ class Class: NSObject, NSCoding{
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("classes")
-
+    
 }

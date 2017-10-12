@@ -16,27 +16,24 @@ class Task: NSObject, NSCoding, Comparable{
         static let class1 = "class1"
         static let duration = "duration"
         static let dueDate = "dueDate"
-        //james and maya
         static let daysBeforeToStart = "daysBeforeToStart"
         static let weight = "weight"
         static let earliestStartDate = "earliestStartDate"
         static let completeStatus = "completeStatus"
     }
     
-   
-    
-    var name: String;
-    var percentage: Float;
-    var class1: Class;
-    var duration: Float;
-    var dueDate: Date;
-    //james and maya
-    var daysBeforeToStart: Int?;
-    var startDate: Date
-    var weight : Float = 0.0
-    var earliestStartDate : Date?
-    private var completeStatus = false
-    
+
+    public var name: String
+    public var duration: Float
+    public var percentage: Float
+    public var dueDate: Date
+    public var earliestStartDate : Date?
+
+    private var class1: Class
+    private var daysBeforeToStart: Int?
+    private var startDate: Date
+    private var weight : Float
+    private var completeStatus: Bool
     
     
     init?(name: String, percentage: Float, class1:Class, duration:Float, dueDate:Date, earliestStartDate: Date) {
@@ -45,16 +42,21 @@ class Task: NSObject, NSCoding, Comparable{
         self.class1 = class1;
         self.duration = duration;
         self.dueDate = dueDate;
+        self.weight = 0.0
+        self.completeStatus = false
+        // Truncate down to nearest half hour
         let timeInterval = floor(self.dueDate.timeIntervalSinceReferenceDate/60.0) * 60.0
         self.dueDate = Date(timeIntervalSinceReferenceDate: timeInterval)
         self.earliestStartDate = earliestStartDate
+        startDate = Date(timeInterval: TimeInterval(-duration*3600), since: dueDate)
         if name.isEmpty || percentage < 0   {
             return nil
         }
-        //james and maya
-        
-        startDate = Date(timeInterval: TimeInterval(-duration*3600), since: dueDate)
     }
+    //MARK: Archiving Paths
+    
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("tasks")
     
     //MARK: NSCoding
     func encode(with aCoder: NSCoder) {
@@ -108,21 +110,39 @@ class Task: NSObject, NSCoding, Comparable{
         
     }
     
-    //MARK: Archiving Paths
+    /*
+     * The heuristic function that assigns the weight to the task
+     * The weight is calculated as 60% from the task's percentage, 40% from the importance,
+     * and divided by the duration to normalize how much "benefit" each task provides per every hour.
+     */
     
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("tasks")
+    static func assignWeightToTask(task: Task){
+        
+        let reward = 100 * (((0.6) * (task.percentage / 100)) + ((0.4) * (task.class1.importance / 10)))
+        let weight = Float(reward * reward) / Float(task.duration)
+        task.weight = weight
+        
+    }
     
+    /**** GETTERS/SETTERS *****/
     
+    public func isComplete() -> Bool{
+        return completeStatus
+    }
+    public func setComplete(completeStatus: Bool){
+        self.completeStatus = completeStatus
+    }
     
-    //comparator
+    /**** OPERATION OVERLOADING ****/
+    
+    // Comparator. Compares the due date, and then the weight, and finally the start date.
     static func < (lhs: Task, rhs: Task) -> Bool {
         if lhs.dueDate < rhs.dueDate{
             return false
         }
         else if  lhs.dueDate > rhs.dueDate{
             return true
-        }else{
+        } else{
             if lhs.weight < rhs.weight {
                 return true
             }
@@ -140,27 +160,11 @@ class Task: NSObject, NSCoding, Comparable{
         }
         
     }
+    
     static func == (lhs: Task, rhs: Task) -> Bool {
         if (lhs.dueDate == rhs.dueDate) && (lhs.weight == rhs.weight) && (lhs.startDate == rhs.startDate) {
             return true
         }
         return false
-    }
-    
-    //hueristic function
-    static func assignWeightToTask(task: Task){
-        
-        let reward = 100 * (((0.6) * (task.percentage / 100)) + ((0.4) * (task.class1.importance / 10)))
-        let weight = Float(reward * reward) / Float(task.duration)
-        task.weight = weight
-        
-    }
-    
-    
-    public func isComplete() -> Bool{
-        return completeStatus
-    }
-    public func setComplete(completeStatus: Bool){
-        self.completeStatus = completeStatus
     }
 }
