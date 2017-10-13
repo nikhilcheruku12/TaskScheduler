@@ -379,12 +379,32 @@ class SchedulingAlgorithm {
         }
     }
     
-    /******GETTER/SETTER FUNCTIONS********/
-    
-    public func getFreeTime() -> Double {
-        return freeTime
+    public func getScheduleMessage() -> String{
+        var hours = 0
+        var days = 0
+        var weeks = 0
+        var message = ""
+        if (freeTime >= 24) {
+            hours = Int(freeTime) % 24
+            days = Int(freeTime) / 24
+        }
+        if(days >= 7) {
+            weeks = days / 7
+            days = days % 7
+        }
+        if(weeks != 0){
+            message += "\(weeks)weeks "
+        }
+        if(days != 0){
+            message += "\(days)days "
+        }
+        message  += "\(hours)hours"
+        return message
+        
     }
     
+    /******GETTER/SETTER FUNCTIONS********/
+
     public func getNumTasks() -> Int {
         return numTasks
     }

@@ -99,9 +99,9 @@ class TableViewController: UITableViewController {
             self.present(alert, animated: true, completion: nil)
         }else {
             print("Scheduled task SUCCESS!!!!!!!!!!")
-            let freeTime = schedulingAlgorithm!.getFreeTime()
+            let scheduleMessage = schedulingAlgorithm!.getScheduleMessage()
             let numTasks = schedulingAlgorithm!.getNumTasks()
-            let message = "Success! \nYou have scheduled \(numTasks) task(s) and still have \(freeTime) hour(s) of free time to enjoy before your last task is due!\n Use that time wisely :)"
+            let message = "You have scheduled \(numTasks) task(s) and still have " +  scheduleMessage + " of free time to enjoy before your last task is due!\n Use that time wisely :)"
             let alert = UIAlertController(title: scheduleStatus, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Go to Calendar", style: .default, handler: { action in
                 self.open(scheme: "calshow://")

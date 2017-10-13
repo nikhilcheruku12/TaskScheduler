@@ -44,7 +44,8 @@ class Notification {
         message += "Good luck!"
         content.body = message;
         content.sound = UNNotificationSound.default()
-        UIApplication.shared.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber + 1;
+        content.badge =  1
+//        UIApplication.shared.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber + 1;
         let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
         let request = UNNotificationRequest(identifier: date.description,
@@ -100,8 +101,8 @@ class Notification {
 //        })
         
         
-        let notifNumber = 1
-        content.badge =  notifNumber as NSNumber
+        //let notifNumber = 1
+        content.badge =  1
         let date = Date(timeIntervalSinceNow: 5)
         let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second,], from: date)
         
