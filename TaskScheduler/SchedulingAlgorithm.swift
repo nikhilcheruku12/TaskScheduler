@@ -17,6 +17,9 @@ class SchedulingAlgorithm {
     private var tasksRemaining: Int
     private var sleepTime: Int
     private var wakeUpTime: Int
+    private var lunchTime: Int
+    private var dinnerTime: Int
+    private var hoursToEat: Int
     
     //Notification variables
     private var notificationCenter: Notification
@@ -54,8 +57,11 @@ class SchedulingAlgorithm {
         self.numTasks = (tasks?.count)!
         self.timeRemaining = 0.0
         self.tasksRemaining = 0
-        self.sleepTime = 23
-        self.wakeUpTime = 8
+        self.sleepTime = Singleton.sharedSingleton.sleepTime
+        self.wakeUpTime = Singleton.sharedSingleton.wakeUpTime
+        self.lunchTime = 12
+        self.dinnerTime = 18
+        self.hoursToEat = 1
         //init notification variables
         self.notificationCenter = Notification()
         //create virtual and real calendar
@@ -207,6 +213,7 @@ class SchedulingAlgorithm {
             let status = virtualCalendar[index].status
             if status == "empty" {
                 freeTime += 0.5
+                //print("freetime is : \(freeTime)")
             }
             if status != "empty" && status != "sleep" && !status.contains("users") {
                 let startDate = virtualCalendar[index].startDate
@@ -340,9 +347,15 @@ class SchedulingAlgorithm {
             let currentIntervalBegin = Calendar.current.component(.hour, from: timeBegin)
             let currentIntervalEnd = Calendar.current.component(.hour, from: timeEnd)
             
-            // Schedule the user's sleep
-            if (currentIntervalBegin >= sleepTime || currentIntervalBegin < wakeUpTime)
-                && (currentIntervalEnd >= sleepTime || currentIntervalEnd <= wakeUpTime)  {
+            // Schedule the user's sleep and eat
+            if (((currentIntervalBegin >= sleepTime || currentIntervalBegin < wakeUpTime)
+                && (currentIntervalEnd >= sleepTime || currentIntervalEnd <= wakeUpTime))
+                || ((currentIntervalBegin >= lunchTime && currentIntervalBegin < (lunchTime+hoursToEat))
+                && (currentIntervalEnd >= lunchTime && currentIntervalEnd <= (lunchTime+hoursToEat)))
+                || ((currentIntervalBegin >= dinnerTime && currentIntervalBegin<(dinnerTime+hoursToEat)))
+                && (currentIntervalEnd >= dinnerTime && currentIntervalEnd<=(dinnerTime+hoursToEat)))
+
+            {
                 interval = VirtualInterval(startDate: timeBegin, endDate: timeEnd, status: "sleep")
             } else {
                 // All other intervals are initialized to empty
@@ -380,13 +393,15 @@ class SchedulingAlgorithm {
     }
     
     public func getScheduleMessage() -> String{
-        var hours = 0
+        var hours = 0.0
         var days = 0
         var weeks = 0
         var message = ""
         if (freeTime >= 24) {
-            hours = Int(freeTime) % 24
+            hours = freeTime.remainder(dividingBy:24) 
             days = Int(freeTime) / 24
+        }else {
+            hours = freeTime
         }
         if(days >= 7) {
             weeks = days / 7

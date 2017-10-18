@@ -36,7 +36,9 @@ class TableViewController: UITableViewController {
                 print("access not granted")
             }
         })
-
+        
+        Singleton.sharedSingleton.sleepTime = 23
+        Singleton.sharedSingleton.wakeUpTime = 8
         
         if let savedClasses = loadClasses() {
             classes += savedClasses

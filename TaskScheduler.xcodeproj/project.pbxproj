@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5E24CC2E1F6491A6001FD3C6 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24CC2D1F6491A6001FD3C6 /* PriorityQueue.swift */; };
 		5E24CC301F649228001FD3C6 /* SchedulingAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24CC2F1F649228001FD3C6 /* SchedulingAlgorithm.swift */; };
+		5E54EF881F912DDA007E4150 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54EF871F912DDA007E4150 /* Singleton.swift */; };
 		5EF68FCD1F8EBD670017B074 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF68FCC1F8EBD670017B074 /* Notifications.swift */; };
 		9B1F41191F0FDE3E000B3076 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F41181F0FDE3E000B3076 /* AppDelegate.swift */; };
 		9B1F411B1F0FDE3E000B3076 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F411A1F0FDE3E000B3076 /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		5E24CC2D1F6491A6001FD3C6 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		5E24CC2F1F649228001FD3C6 /* SchedulingAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulingAlgorithm.swift; sourceTree = "<group>"; };
+		5E54EF871F912DDA007E4150 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		5EF68FCC1F8EBD670017B074 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		9B1F41151F0FDE3E000B3076 /* TaskScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B1F41181F0FDE3E000B3076 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				9BFF60481F1DC3BC0085DA4A /* TaskTableViewCell.swift */,
 				5E24CC2D1F6491A6001FD3C6 /* PriorityQueue.swift */,
 				5E24CC2F1F649228001FD3C6 /* SchedulingAlgorithm.swift */,
+				5E54EF871F912DDA007E4150 /* Singleton.swift */,
 			);
 			path = TaskScheduler;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B513C3E1F1DA32C005EA23C /* Task.swift in Sources */,
+				5E54EF881F912DDA007E4150 /* Singleton.swift in Sources */,
 				5E24CC301F649228001FD3C6 /* SchedulingAlgorithm.swift in Sources */,
 				9B1F413B1F104B17000B3076 /* Class.swift in Sources */,
 				9BFF60491F1DC3BC0085DA4A /* TaskTableViewCell.swift in Sources */,
