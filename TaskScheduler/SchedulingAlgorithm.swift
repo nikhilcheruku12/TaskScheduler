@@ -20,7 +20,7 @@ class SchedulingAlgorithm {
     private var lunchTime: Int
     private var dinnerTime: Int
     private var hoursToEat: Int
-    
+    private var focusHour: Double
     //Notification variables
     private var notificationCenter: Notification
     
@@ -56,12 +56,13 @@ class SchedulingAlgorithm {
         self.freeTime = 0.0
         self.numTasks = (tasks?.count)!
         self.timeRemaining = 0.0
-        self.tasksRemaining = 0
+        //self.tasksRemaining = 0
         self.sleepTime = Singleton.sharedSingleton.sleepTime
         self.wakeUpTime = Singleton.sharedSingleton.wakeUpTime
         self.lunchTime = 12
         self.dinnerTime = 18
         self.hoursToEat = 1
+        self.focusHour  = 3.0 // work 4 hours then break
         //init notification variables
         self.notificationCenter = Notification()
         //create virtual and real calendar
@@ -114,9 +115,10 @@ class SchedulingAlgorithm {
     public func schedule() -> String{
         if self.latestDateDue != nil{
             loadUserEvents(endDate: self.latestDateDue!)
+            var tempHourFoused = 0.0 //number of hours spending consectively
             while pq.count != 0{
                 if let t = pq.pop(){
-                    let success = addTaskToVirtualCalendar(task: t)
+                    let success = addTaskToVirtualCalendar(task: t, timeSpentInChunk: &tempHourFoused )
                     if !success {
                         //Return an error message to TableViewController with the task that could not be scheduled.
                         return ("You failed to schedule " + t.name + ". Please try to start the task earlier or reduce its duration and reschedule.")
@@ -174,7 +176,7 @@ class SchedulingAlgorithm {
      * or b) the user has something else scheduled at the next interval.
      * Returns true if the task was successfully scheduled and false if not.
      */
-    private func addTaskToVirtualCalendar(task: Task) -> Bool {
+    private func addTaskToVirtualCalendar(task: Task, timeSpentInChunk: inout Double) -> Bool {
         var duration = task.duration
         for i in 0..<virtualCalendar.count{
             /* (1) The task's earlist possible start time must be before or at the given interval's start date
@@ -184,8 +186,14 @@ class SchedulingAlgorithm {
             */
             if virtualCalendar[i].startDate >= task.earliestStartDate! && virtualCalendar[i].endDate <= task.dueDate && virtualCalendar[i].status == "empty" && duration > 0 {
                 // "Schedule" the task into the virtual calendar and decrement duration.
+                if (timeSpentInChunk >= focusHour){
+                    timeSpentInChunk = 0.0
+                    virtualCalendar[i].status = "Break Time"
+                    continue
+                }
                 virtualCalendar[i].status = task.name
                 duration -= 0.5
+                timeSpentInChunk += 0.5
                 if(duration == 0) {
                     // Create a notification to be sent when the task is supposed to be due.
                     notificationCenter.createNotification(date: virtualCalendar[i].endDate, taskName: task.name)
@@ -195,6 +203,8 @@ class SchedulingAlgorithm {
             else if virtualCalendar[i].startDate > task.dueDate || task.dueDate < virtualCalendar[i].endDate{
                 // Task can not be successfully scheduled at all
                 return false
+            }else {
+                timeSpentInChunk = 0.0
             }
         }
         
@@ -211,7 +221,7 @@ class SchedulingAlgorithm {
         while(index < virtualCalendar.count) {
             //virtualCalendar[index] = the task at that half hour
             let status = virtualCalendar[index].status
-            if status == "empty" {
+            if status == "empty" || status == "BreakTime" {
                 freeTime += 0.5
                 //print("freetime is : \(freeTime)")
             }

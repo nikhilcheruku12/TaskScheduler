@@ -15,4 +15,5 @@ class Singleton{
     var lunchTime = -1
     var dinnerTime = -1
     var hoursToEat = -1
+    var focusTime = -1 
 }
