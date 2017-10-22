@@ -20,6 +20,7 @@ class Task: NSObject, NSCoding, Comparable{
         static let weight = "weight"
         static let earliestStartDate = "earliestStartDate"
         static let completeStatus = "completeStatus"
+        static let percentageFinished = "percentageFinished"
     }
     
 
@@ -33,17 +34,21 @@ class Task: NSObject, NSCoding, Comparable{
     private var daysBeforeToStart: Int?
     private var startDate: Date
     private var weight : Float
-    private var completeStatus: Bool
+    //private var completeStatus: Bool
     
+    public var percentageFinished: Float
     
-    init?(name: String, percentage: Float, class1:Class, duration:Float, dueDate:Date, earliestStartDate: Date) {
+    init?(name: String, percentage: Float, class1:Class, duration:Float, dueDate:Date, earliestStartDate: Date, percentageFinished: Float) {
         self.name = name;
         self.percentage = percentage;
+        
+        self.percentageFinished = percentageFinished ;
+        
         self.class1 = class1;
         self.duration = duration;
         self.dueDate = dueDate;
         self.weight = 0.0
-        self.completeStatus = false
+        //self.completeStatus = false
         // Truncate down to nearest half hour
         let timeInterval = floor(self.dueDate.timeIntervalSinceReferenceDate/60.0) * 60.0
         self.dueDate = Date(timeIntervalSinceReferenceDate: timeInterval)
@@ -68,7 +73,9 @@ class Task: NSObject, NSCoding, Comparable{
         aCoder.encode(daysBeforeToStart,forKey: PropertyKey.daysBeforeToStart)
         aCoder.encode(weight,forKey: PropertyKey.weight)
         aCoder.encode(earliestStartDate, forKey: PropertyKey.earliestStartDate)
-        aCoder.encode(completeStatus, forKey: PropertyKey.completeStatus)
+        //aCoder.encode(completeStatus, forKey: PropertyKey.completeStatus)
+        
+        aCoder.encode(percentageFinished, forKey: PropertyKey.percentageFinished)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -97,6 +104,8 @@ class Task: NSObject, NSCoding, Comparable{
             os_log("Unable to decode earliestStartTime for a task object.", log: OSLog.default, type: .debug)
             return nil
         }
+        
+        let percentageFinished = aDecoder.decodeFloat(forKey: PropertyKey.percentageFinished)
         //TODO
         //for daysBeforeToStart,startdate,weight declaration completeStatus
         
@@ -106,7 +115,7 @@ class Task: NSObject, NSCoding, Comparable{
          percentage = 10.0
          }*/
         
-        self.init(name: name, percentage: percentage,  class1:class1, duration:duration, dueDate:dueDate, earliestStartDate: earliestStartDate)
+        self.init(name: name, percentage: percentage,  class1:class1, duration:duration, dueDate:dueDate, earliestStartDate: earliestStartDate, percentageFinished: percentageFinished)
         
     }
     
@@ -127,11 +136,11 @@ class Task: NSObject, NSCoding, Comparable{
     /**** GETTERS/SETTERS *****/
     
     public func isComplete() -> Bool{
-        return completeStatus
+        return percentageFinished == 1.0
     }
-    public func setComplete(completeStatus: Bool){
-        self.completeStatus = completeStatus
-    }
+//    public func setComplete(completeStatus: Bool){
+//        self.completeStatus = completeStatus
+//    }
     
     /**** OPERATION OVERLOADING ****/
     

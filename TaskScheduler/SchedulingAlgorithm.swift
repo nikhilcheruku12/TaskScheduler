@@ -116,9 +116,10 @@ class SchedulingAlgorithm {
         if self.latestDateDue != nil{
             loadUserEvents(endDate: self.latestDateDue!)
             var tempHourFoused = 0.0 //number of hours spending consectively
+            var currentIndex = 0;//loop once virtual calendar by keeping track where we are 
             while pq.count != 0{
                 if let t = pq.pop(){
-                    let success = addTaskToVirtualCalendar(task: t, timeSpentInChunk: &tempHourFoused )
+                    let success = addTaskToVirtualCalendar(task: t, timeSpentInChunk: &tempHourFoused , index : &currentIndex )
                     if !success {
                         //Return an error message to TableViewController with the task that could not be scheduled.
                         return ("You failed to schedule " + t.name + ". Please try to start the task earlier or reduce its duration and reschedule.")
@@ -176,9 +177,9 @@ class SchedulingAlgorithm {
      * or b) the user has something else scheduled at the next interval.
      * Returns true if the task was successfully scheduled and false if not.
      */
-    private func addTaskToVirtualCalendar(task: Task, timeSpentInChunk: inout Double) -> Bool {
+    private func addTaskToVirtualCalendar(task: Task, timeSpentInChunk: inout Double, index : inout Int) -> Bool {
         var duration = task.duration
-        for i in 0..<virtualCalendar.count{
+        for i in index..<virtualCalendar.count{
             /* (1) The task's earlist possible start time must be before or at the given interval's start date
              * (2) The task's end time must be after or on the given interval's end date
              * (3) The given interval must be empty
@@ -195,6 +196,7 @@ class SchedulingAlgorithm {
                 duration -= 0.5
                 timeSpentInChunk += 0.5
                 if(duration == 0) {
+                    index = i + 1;
                     // Create a notification to be sent when the task is supposed to be due.
                     notificationCenter.createNotification(date: virtualCalendar[i].endDate, taskName: task.name)
                     return true
@@ -203,7 +205,7 @@ class SchedulingAlgorithm {
             else if virtualCalendar[i].startDate > task.dueDate || task.dueDate < virtualCalendar[i].endDate{
                 // Task can not be successfully scheduled at all
                 return false
-            }else {
+            }else if virtualCalendar[i].status != "empty"{
                 timeSpentInChunk = 0.0
             }
         }
@@ -407,12 +409,11 @@ class SchedulingAlgorithm {
         var days = 0
         var weeks = 0
         var message = ""
-        if (freeTime >= 24) {
-            hours = freeTime.remainder(dividingBy:24) 
-            days = Int(freeTime) / 24
-        }else {
-            hours = freeTime
+        while (freeTime >= 24){
+            freeTime -= 24
+            days += 1
         }
+        hours = freeTime
         if(days >= 7) {
             weeks = days / 7
             days = days % 7
