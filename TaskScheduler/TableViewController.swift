@@ -146,7 +146,16 @@ class TableViewController: UITableViewController {
         
         let class1 = classes[indexPath.row]
         cell.nameLabel.text = class1.name;
-        cell.importanceLabel.text = "Importance: " +  class1.importance.description;
+        var importance = "";
+        if(class1.importance >= 7){
+            importance = "Very"
+        }else if(class1.importance <= 3){
+            importance = "Low"
+        }else {
+            importance = "Medium"
+        }
+        
+        cell.importanceLabel.text = "Importance: " +  importance;
         
 
         // Configure the cell...

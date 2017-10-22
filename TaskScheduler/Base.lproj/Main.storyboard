@@ -239,16 +239,19 @@
                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percentage of Grade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ale-sy-UEY">
-                                                <rect key="frame" x="20" y="120" width="335" height="24"/>
+                                                <rect key="frame" x="20" y="120" width="225" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zIR-BQ-Ryb">
                                                 <rect key="frame" x="48" y="164" width="279" height="31"/>
+                                                <connections>
+                                                    <action selector="changePercentageOfGrade:" destination="eKI-Qq-hHZ" eventType="valueChanged" id="7mp-ok-Alf"/>
+                                                </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gej-IN-4Sd">
-                                                <rect key="frame" x="20" y="318" width="335" height="24"/>
+                                                <rect key="frame" x="20" y="338" width="335" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -260,13 +263,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earliest Start Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Doo-pd-KRl">
-                                                <rect key="frame" x="20" y="432" width="335" height="24"/>
+                                                <rect key="frame" x="20" y="452" width="335" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MRT-sb-fcs">
-                                                <rect key="frame" x="35" y="476" width="305" height="50"/>
+                                                <rect key="frame" x="35" y="496" width="305" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="pUk-Gv-OLc"/>
                                                 </constraints>
@@ -275,32 +278,32 @@
                                                 </date>
                                             </datePicker>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDf-or-v2V">
-                                                <rect key="frame" x="20" y="258" width="90" height="50"/>
+                                                <rect key="frame" x="20" y="258" width="90" height="70"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="pYk-yq-oG5"/>
+                                                    <constraint firstAttribute="height" constant="70" id="pYk-yq-oG5"/>
                                                 </constraints>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hrs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcD-TN-vlO">
-                                                <rect key="frame" x="130" y="258" width="40" height="50"/>
+                                                <rect key="frame" x="130" y="258" width="40" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="Fa5-Cb-XHk"/>
-                                                    <constraint firstAttribute="height" constant="50" id="nEw-zx-j4j"/>
+                                                    <constraint firstAttribute="height" constant="70" id="nEw-zx-j4j"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Y2-B8-KRe">
-                                                <rect key="frame" x="195" y="258" width="100" height="50"/>
+                                                <rect key="frame" x="195" y="258" width="100" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="8xT-v1-BrZ"/>
-                                                    <constraint firstAttribute="height" constant="50" id="CFk-pt-DPl"/>
+                                                    <constraint firstAttribute="height" constant="70" id="CFk-pt-DPl"/>
                                                 </constraints>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7l-fv-afD">
-                                                <rect key="frame" x="315" y="258" width="40" height="50"/>
+                                                <rect key="frame" x="315" y="258" width="40" height="70"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="RBi-oH-xjD"/>
+                                                    <constraint firstAttribute="height" constant="70" id="RBi-oH-xjD"/>
                                                     <constraint firstAttribute="width" constant="40" id="zAZ-Ta-pXA"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
@@ -308,7 +311,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="rcS-DH-2ij">
-                                                <rect key="frame" x="35" y="362" width="305" height="50"/>
+                                                <rect key="frame" x="35" y="382" width="305" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="z6C-pl-KmU"/>
                                                 </constraints>
@@ -317,14 +320,35 @@
                                                 </date>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percentage Completed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANr-Ky-vdt">
-                                                <rect key="frame" x="20" y="546" width="335" height="24"/>
+                                                <rect key="frame" x="20" y="566" width="225" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GlE-cd-rlr">
-                                                <rect key="frame" x="48" y="590" width="279" height="31"/>
+                                                <rect key="frame" x="48" y="610" width="279" height="31"/>
+                                                <connections>
+                                                    <action selector="changePercentageFinished:" destination="eKI-Qq-hHZ" eventType="valueChanged" id="kT2-DY-2jj"/>
+                                                </connections>
                                             </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YA6-Gx-zdk" userLabel="PercentageofGrade Label">
+                                                <rect key="frame" x="265" y="120" width="60" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="RUH-eb-LQd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3fE-4f-PXd" userLabel="PercentageFinished Label">
+                                                <rect key="frame" x="265" y="566" width="60" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="ipT-uz-ejC"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -339,31 +363,35 @@
                                             <constraint firstItem="w7l-fv-afD" firstAttribute="leading" secondItem="0Y2-B8-KRe" secondAttribute="trailing" constant="20" id="FUA-zv-hcg"/>
                                             <constraint firstItem="rcS-DH-2ij" firstAttribute="leading" secondItem="NMQ-qI-ZDD" secondAttribute="leading" constant="35" id="FfD-jK-ErR"/>
                                             <constraint firstAttribute="trailing" secondItem="cD9-69-XQl" secondAttribute="trailing" constant="20" id="IXy-tl-nxW"/>
-                                            <constraint firstAttribute="trailing" secondItem="ANr-Ky-vdt" secondAttribute="trailing" constant="20" id="IkD-6v-aRi"/>
                                             <constraint firstItem="cD9-69-XQl" firstAttribute="top" secondItem="zIR-BQ-Ryb" secondAttribute="bottom" constant="20" id="Kyr-Mt-KLK"/>
+                                            <constraint firstAttribute="trailing" secondItem="YA6-Gx-zdk" secondAttribute="trailing" constant="50" id="L2b-ox-jFh"/>
                                             <constraint firstItem="Doo-pd-KRl" firstAttribute="leading" secondItem="NMQ-qI-ZDD" secondAttribute="leading" constant="20" id="M9Y-2B-df4"/>
                                             <constraint firstItem="ale-sy-UEY" firstAttribute="leading" secondItem="NMQ-qI-ZDD" secondAttribute="leading" constant="20" id="MTC-63-7XQ"/>
                                             <constraint firstItem="MRT-sb-fcs" firstAttribute="leading" secondItem="NMQ-qI-ZDD" secondAttribute="leading" constant="35" id="Oa7-Bk-r56"/>
                                             <constraint firstAttribute="trailing" secondItem="w7l-fv-afD" secondAttribute="trailing" constant="20" id="R8p-QH-cBF"/>
-                                            <constraint firstAttribute="trailing" secondItem="ale-sy-UEY" secondAttribute="trailing" constant="20" id="REs-fE-GtR"/>
+                                            <constraint firstItem="3fE-4f-PXd" firstAttribute="top" secondItem="MRT-sb-fcs" secondAttribute="bottom" constant="20" id="V0O-D1-UFS"/>
                                             <constraint firstItem="ANr-Ky-vdt" firstAttribute="top" secondItem="MRT-sb-fcs" secondAttribute="bottom" constant="20" id="Voc-Pp-uXI"/>
                                             <constraint firstAttribute="trailing" secondItem="GlE-cd-rlr" secondAttribute="trailing" constant="50" id="WGs-ex-HTh"/>
+                                            <constraint firstItem="YA6-Gx-zdk" firstAttribute="leading" secondItem="ale-sy-UEY" secondAttribute="trailing" constant="20" id="WjT-SZ-QdM"/>
                                             <constraint firstItem="cD9-69-XQl" firstAttribute="leading" secondItem="NMQ-qI-ZDD" secondAttribute="leading" constant="20" id="XUS-vS-0z4"/>
                                             <constraint firstItem="Dun-kh-fj8" firstAttribute="top" secondItem="NMQ-qI-ZDD" secondAttribute="top" constant="50" id="Z09-nH-j7W"/>
+                                            <constraint firstAttribute="trailing" secondItem="3fE-4f-PXd" secondAttribute="trailing" constant="50" id="a4N-Iq-lP8"/>
                                             <constraint firstItem="kDf-or-v2V" firstAttribute="top" secondItem="cD9-69-XQl" secondAttribute="bottom" constant="20" id="aLM-bK-Xvq"/>
                                             <constraint firstItem="VcD-TN-vlO" firstAttribute="leading" secondItem="kDf-or-v2V" secondAttribute="trailing" constant="20" id="aPt-YN-N58"/>
                                             <constraint firstItem="Gej-IN-4Sd" firstAttribute="leading" secondItem="NMQ-qI-ZDD" secondAttribute="leading" constant="20" id="bGU-XJ-he9"/>
                                             <constraint firstItem="rcS-DH-2ij" firstAttribute="top" secondItem="Gej-IN-4Sd" secondAttribute="bottom" constant="20" id="blt-gZ-6WS"/>
-                                            <constraint firstItem="Gej-IN-4Sd" firstAttribute="top" secondItem="cD9-69-XQl" secondAttribute="bottom" constant="80" id="cHm-LX-Tsp"/>
+                                            <constraint firstItem="Gej-IN-4Sd" firstAttribute="top" secondItem="cD9-69-XQl" secondAttribute="bottom" constant="100" id="cHm-LX-Tsp"/>
                                             <constraint firstAttribute="trailing" secondItem="MRT-sb-fcs" secondAttribute="trailing" constant="35" id="cLR-oz-8AL"/>
                                             <constraint firstItem="VcD-TN-vlO" firstAttribute="top" secondItem="cD9-69-XQl" secondAttribute="bottom" constant="20" id="ddX-5n-AAX"/>
                                             <constraint firstAttribute="trailing" secondItem="Gej-IN-4Sd" secondAttribute="trailing" constant="20" id="eHo-yF-E3e"/>
                                             <constraint firstItem="Doo-pd-KRl" firstAttribute="top" secondItem="rcS-DH-2ij" secondAttribute="bottom" constant="20" id="edw-sb-OVP"/>
                                             <constraint firstItem="GlE-cd-rlr" firstAttribute="top" secondItem="ANr-Ky-vdt" secondAttribute="bottom" constant="20" id="fJV-19-sgg"/>
                                             <constraint firstItem="ANr-Ky-vdt" firstAttribute="leading" secondItem="NMQ-qI-ZDD" secondAttribute="leading" constant="20" id="hwW-gg-YUH"/>
+                                            <constraint firstItem="3fE-4f-PXd" firstAttribute="leading" secondItem="ANr-Ky-vdt" secondAttribute="trailing" constant="20" id="ibg-dE-FX3"/>
                                             <constraint firstItem="kDf-or-v2V" firstAttribute="leading" secondItem="NMQ-qI-ZDD" secondAttribute="leading" constant="20" id="jYC-xh-oYA"/>
                                             <constraint firstItem="zIR-BQ-Ryb" firstAttribute="leading" secondItem="NMQ-qI-ZDD" secondAttribute="leading" constant="50" id="mNu-KN-fVN"/>
                                             <constraint firstItem="ale-sy-UEY" firstAttribute="top" secondItem="Dun-kh-fj8" secondAttribute="bottom" constant="20" id="qsr-ix-Vdk"/>
+                                            <constraint firstItem="YA6-Gx-zdk" firstAttribute="top" secondItem="Dun-kh-fj8" secondAttribute="bottom" constant="20" id="qv9-Tu-eAU"/>
                                             <constraint firstAttribute="height" constant="800" id="r7p-e5-pdT"/>
                                             <constraint firstItem="zIR-BQ-Ryb" firstAttribute="top" secondItem="ale-sy-UEY" secondAttribute="bottom" constant="20" id="tRS-eq-T9l"/>
                                             <constraint firstAttribute="trailing" secondItem="Doo-pd-KRl" secondAttribute="trailing" constant="20" id="ufk-Qp-iSE"/>
@@ -409,6 +437,9 @@
                         <outlet property="hourPicker" destination="kDf-or-v2V" id="Hdk-Js-R9D"/>
                         <outlet property="minutePicker" destination="0Y2-B8-KRe" id="Wkc-6p-dta"/>
                         <outlet property="nameTextField" destination="Dun-kh-fj8" id="FVo-Xb-p8L"/>
+                        <outlet property="percentageFinishedLabel" destination="3fE-4f-PXd" id="RG8-8C-D03"/>
+                        <outlet property="percentageFinishedSlider" destination="GlE-cd-rlr" id="t1G-XU-hZb"/>
+                        <outlet property="percentageGradeLabel" destination="YA6-Gx-zdk" id="WuV-uw-Aei"/>
                         <outlet property="percentageSlider" destination="zIR-BQ-Ryb" id="Tnj-Ta-BiE"/>
                         <outlet property="saveButton" destination="FWo-Yg-jUW" id="IGd-Q7-imb"/>
                         <outlet property="scrollView" destination="e0z-r4-dig" id="8JC-Lo-T0l"/>

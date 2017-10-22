@@ -19,7 +19,8 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
 
     @IBOutlet weak var percentageSlider: UISlider!
     
-   // @IBOutlet weak var hoursTextField: UITextField!
+    @IBOutlet weak var percentageFinishedSlider: UISlider!
+    // @IBOutlet weak var hoursTextField: UITextField!
     
    // @IBOutlet weak var minutesTextField: UITextField!
     
@@ -32,6 +33,10 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var hourPicker: UIPickerView!
     @IBOutlet weak var minutePicker: UIPickerView!
+    
+    @IBOutlet weak var percentageGradeLabel: UILabel!
+    
+    @IBOutlet weak var percentageFinishedLabel: UILabel!
     
     var hourArray: [String] = []
     var minArray : [String] = ["0","30"]
@@ -48,6 +53,18 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         
         /*components.year = -150
          let maxDate: NSDate = gregorian.dateByAddingComponents(components as DateComponents, toDate: currentDate, options: NSCalendar.Options(rawValue: 0))!*/
+        //display slider value on label
+        var percentageGrade = Int(percentageSlider.value*100)%100
+        if(percentageSlider.value == 1 ) {
+            percentageGrade = 100;
+        }
+
+        percentageGradeLabel.text = "\(percentageGrade)%"
+        var percentageFinished = Int(percentageFinishedSlider.value*100)%100
+        if(percentageFinishedSlider.value == 1 ) {
+            percentageFinished = 100;
+        }
+        percentageFinishedLabel.text = "\(percentageFinished)%"
         
         self.earliestStartTimePicker.minimumDate = minDate as Date
         //self.datePicker.maximumDate = maxDate
@@ -250,5 +267,19 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         }
     }
     
-
+    @IBAction func changePercentageOfGrade(_ sender: UISlider) {
+        var percentage = Int(percentageSlider.value*100)%100
+        if(percentageSlider.value == 1 ) {
+            percentage = 100;
+        }
+        percentageGradeLabel.text = "\(percentage)%"
+    }
+    
+    @IBAction func changePercentageFinished(_ sender: UISlider) {
+        var percentage = Int(percentageFinishedSlider.value*100)%100
+        if(percentageFinishedSlider.value == 1 ) {
+            percentage = 100;
+        }
+        percentageFinishedLabel.text = "\(percentage)%"
+    }
 }
