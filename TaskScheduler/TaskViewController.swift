@@ -14,6 +14,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
     
     var class1: Class?
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nameTextField: UITextField!
 
     @IBOutlet weak var percentageSlider: UISlider!
@@ -39,7 +40,6 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
-      
         // components.year = -18
         let gregorian: NSCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
         let currentDate: NSDate = NSDate()
