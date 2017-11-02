@@ -194,7 +194,7 @@
 				TargetAttributes = {
 					9B1F41141F0FDE3E000B3076 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8L85KQW3PN;
+						DevelopmentTeam = 3QPSR2F3VL;
 						ProvisioningStyle = Automatic;
 					};
 					9B1F41281F0FDE3F000B3076 = {
@@ -414,10 +414,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8L85KQW3PN;
+				DEVELOPMENT_TEAM = 3QPSR2F3VL;
 				INFOPLIST_FILE = TaskScheduler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.usc.TaskScheduler1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.usc.TaskScheduler3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -427,10 +427,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8L85KQW3PN;
+				DEVELOPMENT_TEAM = 3QPSR2F3VL;
 				INFOPLIST_FILE = TaskScheduler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.usc.TaskScheduler1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.usc.TaskScheduler3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
