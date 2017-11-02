@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="m8z-Gc-pV9">
             <objects>
-                <viewController id="0WK-ev-CXp" sceneMemberID="viewController">
+                <viewController id="0WK-ev-CXp" customClass="SettingsViewController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UJF-5b-X2o"/>
                         <viewControllerLayoutGuide type="bottom" id="MEh-8u-6DC"/>
@@ -30,6 +34,12 @@
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                    <!--1970-01-01 11:00:00 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="bedtimePicker:" destination="MDa-E5-HFt" eventType="valueChanged" id="EBO-C1-dNU"/>
+                                </connections>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYY-Xz-hGq">
                                 <rect key="frame" x="16" y="284" width="169" height="77"/>
@@ -112,8 +122,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="bedtimePicker" destination="p0C-yc-hkO" id="1l5-xq-8aH"/>
+                        <outlet property="dinnerPicker" destination="4ea-xC-9Hg" id="m4c-SP-xKI"/>
+                        <outlet property="focusPicker" destination="vCT-a5-Xm3" id="DZm-Pw-LCk"/>
+                        <outlet property="hourPicker" destination="kqs-nI-ylL" id="gmz-xY-dqV"/>
+                        <outlet property="lunchPicker" destination="UYY-Xz-hGq" id="ejh-Vv-HFV"/>
+                        <outlet property="minPicker" destination="rgL-f3-mk2" id="K4G-Al-hjh"/>
+                        <outlet property="wakeupPicker" destination="RQd-Q7-atc" id="aYo-lD-jF9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAm-g5-9Wp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="MDa-E5-HFt" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="539.5" y="726.5"/>
         </scene>
