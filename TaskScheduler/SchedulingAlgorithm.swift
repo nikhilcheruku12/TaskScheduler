@@ -154,6 +154,9 @@ class SchedulingAlgorithm {
             // Put user's events in the virtual calendar
             for e in self.events!{
                 print(e.title)
+                if e.isAllDay{//skip all day event such as holiday, daylight saving etc.
+                    continue
+                }
                 for i in 0..<virtualCalendar.count{
                     if (virtualCalendar[i].startDate <= e.startDate &&
                         e.startDate < virtualCalendar[i].endDate) ||

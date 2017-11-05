@@ -10,7 +10,12 @@ import UIKit
 import os.log
 class TaskTableViewController: UITableViewController {
     var tasks = [Task]();
-     var class1: Class?
+    var class1: Class?
+    
+    
+   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                 // Uncomment the following line to preserve selection between presentations
@@ -20,15 +25,25 @@ class TaskTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         navigationItem.leftBarButtonItem = editButtonItem
         if let classtemp = class1{
-                tasks = classtemp.tasks 
+            tasks = classtemp.tasks
         }
-        
+       
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action:#selector(self.handleSwipes) )
+        rightSwipe.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(rightSwipe)
         
         /*else{
             loadSampletasks()
         }*/
         
         
+    }
+    
+    func handleSwipes(sender:UISwipeGestureRecognizer) {
+        if (sender.direction == UISwipeGestureRecognizerDirection.right) {
+            print("Swiped Right")
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
