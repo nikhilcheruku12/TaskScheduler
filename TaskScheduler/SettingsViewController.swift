@@ -16,15 +16,13 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var dinnerTimePicker: UIDatePicker!
     
-    @IBOutlet weak var lunchHoursPicker: UIPickerView!
-    
-    @IBOutlet weak var lunchMinsPicker: UIPickerView!
-    
     @IBOutlet weak var focusTimePicker: UIDatePicker!
+    @IBOutlet weak var eatingTimePicker: UIDatePicker!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         // Do any additional setup after loading the view.
     }
 
