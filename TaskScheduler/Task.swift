@@ -23,13 +23,13 @@ class Task: NSObject, NSCoding, Comparable{
         static let percentageFinished = "percentageFinished"
     }
     
-
+    
     public var name: String
     public var duration: Float
     public var percentage: Float
     public var dueDate: Date
     public var earliestStartDate : Date?
-
+    
     private var class1: Class
     private var daysBeforeToStart: Int?
     private var startDate: Date
@@ -138,9 +138,9 @@ class Task: NSObject, NSCoding, Comparable{
     public func isComplete() -> Bool{
         return percentageFinished == 1.0
     }
-//    public func setComplete(completeStatus: Bool){
-//        self.completeStatus = completeStatus
-//    }
+    //    public func setComplete(completeStatus: Bool){
+    //        self.completeStatus = completeStatus
+    //    }
     
     /**** OPERATION OVERLOADING ****/
     
@@ -176,4 +176,8 @@ class Task: NSObject, NSCoding, Comparable{
         }
         return false
     }
+    public func getClass()->Class{
+        return self.class1
+    }
 }
+

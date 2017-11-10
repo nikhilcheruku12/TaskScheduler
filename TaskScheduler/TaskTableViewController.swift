@@ -13,12 +13,12 @@ class TaskTableViewController: UITableViewController {
     var class1: Class?
     
     
-   
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                // Uncomment the following line to preserve selection between presentations
+        // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -27,14 +27,18 @@ class TaskTableViewController: UITableViewController {
         if let classtemp = class1{
             tasks = classtemp.tasks
         }
-       
+        
         let rightSwipe = UISwipeGestureRecognizer(target: self, action:#selector(self.handleSwipes) )
         rightSwipe.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(rightSwipe)
         
+        //testing purpose
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action:#selector(self.leftSwipes) )
+        leftSwipe.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(leftSwipe)
         /*else{
-            loadSampletasks()
-        }*/
+         loadSampletasks()
+         }*/
         
         
     }
@@ -43,6 +47,15 @@ class TaskTableViewController: UITableViewController {
         if (sender.direction == UISwipeGestureRecognizerDirection.right) {
             print("Swiped Right")
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func leftSwipes(sender:UISwipeGestureRecognizer) {
+        if (sender.direction == UISwipeGestureRecognizerDirection.left) {
+            print("Swiped left")
+            let storyboard = UIStoryboard(name: "TaskViews", bundle: nil)
+            let pqTableView = storyboard.instantiateViewController(withIdentifier: "ScheduledTasksTableViewController") as! ScheduledTasksTableViewController
+            self.navigationController?.pushViewController(pqTableView, animated: true)
         }
     }
     
@@ -83,10 +96,10 @@ class TaskTableViewController: UITableViewController {
     @IBAction func unwindToTaskList(sender: UIStoryboardSegue) {
         print("Enters unwindToTaskList");
         if let sourceViewController = sender.source as? TaskViewController, let task1 = sourceViewController.task1 {
-           
+            
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing meal.
-                 print("Enters unwindToTaskList2");
+                print("Enters unwindToTaskList2");
                 tasks[selectedIndexPath.row] = task1
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }
@@ -98,8 +111,8 @@ class TaskTableViewController: UITableViewController {
             }
             
             
-           // savetasks()
-              print("Exits unwindToTaskList");
+            // savetasks()
+            print("Exits unwindToTaskList");
         }
     }
     
@@ -164,7 +177,7 @@ class TaskTableViewController: UITableViewController {
             destinationViewController.class1 = class1;
             print("Class name in TableTaskViewController: = " + (class1?.name)!)
         } else if  let destinationViewController = segue.destination as? UINavigationController {
-           let myVC = destinationViewController.viewControllers.first as! TaskViewController
+            let myVC = destinationViewController.viewControllers.first as! TaskViewController
             myVC.class1 = class1
         }else{
             print("TaskViewController was not destinationviewcontroller")
@@ -200,31 +213,32 @@ class TaskTableViewController: UITableViewController {
     
     
     /*private func loadSampletasks() {
-        guard let Task1 = Task(name: "CS 201", importance: 9)
-            else {
-                fatalError("Unable to instantiate Task1")
-        }
-        guard let Task2 = Task(name: "REL 135", importance: 4)
-            else {
-                fatalError("Unable to instantiate Task2")
-        }
-        
-        tasks += [Task1,Task2];
-    }*/
+     guard let Task1 = Task(name: "CS 201", importance: 9)
+     else {
+     fatalError("Unable to instantiate Task1")
+     }
+     guard let Task2 = Task(name: "REL 135", importance: 4)
+     else {
+     fatalError("Unable to instantiate Task2")
+     }
+     
+     tasks += [Task1,Task2];
+     }*/
     
-   /*private func savetasks() {
-        print("Enters savetasks")
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tasks, toFile: Task.ArchiveURL.path)
-        if isSuccessfulSave {
-            os_log("tasks successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save tasks...", log: OSLog.default, type: .error)
-        }
-        print("Exits savetasks")
-    }
-    
-    private func loadtasks() -> [Task]?  {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Task.ArchiveURL.path) as? [Task]
-    }*/
+    /*private func savetasks() {
+     print("Enters savetasks")
+     let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(tasks, toFile: Task.ArchiveURL.path)
+     if isSuccessfulSave {
+     os_log("tasks successfully saved.", log: OSLog.default, type: .debug)
+     } else {
+     os_log("Failed to save tasks...", log: OSLog.default, type: .error)
+     }
+     print("Exits savetasks")
+     }
+     
+     private func loadtasks() -> [Task]?  {
+     return NSKeyedUnarchiver.unarchiveObject(withFile: Task.ArchiveURL.path) as? [Task]
+     }*/
     
 }
+

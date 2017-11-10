@@ -32,11 +32,13 @@ class SchedulingAlgorithm {
     private var events: [EKEvent]?
     private var virtualCalendar = [VirtualInterval]()
     private var latestDateDue: Date?
-
+    
     //Task & priority queue variables
     private var tasks: [Task]?
     private var pq: PriorityQueue<Task>
-
+    
+    var pqTasks = [Task]()
+    
     struct VirtualInterval {
         var startDate: Date
         var endDate : Date
@@ -69,7 +71,7 @@ class SchedulingAlgorithm {
         self.initialVirtualCalAndAssignTasksToPQ()
         self.requestAccessToCalendar()
         self.createTaskCalendar()
-
+        
     }
     
     /*** FUNCTIONS CALLED FROM TABLEVIEWCONTROLLER ***/
@@ -116,14 +118,16 @@ class SchedulingAlgorithm {
         if self.latestDateDue != nil{
             loadUserEvents(endDate: self.latestDateDue!)
             var tempHourFoused = 0.0 //number of hours spending consectively
-            var currentIndex = 0;//loop once virtual calendar by keeping track where we are 
+            var currentIndex = 0;//loop once virtual calendar by keeping track where we are
             while pq.count != 0{
                 if let t = pq.pop(){
                     let success = addTaskToVirtualCalendar(task: t, timeSpentInChunk: &tempHourFoused , index : &currentIndex )
                     if !success {
                         //Return an error message to TableViewController with the task that could not be scheduled.
+                        pqTasks.removeAll()
                         return ("You failed to schedule " + t.name + ". Please try to start the task earlier or reduce its duration and reschedule.")
                     } else {
+                        pqTasks.append(t)
                         tasksRemaining -= 1
                     }
                 }
@@ -167,7 +171,7 @@ class SchedulingAlgorithm {
                     {
                         //If the event's start date and end date are both valid
                         virtualCalendar[i].status = "users " + e.title
-
+                        
                     }
                 }
             }
@@ -187,7 +191,7 @@ class SchedulingAlgorithm {
              * (2) The task's end time must be after or on the given interval's end date
              * (3) The given interval must be empty
              * (4) The task's duration must be greater than 0, i.e. there is part of it left to schedule.
-            */
+             */
             if virtualCalendar[i].startDate >= task.earliestStartDate! && virtualCalendar[i].endDate <= task.dueDate && virtualCalendar[i].status == "empty" && duration > 0 {
                 // "Schedule" the task into the virtual calendar and decrement duration.
                 if (timeSpentInChunk >= focusHour){
@@ -305,7 +309,7 @@ class SchedulingAlgorithm {
                 source.sourceType.rawValue == EKSourceType.subscribed.rawValue
                 }.first!
         }
-    
+        
         // Save the calendar using the Event Store instance
         do {
             try eventStore.saveCalendar(taskCalendar, commit: true)
@@ -347,13 +351,13 @@ class SchedulingAlgorithm {
                 }
             }
         }
-
+        
         // Truncate latest Due Date down to the hour
         let timeIntervalLatest = floor((latestDateDue? .timeIntervalSinceReferenceDate)! / 3600.0) * 3600.0
         self.latestDateDue = Date(timeIntervalSinceReferenceDate: timeIntervalLatest)
         
         let halfHoursBetweenCurrentDateAndLatestDate = Int(self.latestDateDue!.timeIntervalSince(currentDate))/1800
-
+        
         for i in 0..<halfHoursBetweenCurrentDateAndLatestDate{
             let timeBegin = Date(timeInterval: (TimeInterval(i * 1800)), since: currentDate)
             let timeEnd = Date(timeInterval: (TimeInterval(1800)), since: timeBegin)
@@ -366,10 +370,10 @@ class SchedulingAlgorithm {
             if (((currentIntervalBegin >= sleepTime || currentIntervalBegin < wakeUpTime)
                 && (currentIntervalEnd >= sleepTime || currentIntervalEnd <= wakeUpTime))
                 || ((currentIntervalBegin >= lunchTime && currentIntervalBegin < (lunchTime+hoursToEat))
-                && (currentIntervalEnd >= lunchTime && currentIntervalEnd <= (lunchTime+hoursToEat)))
+                    && (currentIntervalEnd >= lunchTime && currentIntervalEnd <= (lunchTime+hoursToEat)))
                 || ((currentIntervalBegin >= dinnerTime && currentIntervalBegin<(dinnerTime+hoursToEat)))
                 && (currentIntervalEnd >= dinnerTime && currentIntervalEnd<=(dinnerTime+hoursToEat)))
-
+                
             {
                 interval = VirtualInterval(startDate: timeBegin, endDate: timeEnd, status: "sleep")
             } else {
@@ -433,7 +437,7 @@ class SchedulingAlgorithm {
     }
     
     /******GETTER/SETTER FUNCTIONS********/
-
+    
     public func getNumTasks() -> Int {
         return numTasks
     }
@@ -443,7 +447,7 @@ class SchedulingAlgorithm {
     }
     
     /****** FUNCTIONS FOR LATER USE ********/
-
+    
     func updateCalendar(){
         
         let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
@@ -464,3 +468,4 @@ class SchedulingAlgorithm {
     }
     
 }
+

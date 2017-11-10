@@ -13,6 +13,8 @@
 		5E340BDD1F9D46D1005F9CC1 /* ClassViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */; };
 		5E340BE01F9D477A005F9CC1 /* SettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E340BDE1F9D477A005F9CC1 /* SettingView.storyboard */; };
 		5E54EF881F912DDA007E4150 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54EF871F912DDA007E4150 /* Singleton.swift */; };
+		5E995A261FB62BE1000604BF /* ScheduledTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */; };
+		5E995A281FB62C06000604BF /* ScheduledTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */; };
 		5EF68FCD1F8EBD670017B074 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF68FCC1F8EBD670017B074 /* Notifications.swift */; };
 		9B1F41191F0FDE3E000B3076 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F41181F0FDE3E000B3076 /* AppDelegate.swift */; };
 		9B1F411B1F0FDE3E000B3076 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F411A1F0FDE3E000B3076 /* ViewController.swift */; };
@@ -51,6 +53,8 @@
 		5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClassViews.storyboard; sourceTree = "<group>"; };
 		5E340BDF1F9D477A005F9CC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = TaskScheduler/Base.lproj/SettingView.storyboard; sourceTree = "<group>"; };
 		5E54EF871F912DDA007E4150 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledTasksTableViewController.swift; sourceTree = "<group>"; };
+		5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledTasksTableViewCell.swift; sourceTree = "<group>"; };
 		5EF68FCC1F8EBD670017B074 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		9B1F41151F0FDE3E000B3076 /* TaskScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B1F41181F0FDE3E000B3076 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				9B24F4B01FB51A2900F83AEA /* TaskScheduler.entitlements */,
+				5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */,
 				9B24F49F1FB4109100F83AEA /* KeyChain */,
 				5E340BDE1F9D477A005F9CC1 /* SettingView.storyboard */,
 				5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */,
@@ -141,6 +146,7 @@
 				5E54EF871F912DDA007E4150 /* Singleton.swift */,
 				9BCA7D591FB1381B003188C4 /* SettingsViewController.swift */,
 				9BCA7D5B1FB21A50003188C4 /* DataManager.swift */,
+				5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */,
 			);
 			path = TaskScheduler;
 			sourceTree = "<group>";
@@ -278,6 +284,7 @@
 			files = (
 				9B513C3E1F1DA32C005EA23C /* Task.swift in Sources */,
 				9BCA7D5C1FB21A50003188C4 /* DataManager.swift in Sources */,
+				5E995A281FB62C06000604BF /* ScheduledTasksTableViewCell.swift in Sources */,
 				5E54EF881F912DDA007E4150 /* Singleton.swift in Sources */,
 				5E24CC301F649228001FD3C6 /* SchedulingAlgorithm.swift in Sources */,
 				9B1F413B1F104B17000B3076 /* Class.swift in Sources */,
@@ -294,6 +301,7 @@
 				9B513C401F1DA6DE005EA23C /* TaskTableViewController.swift in Sources */,
 				9B1F41191F0FDE3E000B3076 /* AppDelegate.swift in Sources */,
 				9B1F41391F0FE169000B3076 /* ClassTableViewCell.swift in Sources */,
+				5E995A261FB62BE1000604BF /* ScheduledTasksTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

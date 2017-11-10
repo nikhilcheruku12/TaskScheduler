@@ -1,15 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--ScheduledTasksTableViewController-->
+        <scene sceneID="alM-IU-EXi">
+            <objects>
+                <tableViewController storyboardIdentifier="ScheduledTasksTableViewController" id="DHT-Kw-OdP" userLabel="ScheduledTasksTableViewController" customClass="ScheduledTasksTableViewController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rtw-VJ-CEQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduledTasksTableViewCell" rowHeight="90" id="epw-da-2Vx" userLabel="ScheduledTasksTableViewCell" customClass="ScheduledTasksTableViewCell" customModule="TaskScheduler" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="epw-da-2Vx" id="ZwS-lq-Z37">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="89.666666666666671"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qod-Ia-Dby" userLabel="Task Name">
+                                            <rect key="frame" x="28" y="18" width="358" height="53.666666666666671"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Qod-Ia-Dby" firstAttribute="leading" secondItem="ZwS-lq-Z37" secondAttribute="leadingMargin" constant="20" id="8rh-l8-vMg"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Qod-Ia-Dby" secondAttribute="trailing" constant="20" id="BpN-Fw-UIV"/>
+                                        <constraint firstItem="Qod-Ia-Dby" firstAttribute="top" secondItem="ZwS-lq-Z37" secondAttribute="topMargin" constant="10" id="IAd-N3-VyT"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Qod-Ia-Dby" secondAttribute="bottom" constant="10" id="Vn5-fv-yAf"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="taskNameLabel" destination="Qod-Ia-Dby" id="iOw-yR-lZB"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="DHT-Kw-OdP" id="68e-6x-gfb"/>
+                            <outlet property="delegate" destination="DHT-Kw-OdP" id="AHV-4h-Qoj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="7L7-Ht-SFi"/>
+                    <connections>
+                        <segue destination="eKI-Qq-hHZ" kind="push" id="kCU-bQ-B5E"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v3C-3X-Kk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3637" y="-896"/>
+        </scene>
         <!--Your Tasks-->
         <scene sceneID="f9w-9x-sJs">
             <objects>
@@ -23,7 +73,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fML-pT-X3o" id="Pxu-Ma-HAZ" customClass="ClassTableViewCell" customModule="TaskScheduler" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="89.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="89.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lii-2J-Njq">
@@ -73,7 +123,7 @@
         <!--Task-->
         <scene sceneID="3M9-JU-z4t">
             <objects>
-                <viewController id="eKI-Qq-hHZ" customClass="TaskViewController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eKI-Qq-hHZ" customClass="TaskViewController" customModule="TaskScheduler" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CaH-h3-ge3"/>
                         <viewControllerLayoutGuide type="bottom" id="c5p-47-ywv"/>
@@ -307,7 +357,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Di-nM-NAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="MrT-0a-e9p" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4700" y="-176"/>
+            <point key="canvasLocation" x="4912" y="-176"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UDU-VU-Xp5">
@@ -327,12 +377,25 @@
             </objects>
             <point key="canvasLocation" x="3996.25" y="362.40333333333331"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9B0-XG-UyW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GLb-sc-aY5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XPt-c4-z0a">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DHT-Kw-OdP" kind="relationship" relationship="rootViewController" id="YUn-Lg-aFx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XYB-VN-vln" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3094" y="-896"/>
+        </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina5_5.fullscreen"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="O14-MR-JEv"/>
     </inferredMetricsTieBreakers>
