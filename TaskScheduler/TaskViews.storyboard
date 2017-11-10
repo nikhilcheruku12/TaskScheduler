@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fML-pT-X3o" id="Pxu-Ma-HAZ" customClass="ClassTableViewCell" customModule="TaskScheduler" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="89.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lii-2J-Njq">
@@ -79,17 +79,17 @@
                         <viewControllerLayoutGuide type="bottom" id="c5p-47-ywv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fSD-lM-IbC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0z-r4-dig">
-                                <rect key="frame" x="0.0" y="20" width="375" height="780"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NMQ-qI-ZDD" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Task Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dun-kh-fj8">
-                                                <rect key="frame" x="50" y="50" width="275" height="50"/>
+                                                <rect key="frame" x="50" y="50" width="314" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Yed-8p-I1N"/>
                                                 </constraints>
@@ -98,38 +98,38 @@
                                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percentage of Grade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ale-sy-UEY">
-                                                <rect key="frame" x="20" y="120" width="225" height="24"/>
+                                                <rect key="frame" x="20" y="120" width="264" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="zIR-BQ-Ryb">
-                                                <rect key="frame" x="48" y="164" width="279" height="31"/>
+                                                <rect key="frame" x="48" y="164" width="318" height="31"/>
                                                 <color key="tintColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
                                                     <action selector="changePercentageOfGrade:" destination="eKI-Qq-hHZ" eventType="valueChanged" id="7mp-ok-Alf"/>
                                                 </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gej-IN-4Sd">
-                                                <rect key="frame" x="20" y="338" width="335" height="24"/>
+                                                <rect key="frame" x="20" y="338" width="374" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated Time To Complete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cD9-69-XQl">
-                                                <rect key="frame" x="20" y="214" width="335" height="24"/>
+                                                <rect key="frame" x="20" y="214" width="374" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earliest Start Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Doo-pd-KRl">
-                                                <rect key="frame" x="20" y="452" width="335" height="24"/>
+                                                <rect key="frame" x="20" y="452" width="374" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MRT-sb-fcs">
-                                                <rect key="frame" x="35" y="496" width="305" height="50"/>
+                                                <rect key="frame" x="35" y="496" width="344" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="pUk-Gv-OLc"/>
                                                 </constraints>
@@ -138,13 +138,13 @@
                                                 </date>
                                             </datePicker>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDf-or-v2V">
-                                                <rect key="frame" x="20" y="258" width="90" height="70"/>
+                                                <rect key="frame" x="20" y="258" width="129" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="pYk-yq-oG5"/>
                                                 </constraints>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hrs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcD-TN-vlO">
-                                                <rect key="frame" x="130" y="258" width="40" height="70"/>
+                                                <rect key="frame" x="169" y="258" width="40" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="Fa5-Cb-XHk"/>
                                                     <constraint firstAttribute="height" constant="70" id="nEw-zx-j4j"/>
@@ -154,14 +154,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Y2-B8-KRe">
-                                                <rect key="frame" x="195" y="258" width="100" height="70"/>
+                                                <rect key="frame" x="234" y="258" width="100" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="8xT-v1-BrZ"/>
                                                     <constraint firstAttribute="height" constant="70" id="CFk-pt-DPl"/>
                                                 </constraints>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7l-fv-afD">
-                                                <rect key="frame" x="315" y="258" width="40" height="70"/>
+                                                <rect key="frame" x="354" y="258" width="40" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="RBi-oH-xjD"/>
                                                     <constraint firstAttribute="width" constant="40" id="zAZ-Ta-pXA"/>
@@ -171,7 +171,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="rcS-DH-2ij">
-                                                <rect key="frame" x="35" y="382" width="305" height="50"/>
+                                                <rect key="frame" x="35" y="382" width="344" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="z6C-pl-KmU"/>
                                                 </constraints>
@@ -180,20 +180,20 @@
                                                 </date>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Percentage Completed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANr-Ky-vdt">
-                                                <rect key="frame" x="20" y="566" width="225" height="24"/>
+                                                <rect key="frame" x="20" y="566" width="264" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GlE-cd-rlr">
-                                                <rect key="frame" x="48" y="610" width="279" height="31"/>
+                                                <rect key="frame" x="48" y="610" width="318" height="31"/>
                                                 <color key="tintColor" red="0.32162141874414452" green="1" blue="0.22990847165510386" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <connections>
                                                     <action selector="changePercentageFinished:" destination="eKI-Qq-hHZ" eventType="valueChanged" id="kT2-DY-2jj"/>
                                                 </connections>
                                             </slider>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YA6-Gx-zdk" userLabel="PercentageofGrade Label">
-                                                <rect key="frame" x="265" y="120" width="60" height="24"/>
+                                                <rect key="frame" x="304" y="120" width="60" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="RUH-eb-LQd"/>
                                                 </constraints>
@@ -202,7 +202,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3fE-4f-PXd" userLabel="PercentageFinished Label">
-                                                <rect key="frame" x="265" y="566" width="60" height="24"/>
+                                                <rect key="frame" x="304" y="566" width="60" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="ipT-uz-ejC"/>
                                                 </constraints>
@@ -289,7 +289,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="cancelButton" destination="n1p-8q-wda" id="p85-2D-RPc"/>
                         <outlet property="dueDatePicker" destination="rcS-DH-2ij" id="tMT-Wh-5mb"/>
@@ -308,7 +307,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Di-nM-NAi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="MrT-0a-e9p" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4609.5" y="-124"/>
+            <point key="canvasLocation" x="4700" y="-176"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UDU-VU-Xp5">
@@ -329,6 +328,11 @@
             <point key="canvasLocation" x="3996.25" y="362.40333333333331"/>
         </scene>
     </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina5_5.fullscreen"/>
+    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="O14-MR-JEv"/>
     </inferredMetricsTieBreakers>

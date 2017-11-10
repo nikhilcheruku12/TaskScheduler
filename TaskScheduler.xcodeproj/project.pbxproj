@@ -24,10 +24,13 @@
 		9B1F413B1F104B17000B3076 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F413A1F104B17000B3076 /* Class.swift */; };
 		9B1F413F1F104CD9000B3076 /* ClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F413E1F104CD9000B3076 /* ClassViewController.swift */; };
 		9B1F41411F13E5CE000B3076 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F41401F13E5CE000B3076 /* TableViewController.swift */; };
+		9B24F4A11FB410AD00F83AEA /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B24F4A01FB410AD00F83AEA /* KeychainSwiftDistrib.swift */; };
+		9B24F4AF1FB510D000F83AEA /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B24F4AE1FB510D000F83AEA /* KeychainItemWrapper.swift */; };
 		9B513C3C1F1DA019005EA23C /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B513C3B1F1DA019005EA23C /* TaskViewController.swift */; };
 		9B513C3E1F1DA32C005EA23C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B513C3D1F1DA32C005EA23C /* Task.swift */; };
 		9B513C401F1DA6DE005EA23C /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B513C3F1F1DA6DE005EA23C /* TaskTableViewController.swift */; };
 		9BCA7D5A1FB1381B003188C4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA7D591FB1381B003188C4 /* SettingsViewController.swift */; };
+		9BCA7D5C1FB21A50003188C4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA7D5B1FB21A50003188C4 /* DataManager.swift */; };
 		9BFF60491F1DC3BC0085DA4A /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFF60481F1DC3BC0085DA4A /* TaskTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,10 +66,14 @@
 		9B1F413A1F104B17000B3076 /* Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		9B1F413E1F104CD9000B3076 /* ClassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassViewController.swift; path = ../ClassViewController.swift; sourceTree = "<group>"; };
 		9B1F41401F13E5CE000B3076 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		9B24F4A01FB410AD00F83AEA /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
+		9B24F4AE1FB510D000F83AEA /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
+		9B24F4B01FB51A2900F83AEA /* TaskScheduler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskScheduler.entitlements; sourceTree = "<group>"; };
 		9B513C3B1F1DA019005EA23C /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		9B513C3D1F1DA32C005EA23C /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		9B513C3F1F1DA6DE005EA23C /* TaskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
 		9BCA7D591FB1381B003188C4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9BCA7D5B1FB21A50003188C4 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		9BFF60481F1DC3BC0085DA4A /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +116,8 @@
 		9B1F41171F0FDE3E000B3076 /* TaskScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				9B24F4B01FB51A2900F83AEA /* TaskScheduler.entitlements */,
+				9B24F49F1FB4109100F83AEA /* KeyChain */,
 				5E340BDE1F9D477A005F9CC1 /* SettingView.storyboard */,
 				5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */,
 				5E340BDA1F9D4613005F9CC1 /* TaskViews.storyboard */,
@@ -131,6 +140,7 @@
 				5E24CC2F1F649228001FD3C6 /* SchedulingAlgorithm.swift */,
 				5E54EF871F912DDA007E4150 /* Singleton.swift */,
 				9BCA7D591FB1381B003188C4 /* SettingsViewController.swift */,
+				9BCA7D5B1FB21A50003188C4 /* DataManager.swift */,
 			);
 			path = TaskScheduler;
 			sourceTree = "<group>";
@@ -142,6 +152,15 @@
 				9B1F412F1F0FDE3F000B3076 /* Info.plist */,
 			);
 			path = TaskSchedulerTests;
+			sourceTree = "<group>";
+		};
+		9B24F49F1FB4109100F83AEA /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				9B24F4A01FB410AD00F83AEA /* KeychainSwiftDistrib.swift */,
+				9B24F4AE1FB510D000F83AEA /* KeychainItemWrapper.swift */,
+			);
+			name = KeyChain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,7 +214,13 @@
 					9B1F41141F0FDE3E000B3076 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 8L85KQW3PN;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					9B1F41281F0FDE3F000B3076 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -252,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B513C3E1F1DA32C005EA23C /* Task.swift in Sources */,
+				9BCA7D5C1FB21A50003188C4 /* DataManager.swift in Sources */,
 				5E54EF881F912DDA007E4150 /* Singleton.swift in Sources */,
 				5E24CC301F649228001FD3C6 /* SchedulingAlgorithm.swift in Sources */,
 				9B1F413B1F104B17000B3076 /* Class.swift in Sources */,
@@ -259,6 +285,8 @@
 				9B513C3C1F1DA019005EA23C /* TaskViewController.swift in Sources */,
 				5EF68FCD1F8EBD670017B074 /* Notifications.swift in Sources */,
 				9B1F41411F13E5CE000B3076 /* TableViewController.swift in Sources */,
+				9B24F4A11FB410AD00F83AEA /* KeychainSwiftDistrib.swift in Sources */,
+				9B24F4AF1FB510D000F83AEA /* KeychainItemWrapper.swift in Sources */,
 				9BCA7D5A1FB1381B003188C4 /* SettingsViewController.swift in Sources */,
 				9B1F413F1F104CD9000B3076 /* ClassViewController.swift in Sources */,
 				5E24CC2E1F6491A6001FD3C6 /* PriorityQueue.swift in Sources */,
@@ -414,11 +442,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TaskScheduler/TaskScheduler.entitlements;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8L85KQW3PN;
 				INFOPLIST_FILE = TaskScheduler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.usc.TaskScheduler1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -427,11 +460,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TaskScheduler/TaskScheduler.entitlements;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 8L85KQW3PN;
 				INFOPLIST_FILE = TaskScheduler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.usc.TaskScheduler1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

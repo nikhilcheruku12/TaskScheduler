@@ -9,6 +9,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--SettingView-->
+        <scene sceneID="jbc-Ee-eAD">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SettingView" id="Pa0-dr-KlR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="kf9-1m-TfL"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A6l-8a-jhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="851" y="-491"/>
+        </scene>
         <!--Item-->
         <scene sceneID="b3i-vW-VXa">
             <objects>
@@ -61,12 +71,14 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="wTo-kI-vbB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="qYp-n1-8bg">
+                    <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="fill" id="qYp-n1-8bg">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="21J-6X-97v" kind="relationship" relationship="viewControllers" id="7Qz-6I-NpM"/>
+                        <segue destination="Pa0-dr-KlR" kind="relationship" relationship="viewControllers" id="Iza-jX-yfJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="caz-6V-kVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
