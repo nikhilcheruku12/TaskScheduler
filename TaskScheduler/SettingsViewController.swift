@@ -26,12 +26,15 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print("start load")
-        focusTimePicker.countDownDuration = TimeInterval(DataManager.sharedInstance.focusTime)
-        eatingTimePicker.countDownDuration = TimeInterval(DataManager.sharedInstance.eatingTime)
-        bedTimePicker.date = DataManager.sharedInstance.bedTime
-        lunchTimePicker.date = DataManager.sharedInstance.lunchTime
-        dinnerTimePicker.date = DataManager.sharedInstance.dinnerTime
-        startTimePicker.date = DataManager.sharedInstance.startTime
+        DataManager.loadDataManager()
+        if let dataManager = DataManager.sharedInstance {
+            focusTimePicker.countDownDuration = TimeInterval(dataManager.focusTime)
+            eatingTimePicker.countDownDuration = TimeInterval(dataManager.eatingTime)
+            bedTimePicker.date = dataManager.bedTime
+            lunchTimePicker.date = dataManager.lunchTime
+            dinnerTimePicker.date = dataManager.dinnerTime
+            startTimePicker.date = dataManager.startTime
+        }
         print("finish loading")
     }
 
@@ -47,15 +50,23 @@ class SettingsViewController: UIViewController {
     
     
     @IBAction func saveAction(_ sender: Any) {
-        DataManager.sharedInstance.bedTime = bedTimePicker.date
+        /*DataManager.sharedInstance.bedTime = bedTimePicker.date
         DataManager.sharedInstance.focusTime = Float(focusTimePicker.countDownDuration)
         DataManager.sharedInstance.eatingTime = Float(eatingTimePicker.countDownDuration)
         DataManager.sharedInstance.startTime = startTimePicker.date
         DataManager.sharedInstance.lunchTime = lunchTimePicker.date
-        DataManager.sharedInstance.dinnerTime = dinnerTimePicker.date
+        DataManager.sharedInstance.dinnerTime = dinnerTimePicker.date*/
         
+        let bedTimeDate = bedTimePicker.date
+        let focusTimeFloat = Float(focusTimePicker.countDownDuration)
+        let eatingTimeFloat = Float(eatingTimePicker.countDownDuration)
+        let startTimeDate = startTimePicker.date
+        let lunchTimeDate = lunchTimePicker.date
+        let dinnerTimeDate = dinnerTimePicker.date
+        
+        DataManager.sharedInstance = DataManager.init(startTime: startTimeDate, lunchTime: lunchTimeDate, dinnerTime: dinnerTimeDate, bedTime: bedTimeDate, focusTime: focusTimeFloat, eatingTime: eatingTimeFloat)
         //DataManager.sharedInstance.secureKeyChain()
-        
+        DataManager.sharedInstance.saveDataManager()
         print(DataManager.sharedInstance.bedTime)
         print(DataManager.sharedInstance.startTime)
         print(DataManager.sharedInstance.lunchTime)

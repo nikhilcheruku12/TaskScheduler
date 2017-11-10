@@ -9,7 +9,7 @@
 import Foundation
 import os.log
 
-class DataManager {
+class DataManager: NSObject, NSCoding {
     struct PropertyKey {
         static let lunchTimeKey = "lunchTimeKey"
         static let dinnerTimeKey = "dinnerTimeKey"
@@ -19,7 +19,7 @@ class DataManager {
         static let startTimeKey = "startTimeKey"
     }
    
-    static var sharedInstance = DataManager()
+    static var sharedInstance: DataManager!
     
     static let keychainItemIdentifier = "edu.usc.TaskScheduler"
     static let dataManagerKey = "dataManagerKey"
@@ -37,14 +37,6 @@ class DataManager {
     var bedTime : Date!
     var startTime: Date!
     
-    init(){
-        focusTime = 0
-        eatingTime = 0
-        startTime =  Date()
-        lunchTime = Date()
-        dinnerTime = Date()
-        bedTime = Date()
-    }
 //    init() {
 //        let keychainItem : KeychainItemWrapper = KeychainItemWrapper(identifier: DataManager.keychainItemIdentifier, accessGroup: nil)
 //        focusTime = 0
@@ -134,8 +126,11 @@ class DataManager {
     }
     
     
-    private func loadDataManager() -> ()  {
-       DataManager.sharedInstance = (NSKeyedUnarchiver.unarchiveObject(withFile: DataManager.ArchiveURL.path) as? DataManager)!
+    public static func loadDataManager() -> ()  {
+       let dataManager = (NSKeyedUnarchiver.unarchiveObject(withFile: DataManager.ArchiveURL.path) as? DataManager)
+        if let temp = dataManager{
+            DataManager.sharedInstance = temp
+        }
     }
 
     
