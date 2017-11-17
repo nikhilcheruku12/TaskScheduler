@@ -65,6 +65,13 @@ class SchedulingAlgorithm {
         self.dinnerTime = 18
         self.hoursToEat = 1
         self.focusHour  = 3.0 // work 4 hours then break
+        
+        self.lunchTime = DataManager.getHour(date: DataManager.sharedInstance.lunchTime)
+        self.dinnerTime = DataManager.getHour(date: DataManager.sharedInstance.dinnerTime)
+        self.sleepTime = DataManager.getHour(date: DataManager.sharedInstance.bedTime)
+        self.wakeUpTime = DataManager.getHour(date: DataManager.sharedInstance.startTime)
+        self.focusHour = Double(DataManager.sharedInstance.focusTime)
+        self.hoursToEat = Int(Double(DataManager.sharedInstance.eatingTime))
         //init notification variables
         self.notificationCenter = Notification()
         //create virtual and real calendar

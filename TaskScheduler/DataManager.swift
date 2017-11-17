@@ -132,6 +132,16 @@ class DataManager: NSObject, NSCoding {
             DataManager.sharedInstance = temp
         }
     }
+    
+    public static func getHour (date:Date)-> Int{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "Your date Format"
+        //let date = dateFormatter.date(from: string1)
+        let calendar = Calendar.current
+        let comp = calendar.dateComponents([.hour, .minute], from: date)
+        let hour = comp.hour
+        return hour!
+    }
 
     
  //   func toDict () -> Dictionary<String,AnyObject> {
