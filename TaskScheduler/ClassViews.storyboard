@@ -107,13 +107,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Enter Class Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKy-lt-s6S">
-                                <rect key="frame" x="55" y="105" width="304" height="36"/>
+                                <rect key="frame" x="55" y="149" width="304" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Importance: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPI-aJ-dyW">
-                                <rect key="frame" x="55" y="276" width="150" height="35"/>
+                                <rect key="frame" x="55" y="320" width="150" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="oBB-AY-CXx"/>
                                     <constraint firstAttribute="width" constant="150" id="uIH-iV-Y1B"/>
@@ -123,7 +123,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vSk-iP-HMe">
-                                <rect key="frame" x="55" y="161" width="304" height="40"/>
+                                <rect key="frame" x="55" y="205" width="304" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="FYt-0P-x8k"/>
                                 </constraints>
@@ -132,14 +132,15 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="7l4-is-JcT">
-                                <rect key="frame" x="58" y="351" width="298" height="31"/>
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="58" y="395" width="298" height="31"/>
+                                <color key="backgroundColor" red="0.22736302018165588" green="0.074144862592220306" blue="0.36711513996124268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.72910049554346412" green="0.50158866059258167" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="changeClassImportance:" destination="Mt0-Yq-PBH" eventType="valueChanged" id="ogf-f0-JLe"/>
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csf-ec-Xqg">
-                                <rect key="frame" x="120" y="431" width="174" height="46"/>
+                                <rect key="frame" x="120" y="475" width="174" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="View Tasks">
                                     <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -149,7 +150,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medium" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30H-AM-xLh">
-                                <rect key="frame" x="255" y="276" width="89" height="35"/>
+                                <rect key="frame" x="255" y="320" width="89" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="jiF-hL-EvQ"/>
                                 </constraints>
@@ -158,7 +159,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.22736302018165588" green="0.074144862592220306" blue="0.36711513996124268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="30H-AM-xLh" secondAttribute="trailing" constant="50" id="2Rp-lu-61M"/>
                             <constraint firstItem="Csf-ec-Xqg" firstAttribute="leading" secondItem="aPy-hc-on2" secondAttribute="leadingMargin" constant="100" id="3Xb-iy-dJV"/>
@@ -257,6 +258,6 @@
         <image name="red" width="112" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lQr-is-LcV"/>
+        <segue reference="dPH-rt-Se2"/>
     </inferredMetricsTieBreakers>
 </document>
