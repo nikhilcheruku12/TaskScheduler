@@ -18,7 +18,7 @@ class DataManager: NSObject, NSCoding {
         static let bedTimeKey = "bedTimeKey"
         static let startTimeKey = "startTimeKey"
     }
-   
+    
     static var sharedInstance: DataManager!
     
     static let keychainItemIdentifier = "edu.usc.TaskScheduler"
@@ -37,28 +37,6 @@ class DataManager: NSObject, NSCoding {
     var bedTime : Date!
     var startTime: Date!
     
-//    init() {
-//        let keychainItem : KeychainItemWrapper = KeychainItemWrapper(identifier: DataManager.keychainItemIdentifier, accessGroup: nil)
-//        focusTime = 0
-//        eatingTime = 0
-//        lunchTime = Date()
-//        dinnerTime = Date()
-//        startTime = Date()
-//        bedTime = Date()
-//       
-//            let superSecretValue = keychainItem[DataManager.dataManagerKey] as? String?
-//        if(superSecretValue! != nil){
-//            print("hey this works maybe")
-//            let array = self.convertJsonStringToDictionary(superSecretValue!!)
-//            for item in array!{
-//                self.createDataMangerFromDict(dict: item)
-//            }
-//        }
-//        
-//            
-//        
-//      
-//    }
     
     init?(startTime: Date, lunchTime: Date, dinnerTime: Date, bedTime: Date, focusTime: Float, eatingTime: Float) {
         self.startTime = startTime
@@ -68,7 +46,7 @@ class DataManager: NSObject, NSCoding {
         self.focusTime = focusTime
         self.eatingTime = eatingTime
     }
-
+    
     
     //MARK: NSCoding
     func encode(with aCoder: NSCoder) {
@@ -78,7 +56,7 @@ class DataManager: NSObject, NSCoding {
         aCoder.encode(focusTime, forKey: PropertyKey.focusTimeKey)
         aCoder.encode(bedTime, forKey: PropertyKey.bedTimeKey)
         aCoder.encode(startTime, forKey: PropertyKey.startTimeKey)
-
+        
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -127,9 +105,16 @@ class DataManager: NSObject, NSCoding {
     
     
     public static func loadDataManager() -> ()  {
-       let dataManager = (NSKeyedUnarchiver.unarchiveObject(withFile: DataManager.ArchiveURL.path) as? DataManager)
+        let dataManager = (NSKeyedUnarchiver.unarchiveObject(withFile: DataManager.ArchiveURL.path) as? DataManager)
         if let temp = dataManager{
             DataManager.sharedInstance = temp
+        } else{
+            
+            let startTimeDate = DataManager.getDate(hour: 8, minute: 0, second: 0)
+            let lunchTimeDate = DataManager.getDate(hour: 12, minute: 0, second: 0)
+            let dinnerTimeDate = DataManager.getDate(hour:20, minute: 0, second: 0)
+            let bedTimeDate = DataManager.getDate(hour: 23, minute: 0, second: 0)
+            DataManager.sharedInstance = DataManager(startTime: startTimeDate, lunchTime: lunchTimeDate, dinnerTime: dinnerTimeDate, bedTime: bedTimeDate, focusTime: 2.5, eatingTime: 1.0)
         }
     }
     
@@ -142,68 +127,81 @@ class DataManager: NSObject, NSCoding {
         let hour = comp.hour
         return hour!
     }
-
     
- //   func toDict () -> Dictionary<String,AnyObject> {
-//        let dict: [String: AnyObject] = [DataManager.lunchTimeKey: lunchTime as AnyObject,
-//                                         DataManager.dinnerTimeKey: dinnerTime as AnyObject,
-//                                         DataManager.focusTimeKey: focusTime as AnyObject,
-//                                         DataManager.eatingTimeKey: eatingTime as AnyObject,
-//                                         DataManager.bedTimeKey: bedTime as AnyObject,
-//                                         DataManager.startTimeKey: startTime as AnyObject]
-//        return dict as Dictionary<String, AnyObject>    }
-//    
-//    func toString() -> NSString? {
-//        return convertDataToString(convertDictionaryToJsonData(toDict())!)
-//    }
-//    
-//    func convertDictionaryToJsonData(_ inputDict : Dictionary<String, AnyObject>) -> Data?{
-//        do{
-//            return try JSONSerialization.data(withJSONObject: inputDict, options:JSONSerialization.WritingOptions.prettyPrinted)
-//        }catch let error as NSError{
-//            print(error)
-//        }
-//        return nil
-//    }
-//    
-//    func convertDataToString(_ inputData : Data) -> NSString?{
-//        let returnString = String(data: inputData, encoding: String.Encoding.utf8)
-//        return returnString as NSString?
-//    }
-//
-//    func convertJsonStringToDictionary(_ text: String) -> Array<Dictionary<String, AnyObject>>? {if let data = text.data(using: String.Encoding.utf8) {
-//        do {
-//            return try JSONSerialization.jsonObject(with: data, options: []) as? Array<Dictionary<String, AnyObject>>
-//        } catch let error as NSError {
-//            print(error)
-//        }
-//        }
-//        return nil
-//    }
-//
-//    func secureKeyChain () -> (){
-//        let keychainItemWrapper = KeychainItemWrapper(identifier: DataManager.keychainItemIdentifier, accessGroup:nil)
-//        keychainItemWrapper[DataManager.dataManagerKey] = toString() as AnyObject?
-//    }
-//    
-//    func getKeyChain()->(){
-//        let keychainItemWrapper = KeychainItemWrapper(identifier: DataManager.keychainItemIdentifier, accessGroup: nil)
-//        let superSecretValue = keychainItemWrapper[DataManager.dataManagerKey] as? String?
-//        print("The super secret value is: \(String(describing: superSecretValue))");
-//        let array = convertJsonStringToDictionary(superSecretValue!!)
-//        for item in array!{
-//            createDataMangerFromDict(dict: item)
-//        }
-//        
-//    }
-//    
-//    func createDataMangerFromDict(dict: Dictionary<String, AnyObject>)->(){
-//        lunchTime = dict[DataManager.lunchTimeKey] as! Date
-//        dinnerTime = dict[DataManager.dinnerTimeKey] as! Date
-//        focusTime = dict[DataManager.focusTimeKey] as! Float
-//        eatingTime = dict[DataManager.eatingTimeKey] as! Float
-//        bedTime = dict[DataManager.bedTimeKey] as! Date
-//        startTime = dict[DataManager.startTimeKey] as! Date
-//    }
-
+    private static func getDate (hour:Int, minute: Int, second: Int) -> Date{
+        let gregorian = Calendar(identifier: .gregorian)
+        let now = Date()
+        var components = gregorian.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now)
+        
+        // Change the time to 9:30:00 in your locale
+        components.hour = hour
+        components.minute = minute
+        components.second = second
+        
+        let date = gregorian.date(from: components)!
+        return date
+    }
+    
+    //   func toDict () -> Dictionary<String,AnyObject> {
+    //        let dict: [String: AnyObject] = [DataManager.lunchTimeKey: lunchTime as AnyObject,
+    //                                         DataManager.dinnerTimeKey: dinnerTime as AnyObject,
+    //                                         DataManager.focusTimeKey: focusTime as AnyObject,
+    //                                         DataManager.eatingTimeKey: eatingTime as AnyObject,
+    //                                         DataManager.bedTimeKey: bedTime as AnyObject,
+    //                                         DataManager.startTimeKey: startTime as AnyObject]
+    //        return dict as Dictionary<String, AnyObject>    }
+    //
+    //    func toString() -> NSString? {
+    //        return convertDataToString(convertDictionaryToJsonData(toDict())!)
+    //    }
+    //
+    //    func convertDictionaryToJsonData(_ inputDict : Dictionary<String, AnyObject>) -> Data?{
+    //        do{
+    //            return try JSONSerialization.data(withJSONObject: inputDict, options:JSONSerialization.WritingOptions.prettyPrinted)
+    //        }catch let error as NSError{
+    //            print(error)
+    //        }
+    //        return nil
+    //    }
+    //
+    //    func convertDataToString(_ inputData : Data) -> NSString?{
+    //        let returnString = String(data: inputData, encoding: String.Encoding.utf8)
+    //        return returnString as NSString?
+    //    }
+    //
+    //    func convertJsonStringToDictionary(_ text: String) -> Array<Dictionary<String, AnyObject>>? {if let data = text.data(using: String.Encoding.utf8) {
+    //        do {
+    //            return try JSONSerialization.jsonObject(with: data, options: []) as? Array<Dictionary<String, AnyObject>>
+    //        } catch let error as NSError {
+    //            print(error)
+    //        }
+    //        }
+    //        return nil
+    //    }
+    //
+    //    func secureKeyChain () -> (){
+    //        let keychainItemWrapper = KeychainItemWrapper(identifier: DataManager.keychainItemIdentifier, accessGroup:nil)
+    //        keychainItemWrapper[DataManager.dataManagerKey] = toString() as AnyObject?
+    //    }
+    //
+    //    func getKeyChain()->(){
+    //        let keychainItemWrapper = KeychainItemWrapper(identifier: DataManager.keychainItemIdentifier, accessGroup: nil)
+    //        let superSecretValue = keychainItemWrapper[DataManager.dataManagerKey] as? String?
+    //        print("The super secret value is: \(String(describing: superSecretValue))");
+    //        let array = convertJsonStringToDictionary(superSecretValue!!)
+    //        for item in array!{
+    //            createDataMangerFromDict(dict: item)
+    //        }
+    //
+    //    }
+    //
+    //    func createDataMangerFromDict(dict: Dictionary<String, AnyObject>)->(){
+    //        lunchTime = dict[DataManager.lunchTimeKey] as! Date
+    //        dinnerTime = dict[DataManager.dinnerTimeKey] as! Date
+    //        focusTime = dict[DataManager.focusTimeKey] as! Float
+    //        eatingTime = dict[DataManager.eatingTimeKey] as! Float
+    //        bedTime = dict[DataManager.bedTimeKey] as! Date
+    //        startTime = dict[DataManager.startTimeKey] as! Date
+    //    }
+    
 }

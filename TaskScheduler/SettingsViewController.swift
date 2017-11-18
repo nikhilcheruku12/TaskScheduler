@@ -26,7 +26,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print("start load")
-        DataManager.loadDataManager()
+       // DataManager.loadDataManager()
         if let dataManager = DataManager.sharedInstance {
             focusTimePicker.countDownDuration = TimeInterval(dataManager.focusTime)
             eatingTimePicker.countDownDuration = TimeInterval(dataManager.eatingTime)
