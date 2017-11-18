@@ -20,6 +20,7 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
     
     @IBOutlet weak var viewTasksButton: UIButton!
 
+    @IBOutlet weak var importanceLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
@@ -29,6 +30,14 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
             nameTextField.text = class1.name
             importanceSlider.value = class1.importance
             viewTasksButton.isHidden = false;
+            
+            if(class1.importance >= 6.66){
+                importanceLabel.text = "Very"
+            }else if(class1.importance <= 3.33){
+                importanceLabel.text = "Low"
+            }else {
+                importanceLabel.text = "Medium"
+            }
         }
         
         else{
@@ -129,6 +138,17 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
         }
         else {
             fatalError("The MealViewController is not inside a navigation controller.")
+        }
+    }
+
+    @IBAction func changeClassImportance(_ sender: UISlider) {
+    
+        if(importanceSlider.value >= 6.66){
+            importanceLabel.text = "Very"
+        }else if(importanceSlider.value <= 3.33){
+            importanceLabel.text = "Low"
+        }else {
+            importanceLabel.text = "Medium"
         }
     }
 

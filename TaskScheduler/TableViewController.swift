@@ -151,9 +151,9 @@ class TableViewController: UITableViewController {
         let class1 = classes[indexPath.row]
         cell.nameLabel.text = class1.name;
         var importance = "";
-        if(class1.importance >= 7){
+        if(class1.importance >= 6.66){
             importance = "Very"
-        }else if(class1.importance <= 3){
+        }else if(class1.importance <= 3.33){
             importance = "Low"
         }else {
             importance = "Medium"
