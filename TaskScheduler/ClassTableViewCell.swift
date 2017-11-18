@@ -12,6 +12,7 @@ class ClassTableViewCell: UITableViewCell {
     @IBOutlet weak var importanceLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
 
+    @IBOutlet weak var colorView: UIView!
     override func awakeFromNib() {
         
         super.awakeFromNib()

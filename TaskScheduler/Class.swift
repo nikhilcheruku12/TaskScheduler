@@ -14,26 +14,30 @@ class Class: NSObject, NSCoding{
         static let name = "name"
         static let importance = "importance"
         static let taskKey = "task"
+        static let colorNumber = "colorNumber"
     }
     
     var name: String
     var importance: Float
     var tasks: [Task]
+    var colorNumber : Float
     
-    init?(name: String, importance: Float) {
+    init?(name: String, importance: Float, colorNumber: Float) {
         self.name = name;
         self.importance = importance;
         self.tasks = [Task]()
+        self.colorNumber = colorNumber;
         
         if name.isEmpty || importance < 0  {
             return nil
         }
     }
     
-    init?(name: String, importance: Float, tasks: [Task]) {
+    init?(name: String, importance: Float, tasks: [Task], colorNumber: Float) {
         self.name = name;
         self.importance = importance;
         self.tasks = tasks
+        self.colorNumber = colorNumber;
         if name.isEmpty || importance < 0  {
             return nil
         }
@@ -44,6 +48,7 @@ class Class: NSObject, NSCoding{
         aCoder.encode(name, forKey: PropertyKey.name)
         aCoder.encode(importance, forKey: PropertyKey.importance)
         aCoder.encode(tasks, forKey:PropertyKey.taskKey)
+        aCoder.encode(colorNumber, forKey: PropertyKey.colorNumber)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -54,7 +59,9 @@ class Class: NSObject, NSCoding{
             return nil
         }
         
-         let importance = aDecoder.decodeFloat(forKey: PropertyKey.importance) 
+         let importance = aDecoder.decodeFloat(forKey: PropertyKey.importance)
+        
+        let colorNumber = aDecoder.decodeFloat(forKey: PropertyKey.colorNumber)
         
        guard let tasks = aDecoder.decodeObject(forKey: PropertyKey.taskKey) as? [Task] else{
             os_log("Unable to decode tasks for Class Object", log: OSLog.default, type: .debug)
@@ -62,7 +69,7 @@ class Class: NSObject, NSCoding{
         }
         
 
-        self.init(name: name, importance: importance, tasks: tasks)
+        self.init(name: name, importance: importance, tasks: tasks, colorNumber : colorNumber)
         
     }
     

@@ -161,10 +161,23 @@ class TableViewController: UITableViewController {
         
         cell.importanceLabel.text = "Importance: " +  importance;
         
+        cell.colorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(class1.colorNumber)])
         
         // Configure the cell...
         
         return cell
+    }
+    
+    let colorArray = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
+    
+    func uiColorFromHex(rgbValue: Int) -> UIColor {
+        
+        let red =   CGFloat((rgbValue & 0xFF0000) >> 16) / 0xFF
+        let green = CGFloat((rgbValue & 0x00FF00) >> 8) / 0xFF
+        let blue =  CGFloat(rgbValue & 0x0000FF) / 0xFF
+        let alpha = CGFloat(1.0)
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
     //MARK: - ACTIONS
@@ -265,11 +278,11 @@ class TableViewController: UITableViewController {
     
     
     private func loadSampleClasses() {
-        guard let class1 = Class(name: "CS 201", importance: 9)
+        guard let class1 = Class(name: "CS 201", importance: 4, colorNumber: 1)
             else {
                 fatalError("Unable to instantiate class1")
         }
-        guard let class2 = Class(name: "REL 135", importance: 4)
+        guard let class2 = Class(name: "REL 135", importance: 4, colorNumber: 1)
             else {
                 fatalError("Unable to instantiate class2")
         }

@@ -219,7 +219,7 @@
 				TargetAttributes = {
 					9B1F41141F0FDE3E000B3076 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8L85KQW3PN;
+						DevelopmentTeam = C6N7NV7724;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -453,7 +453,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TaskScheduler/TaskScheduler.entitlements;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8L85KQW3PN;
+				DEVELOPMENT_TEAM = C6N7NV7724;
 				INFOPLIST_FILE = TaskScheduler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.usc.TaskScheduler1;
@@ -471,7 +471,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TaskScheduler/TaskScheduler.entitlements;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8L85KQW3PN;
+				DEVELOPMENT_TEAM = C6N7NV7724;
 				INFOPLIST_FILE = TaskScheduler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.usc.TaskScheduler1;
