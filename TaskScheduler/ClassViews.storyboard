@@ -44,14 +44,14 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tv2-iw-jbu">
                                             <rect key="frame" x="107" y="8" width="226" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NI3-Z6-l0c">
                                             <rect key="frame" x="107" y="50" width="226" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -107,23 +107,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Enter Class Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKy-lt-s6S">
-                                <rect key="frame" x="55" y="149" width="304" height="36"/>
+                                <rect key="frame" x="55" y="105" width="304" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.88190314528626523" green="0.87764274361821559" blue="0.88616354695431476" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Importance: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPI-aJ-dyW">
-                                <rect key="frame" x="55" y="320" width="150" height="35"/>
+                                <rect key="frame" x="55" y="276" width="150" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="oBB-AY-CXx"/>
                                     <constraint firstAttribute="width" constant="150" id="uIH-iV-Y1B"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.88229781230212068" green="0.87803550403012975" blue="0.8865601205741116" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vSk-iP-HMe">
-                                <rect key="frame" x="55" y="205" width="304" height="40"/>
+                                <rect key="frame" x="55" y="161" width="304" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="FYt-0P-x8k"/>
                                 </constraints>
@@ -132,34 +132,36 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="7l4-is-JcT">
-                                <rect key="frame" x="58" y="395" width="298" height="31"/>
-                                <color key="backgroundColor" red="0.22736302018165588" green="0.074144862592220306" blue="0.36711513996124268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="tintColor" red="0.72910049554346412" green="0.50158866059258167" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <rect key="frame" x="58" y="351" width="298" height="31"/>
+                                <color key="backgroundColor" red="0.46115909312849274" green="0.18369685875373268" blue="0.78259218571149758" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.32605622513298604" green="0.10022065412963449" blue="0.37388959390862941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="minimumTrackTintColor" red="0.24101461953243317" green="0.074081219625522152" blue="0.27637214467005078" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="changeClassImportance:" destination="Mt0-Yq-PBH" eventType="valueChanged" id="ogf-f0-JLe"/>
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csf-ec-Xqg">
-                                <rect key="frame" x="120" y="475" width="174" height="46"/>
+                                <rect key="frame" x="120" y="431" width="174" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="View Tasks">
-                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.79793774101038895" green="0.79408296931468658" blue="0.80179251270609131" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <segue destination="J3y-AW-vnP" kind="modal" id="Bzm-ku-5LC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medium" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30H-AM-xLh">
-                                <rect key="frame" x="255" y="320" width="89" height="35"/>
+                                <rect key="frame" x="255" y="276" width="89" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="jiF-hL-EvQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.86562313154387194" green="0.86144137728520598" blue="0.86980488580253801" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.22736302018165588" green="0.074144862592220306" blue="0.36711513996124268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.4661133090934178" green="0.18567030766519271" blue="0.79099954611758894" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="30H-AM-xLh" secondAttribute="trailing" constant="50" id="2Rp-lu-61M"/>
                             <constraint firstItem="Csf-ec-Xqg" firstAttribute="leading" secondItem="aPy-hc-on2" secondAttribute="leadingMargin" constant="100" id="3Xb-iy-dJV"/>
@@ -258,6 +260,6 @@
         <image name="red" width="112" height="112"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dPH-rt-Se2"/>
+        <segue reference="lQr-is-LcV"/>
     </inferredMetricsTieBreakers>
 </document>

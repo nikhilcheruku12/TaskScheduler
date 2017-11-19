@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="fPg-PB-tXi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="fPg-PB-tXi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,101 +22,153 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0C-yc-hkO">
-                                <rect key="frame" x="10" y="156" width="169" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0C-yc-hkO">
+                                <rect key="frame" x="20" y="158" width="170" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ZHU-xg-P4U"/>
+                                    <constraint firstAttribute="width" constant="170" id="pXg-hD-6my"/>
+                                </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYY-Xz-hGq">
-                                <rect key="frame" x="10" y="278" width="169" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYY-Xz-hGq">
+                                <rect key="frame" x="20" y="317" width="170" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="Goa-HW-KB2"/>
+                                    <constraint firstAttribute="height" constant="50" id="Thr-5E-MdO"/>
+                                </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQd-Q7-atc">
-                                <rect key="frame" x="187" y="156" width="169" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQd-Q7-atc">
+                                <rect key="frame" x="200" y="158" width="149" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="vpH-xJ-7Yi"/>
+                                </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
                             </datePicker>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bedtime" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P2f-dw-Xje">
-                                <rect key="frame" x="10" y="104" width="169" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bedtime" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P2f-dw-Xje">
+                                <rect key="frame" x="10" y="104" width="160" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="Ylo-ex-Mgb"/>
+                                </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Lunch Time" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QOi-7p-Hkw">
-                                <rect key="frame" x="10" y="227" width="169" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Lunch Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QOi-7p-Hkw">
+                                <rect key="frame" x="20" y="268" width="170" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="oYq-uk-dYD"/>
+                                </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dinner" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kpm-a4-z6j">
-                                <rect key="frame" x="187" y="227" width="169" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dinner" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kpm-a4-z6j">
+                                <rect key="frame" x="210" y="268" width="129" height="29"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Focus Time" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7CN-yD-TRr">
-                                <rect key="frame" x="187" y="394" width="181" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Focus Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7CN-yD-TRr">
+                                <rect key="frame" x="200" y="427" width="155" height="29"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hours to eat" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6oG-7i-A2d">
-                                <rect key="frame" x="10" y="394" width="177" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hours to eat" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6oG-7i-A2d">
+                                <rect key="frame" x="20" y="427" width="160" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="A7H-HX-Lec"/>
+                                </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JEQ-Jm-ACe">
-                                <rect key="frame" x="10" y="432" width="177" height="77"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JEQ-Jm-ACe">
+                                <rect key="frame" x="20" y="476" width="160" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8En-pe-Jzt"/>
+                                    <constraint firstAttribute="width" constant="160" id="LZ7-2L-R7j"/>
+                                </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="531765010.76760501">
                                     <!--2017-11-07 16:30:10 +0000-->
                                 </date>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCT-a5-Xm3">
-                                <rect key="frame" x="187" y="432" width="181" height="77"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start Working" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HLj-5A-NQL">
+                                <rect key="frame" x="190" y="104" width="149" height="29"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ea-xC-9Hg">
+                                <rect key="frame" x="200" y="317" width="149" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="j7W-JV-3fF"/>
+                                </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
                             </datePicker>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start Working" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HLj-5A-NQL">
-                                <rect key="frame" x="187" y="104" width="169" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ea-xC-9Hg">
-                                <rect key="frame" x="187" y="278" width="169" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCT-a5-Xm3">
+                                <rect key="frame" x="190" y="476" width="175" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="krC-ct-C4K"/>
+                                </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
                             </datePicker>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.65067814086294418" green="0.36591442969200383" blue="0.22487426648445008" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vCT-a5-Xm3" secondAttribute="trailing" constant="10" id="2zi-sh-Z2v"/>
+                            <constraint firstItem="P2f-dw-Xje" firstAttribute="leading" secondItem="Awo-Hn-YSc" secondAttribute="leading" constant="10" id="3ht-JC-IIw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Kpm-a4-z6j" secondAttribute="trailing" constant="20" id="59O-wR-twt"/>
+                            <constraint firstItem="vCT-a5-Xm3" firstAttribute="leading" secondItem="JEQ-Jm-ACe" secondAttribute="trailing" constant="10" id="6o3-wL-QqI"/>
+                            <constraint firstItem="4ea-xC-9Hg" firstAttribute="top" secondItem="Kpm-a4-z6j" secondAttribute="bottom" constant="20" id="FYu-An-5io"/>
+                            <constraint firstItem="Kpm-a4-z6j" firstAttribute="top" secondItem="RQd-Q7-atc" secondAttribute="bottom" constant="60" id="GlX-7a-L4I"/>
+                            <constraint firstItem="6oG-7i-A2d" firstAttribute="top" secondItem="UYY-Xz-hGq" secondAttribute="bottom" constant="60" id="H0B-Mg-lne"/>
+                            <constraint firstItem="p0C-yc-hkO" firstAttribute="leading" secondItem="Awo-Hn-YSc" secondAttribute="leading" constant="20" id="IWz-eI-eoO"/>
+                            <constraint firstItem="7CN-yD-TRr" firstAttribute="leading" secondItem="6oG-7i-A2d" secondAttribute="trailing" constant="20" id="J05-1w-UVv"/>
+                            <constraint firstItem="JEQ-Jm-ACe" firstAttribute="leading" secondItem="Awo-Hn-YSc" secondAttribute="leading" constant="20" id="KKv-qQ-EXk"/>
+                            <constraint firstItem="HLj-5A-NQL" firstAttribute="top" secondItem="UJF-5b-X2o" secondAttribute="bottom" constant="40" id="L3E-ty-HKx"/>
+                            <constraint firstItem="P2f-dw-Xje" firstAttribute="top" secondItem="UJF-5b-X2o" secondAttribute="bottom" constant="40" id="L9q-vd-D2S"/>
+                            <constraint firstItem="RQd-Q7-atc" firstAttribute="leading" secondItem="p0C-yc-hkO" secondAttribute="trailing" constant="10" id="Lml-Ah-Ojj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4ea-xC-9Hg" secondAttribute="trailing" constant="10" id="M5D-7z-45P"/>
+                            <constraint firstItem="HLj-5A-NQL" firstAttribute="leading" secondItem="P2f-dw-Xje" secondAttribute="trailing" constant="20" id="PXF-h8-ra1"/>
+                            <constraint firstItem="UYY-Xz-hGq" firstAttribute="top" secondItem="QOi-7p-Hkw" secondAttribute="bottom" constant="20" id="Qst-T9-scP"/>
+                            <constraint firstItem="UYY-Xz-hGq" firstAttribute="leading" secondItem="Awo-Hn-YSc" secondAttribute="leading" constant="20" id="WhE-2X-IMo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RQd-Q7-atc" secondAttribute="trailing" constant="10" id="YA2-yC-3tX"/>
+                            <constraint firstItem="6oG-7i-A2d" firstAttribute="leading" secondItem="Awo-Hn-YSc" secondAttribute="leading" constant="20" id="ZEk-lY-tRG"/>
+                            <constraint firstItem="JEQ-Jm-ACe" firstAttribute="top" secondItem="6oG-7i-A2d" secondAttribute="bottom" constant="20" id="aMo-kA-oyc"/>
+                            <constraint firstItem="RQd-Q7-atc" firstAttribute="top" secondItem="HLj-5A-NQL" secondAttribute="bottom" constant="25" id="acl-DE-6oO"/>
+                            <constraint firstItem="QOi-7p-Hkw" firstAttribute="leading" secondItem="Awo-Hn-YSc" secondAttribute="leading" constant="20" id="e9C-IZ-xwt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HLj-5A-NQL" secondAttribute="trailing" constant="20" id="eDa-9B-6M3"/>
+                            <constraint firstItem="Kpm-a4-z6j" firstAttribute="leading" secondItem="QOi-7p-Hkw" secondAttribute="trailing" constant="20" id="gfW-cb-aMi"/>
+                            <constraint firstItem="4ea-xC-9Hg" firstAttribute="leading" secondItem="UYY-Xz-hGq" secondAttribute="trailing" constant="10" id="hAQ-Qn-aAE"/>
+                            <constraint firstAttribute="trailing" secondItem="7CN-yD-TRr" secondAttribute="trailing" constant="20" id="i2X-73-jwo"/>
+                            <constraint firstItem="p0C-yc-hkO" firstAttribute="top" secondItem="P2f-dw-Xje" secondAttribute="bottom" constant="25" id="mFK-8R-EYX"/>
+                            <constraint firstItem="vCT-a5-Xm3" firstAttribute="top" secondItem="7CN-yD-TRr" secondAttribute="bottom" constant="20" id="rVi-hL-B9r"/>
+                            <constraint firstItem="QOi-7p-Hkw" firstAttribute="top" secondItem="p0C-yc-hkO" secondAttribute="bottom" constant="60" id="tFC-dt-n6P"/>
+                            <constraint firstItem="7CN-yD-TRr" firstAttribute="top" secondItem="4ea-xC-9Hg" secondAttribute="bottom" constant="60" id="tlV-KU-aIE"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Settings" id="vs1-K2-Kr1">
                         <barButtonItem key="leftBarButtonItem" title="Revert" id="PeA-zi-m9m">
+                            <color key="tintColor" red="0.3699198796520678" green="0.26190339845294908" blue="0.45445352157360408" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="revertAction:" destination="0WK-ev-CXp" id="uTd-k8-5Mt"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="GAG-yk-eIs">
+                            <color key="tintColor" red="0.52312005396571548" green="0.25564144989038551" blue="0.67314403553299496" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="saveAction:" destination="0WK-ev-CXp" id="gMO-wc-8Yz"/>
                             </connections>
@@ -143,7 +196,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fPg-PB-tXi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qwC-2L-9Pp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -156,9 +209,4 @@
             <point key="canvasLocation" x="539.5" y="726.5"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
-    </simulatedMetricsContainer>
 </document>
