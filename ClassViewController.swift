@@ -21,6 +21,26 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
     @IBOutlet weak var viewTasksButton: UIButton!
 
     @IBOutlet weak var importanceLabel: UILabel!
+    
+    @IBOutlet weak var selectedColorView: UIView!
+    
+    @IBOutlet weak var colorSlider: UISlider!
+    @IBAction func colorChanged(_ sender: Any) {
+        selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(colorSlider.value)])
+    }
+    
+    func uiColorFromHex(rgbValue: Int) -> UIColor {
+        
+        let red =   CGFloat((rgbValue & 0xFF0000) >> 16) / 0xFF
+        let green = CGFloat((rgbValue & 0x00FF00) >> 8) / 0xFF
+        let blue =  CGFloat(rgbValue & 0x0000FF) / 0xFF
+        let alpha = CGFloat(1.0)
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    
+    let colorArray = [0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTextField.delegate = self
@@ -29,6 +49,8 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
             navigationItem.title = class1.name
             nameTextField.text = class1.name
             importanceSlider.value = class1.importance
+            colorSlider.value = class1.colorNumber
+            selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(colorSlider.value)])
             viewTasksButton.isHidden = false;
             
             if(class1.importance >= 6.66){
@@ -75,8 +97,9 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
             // class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, tasks: tasksArray);
             class1.name = nameTextField.text!
             class1.importance = importanceSlider.value;
+            class1.colorNumber = colorSlider.value;
         } else{
-            class1 = Class(name:nameTextField.text!, importance:importanceSlider.value)
+            class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, colorNumber: colorSlider.value)
         }
 
         if class1 != nil {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,30 +34,32 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Ho-1W-9aR" id="mOb-Ks-M6e">
-                                    <rect key="frame" x="0.0" y="0.0" width="381" height="89.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="376" height="89.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="red" translatesAutoresizingMaskIntoConstraints="NO" id="9nb-2M-bhx">
-                                            <rect key="frame" x="0.0" y="0.0" width="99" height="90"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tv2-iw-jbu">
-                                            <rect key="frame" x="107" y="8" width="226" height="34"/>
+                                            <rect key="frame" x="85" y="8" width="275" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NI3-Z6-l0c">
-                                            <rect key="frame" x="107" y="50" width="226" height="21"/>
+                                            <rect key="frame" x="85" y="50" width="275" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRw-sg-wjR">
+                                            <rect key="frame" x="14" y="8" width="63" height="63"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="colorView" destination="aRw-sg-wjR" id="wvz-N3-gev"/>
                                     <outlet property="importanceLabel" destination="NI3-Z6-l0c" id="gcg-1W-g3i"/>
                                     <outlet property="nameLabel" destination="Tv2-iw-jbu" id="O1I-GT-5hY"/>
                                     <segue destination="Mt0-Yq-PBH" kind="push" identifier="ShowDetail" id="lQr-is-LcV"/>
@@ -141,8 +143,8 @@
                                     <action selector="changeClassImportance:" destination="Mt0-Yq-PBH" eventType="valueChanged" id="ogf-f0-JLe"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csf-ec-Xqg">
-                                <rect key="frame" x="120" y="431" width="174" height="46"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Csf-ec-Xqg">
+                                <rect key="frame" x="120" y="585" width="174" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="View Tasks">
                                     <color key="titleColor" red="0.79793774101038895" green="0.79408296931468658" blue="0.80179251270609131" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -160,6 +162,18 @@
                                 <color key="textColor" red="0.86562313154387194" green="0.86144137728520598" blue="0.86980488580253801" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kfB-vQ-y5e">
+                                <rect key="frame" x="157" y="404" width="100" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.20392156859999999" green="0.21176470589999999" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="sby-XG-51Y">
+                                <rect key="frame" x="58" y="535" width="303" height="30"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <connections>
+                                    <action selector="colorChanged:" destination="Mt0-Yq-PBH" eventType="valueChanged" id="Plo-RG-aY5"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="0.4661133090934178" green="0.18567030766519271" blue="0.79099954611758894" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -169,6 +183,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="vSk-iP-HMe" secondAttribute="trailing" constant="35" id="AUH-Jh-6ok"/>
                             <constraint firstItem="Csf-ec-Xqg" firstAttribute="top" secondItem="7l4-is-JcT" secondAttribute="bottom" constant="50" id="Ar0-oT-INf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rKy-lt-s6S" secondAttribute="trailing" constant="35" id="Dc9-uk-JkK"/>
+                            <constraint firstItem="kfB-vQ-y5e" firstAttribute="top" secondItem="7l4-is-JcT" secondAttribute="bottom" constant="23" id="EHO-Lv-scG"/>
                             <constraint firstItem="IPI-aJ-dyW" firstAttribute="top" secondItem="vSk-iP-HMe" secondAttribute="bottom" constant="75" id="Fim-ha-vfG"/>
                             <constraint firstItem="7l4-is-JcT" firstAttribute="leading" secondItem="aPy-hc-on2" secondAttribute="leadingMargin" constant="40" id="HOT-sn-22y"/>
                             <constraint firstItem="7l4-is-JcT" firstAttribute="top" secondItem="IPI-aJ-dyW" secondAttribute="bottom" constant="40" id="I0g-4W-skk"/>
@@ -178,6 +193,7 @@
                             <constraint firstItem="vSk-iP-HMe" firstAttribute="leading" secondItem="aPy-hc-on2" secondAttribute="leadingMargin" constant="35" id="oVp-Nj-eri"/>
                             <constraint firstItem="30H-AM-xLh" firstAttribute="top" secondItem="vSk-iP-HMe" secondAttribute="bottom" constant="75" id="oWv-23-Zgt"/>
                             <constraint firstItem="IPI-aJ-dyW" firstAttribute="leading" secondItem="aPy-hc-on2" secondAttribute="leadingMargin" constant="35" id="qpn-ih-7pq"/>
+                            <constraint firstItem="sby-XG-51Y" firstAttribute="top" secondItem="kfB-vQ-y5e" secondAttribute="bottom" constant="31" id="rxj-yA-cOr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Csf-ec-Xqg" secondAttribute="trailing" constant="100" id="uGs-WX-qJT"/>
                             <constraint firstItem="30H-AM-xLh" firstAttribute="leading" secondItem="IPI-aJ-dyW" secondAttribute="trailing" constant="50" id="yAe-AQ-mSH"/>
                         </constraints>
@@ -197,10 +213,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="yY6-fM-2hH" id="CTk-ow-MxU"/>
+                        <outlet property="colorSlider" destination="sby-XG-51Y" id="eyJ-kH-dTY"/>
                         <outlet property="importanceLabel" destination="30H-AM-xLh" id="3pd-ix-jBx"/>
                         <outlet property="importanceSlider" destination="7l4-is-JcT" id="vSd-Y6-aSr"/>
                         <outlet property="nameTextField" destination="vSk-iP-HMe" id="BlS-4m-0sv"/>
                         <outlet property="saveButton" destination="JGj-ma-YUB" id="cYZ-ht-JEO"/>
+                        <outlet property="selectedColorView" destination="kfB-vQ-y5e" id="5sL-k9-yqH"/>
                         <outlet property="viewTasksButton" destination="Csf-ec-Xqg" id="f7I-sI-d2i"/>
                     </connections>
                 </viewController>
@@ -256,9 +274,6 @@
             <point key="canvasLocation" x="4062.5" y="-27"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="red" width="112" height="112"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lQr-is-LcV"/>
     </inferredMetricsTieBreakers>
