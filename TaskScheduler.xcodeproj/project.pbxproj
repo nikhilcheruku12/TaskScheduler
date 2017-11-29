@@ -126,7 +126,6 @@
 			children = (
 				9BCF303A1FBFBA16008E135B /* TabViewControllers */,
 				9B24F4B01FB51A2900F83AEA /* TaskScheduler.entitlements */,
-				5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */,
 				9B24F49F1FB4109100F83AEA /* KeyChain */,
 				5E340BDE1F9D477A005F9CC1 /* SettingView.storyboard */,
 				5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */,
@@ -151,6 +150,7 @@
 				5E54EF871F912DDA007E4150 /* Singleton.swift */,
 				9BCA7D591FB1381B003188C4 /* SettingsViewController.swift */,
 				9BCA7D5B1FB21A50003188C4 /* DataManager.swift */,
+				5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */,
 				5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */,
 			);
 			path = TaskScheduler;

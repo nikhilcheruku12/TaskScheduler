@@ -28,8 +28,8 @@ class SettingsViewController: UIViewController {
         print("start load")
        // DataManager.loadDataManager()
         if let dataManager = DataManager.sharedInstance {
-            focusTimePicker.countDownDuration = TimeInterval(dataManager.focusTime)
-            eatingTimePicker.countDownDuration = TimeInterval(dataManager.eatingTime)
+            focusTimePicker.countDownDuration = TimeInterval(dataManager.focusTime*3600)
+            eatingTimePicker.countDownDuration = TimeInterval(dataManager.eatingTime*3600)
             bedTimePicker.date = dataManager.bedTime
             lunchTimePicker.date = dataManager.lunchTime
             dinnerTimePicker.date = dataManager.dinnerTime
@@ -58,8 +58,8 @@ class SettingsViewController: UIViewController {
         DataManager.sharedInstance.dinnerTime = dinnerTimePicker.date*/
         
         let bedTimeDate = bedTimePicker.date
-        let focusTimeFloat = Float(focusTimePicker.countDownDuration)
-        let eatingTimeFloat = Float(eatingTimePicker.countDownDuration)
+        let focusTimeFloat = Float(focusTimePicker.countDownDuration)/3600
+        let eatingTimeFloat = Float(eatingTimePicker.countDownDuration)/3600
         let startTimeDate = startTimePicker.date
         let lunchTimeDate = lunchTimePicker.date
         let dinnerTimeDate = dinnerTimePicker.date

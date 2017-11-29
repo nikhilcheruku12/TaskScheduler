@@ -91,10 +91,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JEQ-Jm-ACe">
-                                <rect key="frame" x="20" y="476" width="160" height="50"/>
+                                <rect key="frame" x="10" y="476" width="170" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8En-pe-Jzt"/>
-                                    <constraint firstAttribute="width" constant="160" id="LZ7-2L-R7j"/>
+                                    <constraint firstAttribute="width" constant="170" id="LZ7-2L-R7j"/>
                                 </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="531765010.76760501">
                                     <!--2017-11-07 16:30:10 +0000-->
@@ -136,7 +136,7 @@
                             <constraint firstItem="6oG-7i-A2d" firstAttribute="top" secondItem="UYY-Xz-hGq" secondAttribute="bottom" constant="60" id="H0B-Mg-lne"/>
                             <constraint firstItem="p0C-yc-hkO" firstAttribute="leading" secondItem="Awo-Hn-YSc" secondAttribute="leading" constant="20" id="IWz-eI-eoO"/>
                             <constraint firstItem="7CN-yD-TRr" firstAttribute="leading" secondItem="6oG-7i-A2d" secondAttribute="trailing" constant="20" id="J05-1w-UVv"/>
-                            <constraint firstItem="JEQ-Jm-ACe" firstAttribute="leading" secondItem="Awo-Hn-YSc" secondAttribute="leading" constant="20" id="KKv-qQ-EXk"/>
+                            <constraint firstItem="JEQ-Jm-ACe" firstAttribute="leading" secondItem="Awo-Hn-YSc" secondAttribute="leading" constant="10" id="KKv-qQ-EXk"/>
                             <constraint firstItem="HLj-5A-NQL" firstAttribute="top" secondItem="UJF-5b-X2o" secondAttribute="bottom" constant="40" id="L3E-ty-HKx"/>
                             <constraint firstItem="P2f-dw-Xje" firstAttribute="top" secondItem="UJF-5b-X2o" secondAttribute="bottom" constant="40" id="L9q-vd-D2S"/>
                             <constraint firstItem="RQd-Q7-atc" firstAttribute="leading" secondItem="p0C-yc-hkO" secondAttribute="trailing" constant="10" id="Lml-Ah-Ojj"/>

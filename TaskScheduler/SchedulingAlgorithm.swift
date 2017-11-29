@@ -72,6 +72,13 @@ class SchedulingAlgorithm {
         self.wakeUpTime = DataManager.getHour(date: DataManager.sharedInstance.startTime)
         self.focusHour = Double(DataManager.sharedInstance.focusTime)
         self.hoursToEat = Int(Double(DataManager.sharedInstance.eatingTime))
+        
+        print("********* lunch time \(self.lunchTime)")
+        print("dinner time \(self.dinnerTime)")
+        print("sleep time \(self.sleepTime)")
+        print("wakup time \(self.wakeUpTime)")
+        print("focus hour \(self.focusHour)")
+        print("hoursToEat \(self.hoursToEat) ***********")
         //init notification variables
         self.notificationCenter = Notification()
         //create virtual and real calendar
@@ -193,6 +200,7 @@ class SchedulingAlgorithm {
      */
     private func addTaskToVirtualCalendar(task: Task, timeSpentInChunk: inout Double, index : inout Int) -> Bool {
         var duration = task.duration
+        var findIndex = false
         for i in index..<virtualCalendar.count{
             /* (1) The task's earlist possible start time must be before or at the given interval's start date
              * (2) The task's end time must be after or on the given interval's end date
@@ -210,7 +218,9 @@ class SchedulingAlgorithm {
                 duration -= 0.5
                 timeSpentInChunk += 0.5
                 if(duration == 0) {
-                    index = i + 1;
+                    if(!findIndex) {
+                        index = i + 1
+                    }
                     // Create a notification to be sent when the task is supposed to be due.
                     notificationCenter.createNotification(date: virtualCalendar[i].endDate, taskName: task.name)
                     return true
@@ -221,6 +231,10 @@ class SchedulingAlgorithm {
                 return false
             }else if virtualCalendar[i].status != "empty"{
                 timeSpentInChunk = 0.0
+            }else if virtualCalendar[i].status == "empty" && virtualCalendar[i].startDate < task.earliestStartDate! && !findIndex{
+                    findIndex = true
+                    index = i
+                    //find the first empty slot that is not scheduled
             }
         }
         
@@ -375,7 +389,9 @@ class SchedulingAlgorithm {
             
             // Schedule the user's sleep and eat
             if (((currentIntervalBegin >= sleepTime || currentIntervalBegin < wakeUpTime)
-                && (currentIntervalEnd >= sleepTime || currentIntervalEnd <= wakeUpTime))
+                && (currentIntervalEnd >= sleepTime || currentIntervalEnd <= wakeUpTime) && (sleepTime > wakeUpTime))
+                || ((currentIntervalBegin >= sleepTime && currentIntervalBegin < wakeUpTime)
+                    && (currentIntervalEnd >= sleepTime && currentIntervalEnd <= wakeUpTime) && (sleepTime < wakeUpTime))
                 || ((currentIntervalBegin >= lunchTime && currentIntervalBegin < (lunchTime+hoursToEat))
                     && (currentIntervalEnd >= lunchTime && currentIntervalEnd <= (lunchTime+hoursToEat)))
                 || ((currentIntervalBegin >= dinnerTime && currentIntervalBegin<(dinnerTime+hoursToEat)))
