@@ -1,28 +1,22 @@
 //
-//  SecondViewController.swift
+//  ScheduledTasksNavigationController.swift
 //  TaskScheduler
 //
-//  Created by Nikhil Cherukuri on 11/17/17.
+//  Created by Kuiren Su on 12/8/17.
 //  Copyright © 2017 Nikhil Cherukuri. All rights reserved.
 //
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class ScheduledTasksNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let stroyboardName = "TaskViews"
         let controller = "ScheduledTasksTableViewController"
         let storyBoard: UIStoryboard = UIStoryboard(name: stroyboardName, bundle: nil)
-        let mainTabBarController: ScheduledTasksTableViewController = storyBoard.instantiateViewController(withIdentifier: controller) as! ScheduledTasksTableViewController
-        present(mainTabBarController, animated: true, completion: nil)
-        
-        
-        
-        let storyboard = UIStoryboard(name: "TaskViews", bundle: nil)
-        let pqTableView = storyboard.instantiateViewController(withIdentifier: "ScheduledTasksTableViewController") as! ScheduledTasksTableViewController
-        self.navigationController?.pushViewController(pqTableView, animated: true)
+        let scheduledTaskVC: ScheduledTasksTableViewController = storyBoard.instantiateViewController(withIdentifier: controller) as! ScheduledTasksTableViewController
+        pushViewController(scheduledTaskVC, animated: true)
         // Do any additional setup after loading the view.
     }
 

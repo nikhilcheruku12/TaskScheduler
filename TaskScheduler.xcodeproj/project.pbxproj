@@ -13,6 +13,7 @@
 		5E340BDD1F9D46D1005F9CC1 /* ClassViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */; };
 		5E340BE01F9D477A005F9CC1 /* SettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E340BDE1F9D477A005F9CC1 /* SettingView.storyboard */; };
 		5E54EF881F912DDA007E4150 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54EF871F912DDA007E4150 /* Singleton.swift */; };
+		5E77287C1FDB542900EC68B6 /* ScheduledTasksNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E77287B1FDB542900EC68B6 /* ScheduledTasksNavigationController.swift */; };
 		5E8A62821FDB188F00715776 /* ClassManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A62811FDB188F00715776 /* ClassManager.swift */; };
 		5E995A261FB62BE1000604BF /* ScheduledTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */; };
 		5E995A281FB62C06000604BF /* ScheduledTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */; };
@@ -58,6 +59,7 @@
 		5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClassViews.storyboard; sourceTree = "<group>"; };
 		5E340BDF1F9D477A005F9CC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = TaskScheduler/Base.lproj/SettingView.storyboard; sourceTree = "<group>"; };
 		5E54EF871F912DDA007E4150 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		5E77287B1FDB542900EC68B6 /* ScheduledTasksNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledTasksNavigationController.swift; sourceTree = "<group>"; };
 		5E8A62811FDB188F00715776 /* ClassManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassManager.swift; sourceTree = "<group>"; };
 		5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledTasksTableViewController.swift; sourceTree = "<group>"; };
 		5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledTasksTableViewCell.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				9BCF303B1FBFBB34008E135B /* FirstViewController.swift */,
 				9BCF303D1FBFBC82008E135B /* SecondViewController.swift */,
+				5E77287B1FDB542900EC68B6 /* ScheduledTasksNavigationController.swift */,
 			);
 			name = TabViewControllers;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				5E995A281FB62C06000604BF /* ScheduledTasksTableViewCell.swift in Sources */,
 				5E54EF881F912DDA007E4150 /* Singleton.swift in Sources */,
 				5E24CC301F649228001FD3C6 /* SchedulingAlgorithm.swift in Sources */,
+				5E77287C1FDB542900EC68B6 /* ScheduledTasksNavigationController.swift in Sources */,
 				9B1F413B1F104B17000B3076 /* Class.swift in Sources */,
 				5E8A62821FDB188F00715776 /* ClassManager.swift in Sources */,
 				9BCF303C1FBFBB34008E135B /* FirstViewController.swift in Sources */,
