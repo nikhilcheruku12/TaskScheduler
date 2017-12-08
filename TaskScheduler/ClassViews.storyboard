@@ -164,6 +164,7 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="sby-XG-51Y">
                                 <rect key="frame" x="53" y="496" width="308" height="31"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="colorChanged:" destination="Mt0-Yq-PBH" eventType="valueChanged" id="Plo-RG-aY5"/>
                                 </connections>

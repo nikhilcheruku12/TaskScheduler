@@ -27,6 +27,7 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
     @IBOutlet weak var colorSlider: UISlider!
     @IBAction func colorChanged(_ sender: Any) {
         selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(colorSlider.value)])
+        colorSlider.minimumTrackTintColor = uiColorFromHex(rgbValue: colorArray[Int(colorSlider.value)])
     }
     
     func uiColorFromHex(rgbValue: Int) -> UIColor {
@@ -50,6 +51,7 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
             nameTextField.text = class1.name
             importanceSlider.value = class1.importance
             colorSlider.value = class1.colorNumber
+            colorSlider.minimumTrackTintColor = uiColorFromHex(rgbValue: colorArray[Int(colorSlider.value)])
             selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(colorSlider.value)])
             viewTasksButton.isHidden = false;
             

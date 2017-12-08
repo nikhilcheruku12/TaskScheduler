@@ -12,6 +12,7 @@ class ScheduledTasksTableViewCell: UITableViewCell {
     
 
     @IBOutlet weak var taskNameLabel: UILabel!
+    @IBOutlet weak var taskPercentComplete: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
