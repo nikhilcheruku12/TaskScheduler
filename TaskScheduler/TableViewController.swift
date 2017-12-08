@@ -86,11 +86,11 @@ class TableViewController: UITableViewController {
         notificationCenter.createMilkNotification() //testing
         var tasks = [Task]()
         for c in classes {
-            tasks += c.tasks
+            tasks += c.getTasks()
         }
         var tasksToSchedule = 0
         for t in tasks {
-            if (Date() < t.dueDate && !t.isComplete()){
+            if (Date() < t.getDueDate() && !t.isComplete()){
                 tasksToSchedule += 1
             }
         }
@@ -161,18 +161,18 @@ class TableViewController: UITableViewController {
         }
         
         let class1 = classes[indexPath.row]
-        cell.nameLabel.text = class1.name;
+        cell.nameLabel.text = class1.getName();
         var importance = "";
-        if(class1.importance >= 6.66){
+        if(class1.getImportance() >= 6.66){
             importance = "Very"
-        }else if(class1.importance <= 3.33){
+        }else if(class1.getImportance() <= 3.33){
             importance = "Low"
         }else {
             importance = "Medium"
         }
         
         cell.importanceLabel.text = "Importance: " +  importance;
-        cell.colorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(class1.colorNumber)])
+        cell.colorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(class1.getColorNumber())])
         
         // Configure the cell...
         
@@ -277,11 +277,11 @@ class TableViewController: UITableViewController {
     
     
     private func loadSampleClasses() {
-        guard let class1 = Class(name: "CS 201", importance: 9, colorNumber: 3)
+        guard let class1 = Class(name: "CS 201", importance: 9, colorNumber: 3, id:ClassManager.sharedInstance.generateNewClassID())
             else {
                 fatalError("Unable to instantiate class1")
         }
-        guard let class2 = Class(name: "REL 135", importance: 4, colorNumber: 4)
+        guard let class2 = Class(name: "REL 135", importance: 4, colorNumber: 4, id:ClassManager.sharedInstance.generateNewClassID())
             else {
                 fatalError("Unable to instantiate class2")
         }

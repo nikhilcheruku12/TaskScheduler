@@ -39,7 +39,7 @@ class Notification {
         content.title = "Good Morning!"
         var message = "You have the following tasks scheduled for today: "
         for t in tasks {
-            message += t.name + "\n"
+            message += t.getName() + "\n"
         }
         message += "Good luck!"
         content.body = message;

@@ -19,26 +19,147 @@ class Task: NSObject, NSCoding, Comparable{
         static let daysBeforeToStart = "daysBeforeToStart"
         static let weight = "weight"
         static let earliestStartDate = "earliestStartDate"
-        static let completeStatus = "completeStatus"
+        //static let completeStatus = "completeStatus"
         static let percentageFinished = "percentageFinished"
+        static let id = "id"
     }
     
     
-    public var name: String
-    public var duration: Float
-    public var percentage: Float
-    public var dueDate: Date
-    public var earliestStartDate : Date?
+    private var name: String
+    private var duration: Float
+    private var percentage: Float
+    private var dueDate: Date
+    private var earliestStartDate : Date
     
     private var class1: Class
     private var daysBeforeToStart: Int?
     private var startDate: Date
     private var weight : Float
+    private var id : Int
     //private var completeStatus: Bool
     
-    public var percentageFinished: Float
+    private var percentageFinished: Float
     
-    init?(name: String, percentage: Float, class1:Class, duration:Float, dueDate:Date, earliestStartDate: Date, percentageFinished: Float) {
+    public func getPercentageFinished () -> Float{
+        return percentageFinished
+    }
+    
+    public func setPercentageFinished(percentageFinished: Float) -> (){
+        self.percentageFinished = percentageFinished
+        ClassManager.sharedInstance.updateTask(task: self)
+    }
+    
+    public func getName ()-> String{
+        return name
+    }
+    
+    public func setName (name: String){
+        self.name = name
+        ClassManager.sharedInstance.updateTask(task: self)
+        //ClassManager.sh
+    }
+    
+    public func getDuration () -> Float{
+        return duration
+    }
+    public func setDuration(duration: Float){
+        self.duration = duration
+        ClassManager.sharedInstance.updateTask(task: self)
+    }
+    public func getPercentage () -> Float{
+        return percentage
+    }
+    public func setPercentage(percentage: Float){
+        self.percentage = percentage
+        ClassManager.sharedInstance.updateTask(task: self)
+    }
+    
+    public func getDueDate() -> Date{
+        return dueDate
+    }
+    public func setDueDate(date : Date){
+        self.dueDate = date
+        ClassManager.sharedInstance.updateTask(task: self)
+    }
+    
+    public func getEarliestStartDate() -> Date{
+        return earliestStartDate
+    }
+    public func setEarliestStartDate(earliestStartDate : Date){
+        self.earliestStartDate = earliestStartDate
+        ClassManager.sharedInstance.updateTask(task: self)
+    }
+    
+    public func getId ()-> Int{
+        return self.id
+    }
+    
+    public func toDict() -> Dictionary<String,AnyObject>{
+        return [PropertyKey.name: getName() as AnyObject ,
+                PropertyKey.percentage: getPercentage() as AnyObject,
+                PropertyKey.class1: getClass() as AnyObject,
+                PropertyKey.duration: getDuration() as AnyObject,
+                PropertyKey.dueDate: getDueDate() as AnyObject,
+                PropertyKey.daysBeforeToStart: daysBeforeToStart as AnyObject,
+                PropertyKey.weight: weight as AnyObject,
+                PropertyKey.earliestStartDate: earliestStartDate as AnyObject,
+                PropertyKey.percentageFinished: percentageFinished as AnyObject,
+                PropertyKey.id: id as AnyObject ]
+    }
+    
+//    init(dict: Dictionary<String, AnyObject>) {
+//        guard let name = dict[PropertyKey.name] as? String else{
+//            print("unable to decode name in task")
+//        }
+//        
+//        guard let percenatge = dict[PropertyKey.percentage] as? Float else{
+//            print("unable to decode percentage in task")
+//        }
+//        guard let class1 = dict[PropertyKey.class1] as? Class else {
+//            print("unable to decode class in task")
+//        
+//        }
+//        
+//        guard let duration = dict[PropertyKey.duration] as? Float else{
+//            print("unable to save duration")
+//        }
+//        
+//        guard let dueDate = dict[PropertyKey.dueDate] as? Date else {
+//            print("Unable to decode dueDate for a task object.")
+//        }
+//        
+//        guard let daysBeforeToStart = dict[PropertyKey.daysBeforeToStart] as? Int else {
+//            print("Unable to decode daysBeforeToStart for a task object.")
+//        }
+//        guard let weight = dict[PropertyKey.weight] as? Float else{
+//            print("unable to save duration")
+//        }
+//        
+//        guard let earliestStartDate = dict[PropertyKey.dueDate] as? Date else {
+//            print("Unable to decode earliestStartTime for a task object.")
+//        }
+//        
+//        guard let percentageFinished = dict[PropertyKey.percentageFinished] as? Float else{
+//            print("Unable to decode earliestStartTime for a task object.")
+//        }
+//        
+//        guard let id = dict[PropertyKey.id] as? Int else{
+//            print("Unable to decode id for a task object.")
+//        }
+//        
+//        self.name = name
+//        self.id = id
+//        self.percentageFinished = percentageFinished
+//        self.percentage = percenatge
+//        self.earliestStartDate = earliestStartDate
+//        self.dueDate = dueDate
+//        self.duration = duration
+//        self.daysBeforeToStart = daysBeforeToStart
+//        self.weight = weight
+//        self.class1 = class1
+//    }
+//    
+    init?(name: String, percentage: Float, class1:Class, duration:Float, dueDate:Date, earliestStartDate: Date, percentageFinished: Float, id: Int) {
         self.name = name;
         self.percentage = percentage;
         
@@ -54,6 +175,7 @@ class Task: NSObject, NSCoding, Comparable{
         self.dueDate = Date(timeIntervalSinceReferenceDate: timeInterval)
         self.earliestStartDate = earliestStartDate
         startDate = Date(timeInterval: TimeInterval(-duration*3600), since: dueDate)
+        self.id = id
         if name.isEmpty || percentage < 0   {
             return nil
         }
@@ -76,6 +198,7 @@ class Task: NSObject, NSCoding, Comparable{
         //aCoder.encode(completeStatus, forKey: PropertyKey.completeStatus)
         
         aCoder.encode(percentageFinished, forKey: PropertyKey.percentageFinished)
+        aCoder.encode(id, forKey: PropertyKey.id)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -106,6 +229,8 @@ class Task: NSObject, NSCoding, Comparable{
         }
         
         let percentageFinished = aDecoder.decodeFloat(forKey: PropertyKey.percentageFinished)
+        
+        let id = aDecoder.decodeInt32(forKey: PropertyKey.id)
         //TODO
         //for daysBeforeToStart,startdate,weight declaration completeStatus
         
@@ -115,7 +240,7 @@ class Task: NSObject, NSCoding, Comparable{
          percentage = 10.0
          }*/
         
-        self.init(name: name, percentage: percentage,  class1:class1, duration:duration, dueDate:dueDate, earliestStartDate: earliestStartDate, percentageFinished: percentageFinished)
+        self.init(name: name, percentage: percentage,  class1:class1, duration:duration, dueDate:dueDate, earliestStartDate: earliestStartDate, percentageFinished: percentageFinished, id:Int(id))
         
     }
     
@@ -127,7 +252,7 @@ class Task: NSObject, NSCoding, Comparable{
     
     static func assignWeightToTask(task: Task){
         
-        let reward = 100 * (((0.6) * (task.percentage / 100)) + ((0.4) * (task.class1.importance / 10)))
+        let reward = 100 * (((0.6) * (task.percentage / 100)) + ((0.4) * (task.class1.getImportance() / 10)))
         let weight = Float(reward * reward) / Float(task.duration)
         task.weight = weight
         

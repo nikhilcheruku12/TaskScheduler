@@ -30,7 +30,10 @@ class ScheduledTasksTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+        Singleton.saveSingleton()
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -49,14 +52,14 @@ class ScheduledTasksTableViewController: UITableViewController {
         // Configure the cell...
         print("Configure the cell..." )
         let task1 = scheduledTasks[indexPath.row]
-        cell.taskNameLabel.text = "\(indexPath.row + 1): " + task1.name + " in class " + task1.getClass().name
-        let percentageFinished = Int(task1.percentageFinished * 100)
+        cell.taskNameLabel.text = "\(indexPath.row + 1): " + task1.getName() + " in class " + task1.getClass().getName()
+        let percentageFinished = Int(task1.getPercentageFinished() * 100)
         if percentageFinished == 100 {
             cell.taskPercentComplete.text = "Complete"
         }else{
             cell.taskPercentComplete.text = "\(percentageFinished)%"
         }
-        cell.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(task1.getClass().colorNumber)])
+        cell.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(task1.getClass().getColorNumber())])
         return cell
     }
     

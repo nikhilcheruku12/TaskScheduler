@@ -1,0 +1,6 @@
+framework module Pods_TaskScheduler {
+  umbrella header "Pods-TaskScheduler-umbrella.h"
+
+  export *
+  module * { export * }
+}

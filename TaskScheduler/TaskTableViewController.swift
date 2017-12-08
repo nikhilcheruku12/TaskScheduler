@@ -25,7 +25,7 @@ class TaskTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         navigationItem.leftBarButtonItem = editButtonItem
         if let classtemp = class1{
-            tasks = classtemp.tasks
+            tasks = classtemp.getTasks()
         }
         
         let rightSwipe = UISwipeGestureRecognizer(target: self, action:#selector(self.handleSwipes) )
@@ -83,7 +83,7 @@ class TaskTableViewController: UITableViewController {
         }
         
         let Task1 = tasks[indexPath.row]
-        cell.nameLabel.text = Task1.name;
+        cell.nameLabel.text = Task1.getName()
         //cell.importanceLabel.text = "Importance: " +  Task1.importance.description;
         
         
@@ -134,7 +134,8 @@ class TaskTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             tasks.remove(at: indexPath.row)
-            class1?.tasks.remove(at: indexPath.row)
+           // class1?.tasks.remove(at: indexPath.row)
+            class1?.removeTaskAt(index: indexPath.row)
             //savetasks()
             //saveclasses()
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -175,7 +176,7 @@ class TaskTableViewController: UITableViewController {
         super.prepare(for: segue, sender: sender)
         if let destinationViewController = segue.destination as? TaskViewController{
             destinationViewController.class1 = class1;
-            print("Class name in TableTaskViewController: = " + (class1?.name)!)
+            print("Class name in TableTaskViewController: = " + (class1?.getName())!)
         } else if  let destinationViewController = segue.destination as? UINavigationController {
             let myVC = destinationViewController.viewControllers.first as! TaskViewController
             myVC.class1 = class1

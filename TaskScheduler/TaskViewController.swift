@@ -77,17 +77,17 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         }
         
         if let task1 = task1 {
-            navigationItem.title = task1.name
-            nameTextField.text = task1.name
-            percentageSlider.value = task1.percentage
-            percentageFinishedSlider.value = task1.percentageFinished
+            navigationItem.title = task1.getName()
+            nameTextField.text = task1.getName()
+            percentageSlider.value = task1.getPercentage()
+            percentageFinishedSlider.value = task1.getPercentageFinished()
            // hoursTextField.text =  String(Int(floor(task1.duration)))
             //minutesTextField.text =  String(Int(60 * (task1.duration - Float(Int(floor(task1.duration))))))
-            hourPicker.selectRow(Int(floor(task1.duration)), inComponent: 0, animated: true)
-            minutePicker.selectRow(Int(2 * (task1.duration - Float(Int(floor(task1.duration)))))
+            hourPicker.selectRow(Int(floor(task1.getDuration())), inComponent: 0, animated: true)
+            minutePicker.selectRow(Int(2 * (task1.getDuration() - Float(Int(floor(task1.getDuration())))))
                 , inComponent: 0, animated: true)
-            dueDatePicker.date = task1.dueDate
-            earliestStartTimePicker.date = task1.earliestStartDate!
+            dueDatePicker.date = task1.getDueDate()
+            earliestStartTimePicker.date = task1.getEarliestStartDate()
         }
         //display slider value on label
         var percentageGrade = Int(percentageSlider.value*100)%100
@@ -153,19 +153,23 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         }
         
         if let task1 = task1{
-            task1.name = nameTextField.text!;
-            task1.percentage = percentageSlider.value;
-            task1.percentageFinished = percentageFinishedSlider.value;
+            task1.setName(name: nameTextField.text!) ;
+            task1.setPercentage(percentage: percentageSlider.value);
+            task1.setPercentageFinished(percentageFinished: percentageFinishedSlider.value) ;
             //let hours = Float(Int(hoursTextField.text!)!);
             let hours = Float(hourPicker.selectedRow(inComponent: 0))
             //let minutes = Float(Int(minutesTextField.text!)!)/60.0;
             let minutes = Float (minutePicker.selectedRow(inComponent: 0) * 30)/60.0
-            task1.duration = hours + minutes;
-            task1.dueDate = dueDatePicker.date;
+            task1.setDuration(duration: hours + minutes)  ;
+            task1.setDueDate(date: dueDatePicker.date);
             var earliestStartDate = earliestStartTimePicker.date;
             let timeIntervalEarliest = floor(earliestStartDate .timeIntervalSinceReferenceDate / 60) * 60 //truncate seconds
             earliestStartDate = Date(timeIntervalSinceReferenceDate: timeIntervalEarliest)
-            task1.earliestStartDate = earliestStartDate
+            task1.setEarliestStartDate(earliestStartDate: earliestStartDate)
+            
+            self.navigationController?.popViewController(animated: true)//if task exist, go back to previous view
+            
+            return false
         }
             
         else{
@@ -185,7 +189,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
             var earliestStartDate = earliestStartTimePicker.date;
             let timeIntervalEarliest = floor(earliestStartDate .timeIntervalSinceReferenceDate / 60) * 60 //truncate seconds
             earliestStartDate = Date(timeIntervalSinceReferenceDate: timeIntervalEarliest)
-            task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate, earliestStartDate:earliestStartDate, percentageFinished:percentageFinished);
+            task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate, earliestStartDate:earliestStartDate, percentageFinished:percentageFinished, id:ClassManager.sharedInstance.generateNewTaskID());
             if let classtemp = class1 {
                 classtemp.addTask(task: task1!)
                 os_log("task is being saved", log: OSLog.default, type: .debug)

@@ -398,7 +398,7 @@
         <!--Navigation Controller-->
         <scene sceneID="9B0-XG-UyW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GLb-sc-aY5" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ScheduledTaskViewNVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GLb-sc-aY5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XPt-c4-z0a">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>

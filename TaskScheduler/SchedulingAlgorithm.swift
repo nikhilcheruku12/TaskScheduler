@@ -139,7 +139,7 @@ class SchedulingAlgorithm {
                     if !success {
                         //Return an error message to TableViewController with the task that could not be scheduled.
                         pqTasks.removeAll()
-                        return ("You failed to schedule " + t.name + ". Please try to start the task earlier or reduce its duration and reschedule.")
+                        return ("You failed to schedule " + t.getName() + ". Please try to start the task earlier or reduce its duration and reschedule.")
                     } else {
                         pqTasks.append(t)
                         tasksRemaining -= 1
@@ -199,7 +199,7 @@ class SchedulingAlgorithm {
      * Returns true if the task was successfully scheduled and false if not.
      */
     private func addTaskToVirtualCalendar(task: Task, timeSpentInChunk: inout Double, index : inout Int) -> Bool {
-        var duration = task.duration
+        var duration = task.getDuration()
         var findIndex = false
         for i in index..<virtualCalendar.count{
             /* (1) The task's earlist possible start time must be before or at the given interval's start date
@@ -207,14 +207,14 @@ class SchedulingAlgorithm {
              * (3) The given interval must be empty
              * (4) The task's duration must be greater than 0, i.e. there is part of it left to schedule.
              */
-            if virtualCalendar[i].startDate >= task.earliestStartDate! && virtualCalendar[i].endDate <= task.dueDate && virtualCalendar[i].status == "empty" && duration > 0 {
+            if virtualCalendar[i].startDate >= task.getEarliestStartDate() && virtualCalendar[i].endDate <= task.getDueDate() && virtualCalendar[i].status == "empty" && duration > 0 {
                 // "Schedule" the task into the virtual calendar and decrement duration.
                 if (timeSpentInChunk >= focusHour){
                     timeSpentInChunk = 0.0
                     virtualCalendar[i].status = "Break Time"
                     continue
                 }
-                virtualCalendar[i].status = task.name
+                virtualCalendar[i].status = task.getName()
                 duration -= 0.5
                 timeSpentInChunk += 0.5
                 if(duration == 0) {
@@ -222,16 +222,16 @@ class SchedulingAlgorithm {
                         index = i + 1
                     }
                     // Create a notification to be sent when the task is supposed to be due.
-                    notificationCenter.createNotification(date: virtualCalendar[i].endDate, taskName: task.name)
+                    notificationCenter.createNotification(date: virtualCalendar[i].endDate, taskName: task.getName())
                     return true
                 }
             }
-            else if virtualCalendar[i].startDate > task.dueDate || task.dueDate < virtualCalendar[i].endDate{
+            else if virtualCalendar[i].startDate > task.getDueDate() || task.getDueDate() < virtualCalendar[i].endDate{
                 // Task can not be successfully scheduled at all
                 return false
             }else if virtualCalendar[i].status != "empty"{
                 timeSpentInChunk = 0.0
-            }else if virtualCalendar[i].status == "empty" && virtualCalendar[i].startDate < task.earliestStartDate! && !findIndex{
+            }else if virtualCalendar[i].status == "empty" && virtualCalendar[i].startDate < task.getEarliestStartDate() && !findIndex{
                     findIndex = true
                     index = i
                     //find the first empty slot that is not scheduled
@@ -363,11 +363,11 @@ class SchedulingAlgorithm {
         
         if self.tasks != nil{
             for t in self.tasks!{
-                if(currentDate < t.dueDate && !t.isComplete()){
+                if(currentDate < t.getDueDate() && !t.isComplete()){
                     Task.assignWeightToTask(task: t)
                     pq.push(t)
-                    if self.latestDateDue! < t.dueDate{
-                        self.latestDateDue = t.dueDate
+                    if self.latestDateDue! < t.getDueDate(){
+                        self.latestDateDue = t.getDueDate()
                     }
                 }
             }

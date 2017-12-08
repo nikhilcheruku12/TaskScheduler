@@ -13,6 +13,7 @@
 		5E340BDD1F9D46D1005F9CC1 /* ClassViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */; };
 		5E340BE01F9D477A005F9CC1 /* SettingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E340BDE1F9D477A005F9CC1 /* SettingView.storyboard */; };
 		5E54EF881F912DDA007E4150 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E54EF871F912DDA007E4150 /* Singleton.swift */; };
+		5E8A62821FDB188F00715776 /* ClassManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8A62811FDB188F00715776 /* ClassManager.swift */; };
 		5E995A261FB62BE1000604BF /* ScheduledTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */; };
 		5E995A281FB62C06000604BF /* ScheduledTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */; };
 		5EF68FCD1F8EBD670017B074 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF68FCC1F8EBD670017B074 /* Notifications.swift */; };
@@ -36,6 +37,7 @@
 		9BCF303C1FBFBB34008E135B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF303B1FBFBB34008E135B /* FirstViewController.swift */; };
 		9BCF303E1FBFBC82008E135B /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF303D1FBFBC82008E135B /* SecondViewController.swift */; };
 		9BFF60491F1DC3BC0085DA4A /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFF60481F1DC3BC0085DA4A /* TaskTableViewCell.swift */; };
+		CAD9E9574BFF8739B8EB7E21 /* Pods_TaskScheduler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE81B4A793D4FF879D04794A /* Pods_TaskScheduler.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,12 +51,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		336B1526CEA66B4480E9C1A8 /* Pods-TaskScheduler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskScheduler.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaskScheduler/Pods-TaskScheduler.release.xcconfig"; sourceTree = "<group>"; };
 		5E24CC2D1F6491A6001FD3C6 /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		5E24CC2F1F649228001FD3C6 /* SchedulingAlgorithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulingAlgorithm.swift; sourceTree = "<group>"; };
 		5E340BDA1F9D4613005F9CC1 /* TaskViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskViews.storyboard; sourceTree = "<group>"; };
 		5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClassViews.storyboard; sourceTree = "<group>"; };
 		5E340BDF1F9D477A005F9CC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = TaskScheduler/Base.lproj/SettingView.storyboard; sourceTree = "<group>"; };
 		5E54EF871F912DDA007E4150 /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		5E8A62811FDB188F00715776 /* ClassManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassManager.swift; sourceTree = "<group>"; };
 		5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledTasksTableViewController.swift; sourceTree = "<group>"; };
 		5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledTasksTableViewCell.swift; sourceTree = "<group>"; };
 		5EF68FCC1F8EBD670017B074 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
@@ -83,6 +87,9 @@
 		9BCF303B1FBFBB34008E135B /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		9BCF303D1FBFBC82008E135B /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9BFF60481F1DC3BC0085DA4A /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		A21BAFA54CCF4401BC81D205 /* Pods_TaskSchedulerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskSchedulerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D70F156CB6F6346D8C6B7310 /* Pods-TaskScheduler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskScheduler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskScheduler/Pods-TaskScheduler.debug.xcconfig"; sourceTree = "<group>"; };
+		FE81B4A793D4FF879D04794A /* Pods_TaskScheduler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskScheduler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAD9E9574BFF8739B8EB7E21 /* Pods_TaskScheduler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,12 +111,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D6B06CCFA0C01F1E1908D99 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE81B4A793D4FF879D04794A /* Pods_TaskScheduler.framework */,
+				A21BAFA54CCF4401BC81D205 /* Pods_TaskSchedulerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9B1F410C1F0FDE3E000B3076 = {
 			isa = PBXGroup;
 			children = (
 				9B1F41171F0FDE3E000B3076 /* TaskScheduler */,
 				9B1F412C1F0FDE3F000B3076 /* TaskSchedulerTests */,
 				9B1F41161F0FDE3E000B3076 /* Products */,
+				A249FBF9F5091D03FB2200E1 /* Pods */,
+				4D6B06CCFA0C01F1E1908D99 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,6 +171,7 @@
 				9BCA7D5B1FB21A50003188C4 /* DataManager.swift */,
 				5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */,
 				5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */,
+				5E8A62811FDB188F00715776 /* ClassManager.swift */,
 			);
 			path = TaskScheduler;
 			sourceTree = "<group>";
@@ -183,6 +203,15 @@
 			name = TabViewControllers;
 			sourceTree = "<group>";
 		};
+		A249FBF9F5091D03FB2200E1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D70F156CB6F6346D8C6B7310 /* Pods-TaskScheduler.debug.xcconfig */,
+				336B1526CEA66B4480E9C1A8 /* Pods-TaskScheduler.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,9 +219,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B1F41321F0FDE3F000B3076 /* Build configuration list for PBXNativeTarget "TaskScheduler" */;
 			buildPhases = (
+				66F1848D460649D2329F273E /* [CP] Check Pods Manifest.lock */,
 				9B1F41111F0FDE3E000B3076 /* Sources */,
 				9B1F41121F0FDE3E000B3076 /* Frameworks */,
 				9B1F41131F0FDE3E000B3076 /* Resources */,
+				671343562027BD548AD250D7 /* [CP] Embed Pods Frameworks */,
+				AD89A45BAC7840681F32B628 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -291,6 +323,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		66F1848D460649D2329F273E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TaskScheduler-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		671343562027BD548AD250D7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TaskScheduler/Pods-TaskScheduler-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskScheduler/Pods-TaskScheduler-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD89A45BAC7840681F32B628 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaskScheduler/Pods-TaskScheduler-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9B1F41111F0FDE3E000B3076 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -303,6 +389,7 @@
 				5E54EF881F912DDA007E4150 /* Singleton.swift in Sources */,
 				5E24CC301F649228001FD3C6 /* SchedulingAlgorithm.swift in Sources */,
 				9B1F413B1F104B17000B3076 /* Class.swift in Sources */,
+				5E8A62821FDB188F00715776 /* ClassManager.swift in Sources */,
 				9BCF303C1FBFBB34008E135B /* FirstViewController.swift in Sources */,
 				9BFF60491F1DC3BC0085DA4A /* TaskTableViewCell.swift in Sources */,
 				9B513C3C1F1DA019005EA23C /* TaskViewController.swift in Sources */,
@@ -464,6 +551,7 @@
 		};
 		9B1F41331F0FDE3F000B3076 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D70F156CB6F6346D8C6B7310 /* Pods-TaskScheduler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -482,6 +570,7 @@
 		};
 		9B1F41341F0FDE3F000B3076 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 336B1526CEA66B4480E9C1A8 /* Pods-TaskScheduler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

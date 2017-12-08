@@ -47,17 +47,17 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
         nameTextField.delegate = self
         
         if let class1 = class1 {
-            navigationItem.title = class1.name
-            nameTextField.text = class1.name
-            importanceSlider.value = class1.importance
-            colorSlider.value = class1.colorNumber
+            navigationItem.title = class1.getName()
+            nameTextField.text = class1.getName()
+            importanceSlider.value = class1.getImportance()
+            colorSlider.value = class1.getColorNumber()
             colorSlider.minimumTrackTintColor = uiColorFromHex(rgbValue: colorArray[Int(colorSlider.value)])
             selectedColorView.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(colorSlider.value)])
             viewTasksButton.isHidden = false;
             
-            if(class1.importance >= 6.66){
+            if(class1.getImportance() >= 6.66){
                 importanceLabel.text = "Very"
-            }else if(class1.importance <= 3.33){
+            }else if(class1.getImportance() <= 3.33){
                 importanceLabel.text = "Low"
             }else {
                 importanceLabel.text = "Medium"
@@ -97,11 +97,11 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
         }
         if let class1 = class1{
             // class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, tasks: tasksArray);
-            class1.name = nameTextField.text!
-            class1.importance = importanceSlider.value;
-            class1.colorNumber = colorSlider.value;
+            class1.setName(name: nameTextField.text!)
+            class1.setImportance(importance: importanceSlider.value)
+            class1.setColorNumber(colorNumber: colorSlider.value)
         } else{
-            class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, colorNumber: colorSlider.value)
+            class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, colorNumber: colorSlider.value, id: ClassManager.sharedInstance.generateNewClassID())
         }
 
         if class1 != nil {
@@ -112,7 +112,7 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
         
         if let destinationViewController = segue.destination as? TaskTableViewController{
             destinationViewController.class1 = class1;
-            print("Class name in TableTaskViewController: = " + (class1?.name)!)
+            print("Class name in TableTaskViewController: = " + (class1?.getName())!)
         }else if  let destinationViewController = segue.destination as? UINavigationController {
             let myVC = destinationViewController.viewControllers.first as! TaskTableViewController
             myVC.class1 = class1
