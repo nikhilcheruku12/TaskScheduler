@@ -133,6 +133,9 @@ class SchedulingAlgorithm {
             loadUserEvents(endDate: self.latestDateDue!)
             var tempHourFoused = 0.0 //number of hours spending consectively
             var currentIndex = 0;//loop once virtual calendar by keeping track where we are
+            if pq.count == 0 {
+                return ("You failed to schedule your task. Try to change the due date to later time.")
+            }
             while pq.count != 0{
                 if let t = pq.pop(){
                     let success = addTaskToVirtualCalendar(task: t, timeSpentInChunk: &tempHourFoused , index : &currentIndex )
@@ -207,6 +210,7 @@ class SchedulingAlgorithm {
              * (3) The given interval must be empty
              * (4) The task's duration must be greater than 0, i.e. there is part of it left to schedule.
              */
+            
             if virtualCalendar[i].startDate >= task.getEarliestStartDate() && virtualCalendar[i].endDate <= task.getDueDate() && virtualCalendar[i].status == "empty" && duration > 0 {
                 // "Schedule" the task into the virtual calendar and decrement duration.
                 if (timeSpentInChunk >= focusHour){
@@ -237,7 +241,7 @@ class SchedulingAlgorithm {
                     //find the first empty slot that is not scheduled
             }
         }
-        
+     
         return false
     }
     
@@ -377,8 +381,10 @@ class SchedulingAlgorithm {
         let timeIntervalLatest = floor((latestDateDue? .timeIntervalSinceReferenceDate)! / 3600.0) * 3600.0
         self.latestDateDue = Date(timeIntervalSinceReferenceDate: timeIntervalLatest)
         
-        let halfHoursBetweenCurrentDateAndLatestDate = Int(self.latestDateDue!.timeIntervalSince(currentDate))/1800
-        
+        var halfHoursBetweenCurrentDateAndLatestDate = Int(self.latestDateDue!.timeIntervalSince(currentDate))/1800
+        if halfHoursBetweenCurrentDateAndLatestDate < 0 {
+           return
+        }
         for i in 0..<halfHoursBetweenCurrentDateAndLatestDate{
             let timeBegin = Date(timeInterval: (TimeInterval(i * 1800)), since: currentDate)
             let timeEnd = Date(timeInterval: (TimeInterval(1800)), since: timeBegin)

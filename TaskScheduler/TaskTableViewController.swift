@@ -43,6 +43,11 @@ class TaskTableViewController: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+        //Singleton.saveSingleton()
+    }
+    
     func handleSwipes(sender:UISwipeGestureRecognizer) {
         if (sender.direction == UISwipeGestureRecognizerDirection.right) {
             print("Swiped Right")

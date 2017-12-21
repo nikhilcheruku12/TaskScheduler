@@ -31,6 +31,7 @@ class ScheduledTasksTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func viewWillAppear(_ animated: Bool) {
+        scheduledTasks = Singleton.sharedSingleton.pqTasks
         self.tableView.reloadData()
         Singleton.saveSingleton()
     }

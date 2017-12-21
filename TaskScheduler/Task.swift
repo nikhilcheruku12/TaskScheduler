@@ -47,6 +47,17 @@ class Task: NSObject, NSCoding, Comparable{
     public func setPercentageFinished(percentageFinished: Float) -> (){
         self.percentageFinished = percentageFinished
         ClassManager.sharedInstance.updateTask(task: self)
+        print("print tasks in class manager")
+        print("count ::: " , ClassManager.sharedInstance.classes.count)
+        for class1 in ClassManager.sharedInstance.classes{
+            print("****in1*****")
+            let tasks = class1.getTasks()
+            for t in tasks{
+                print("****in2*****")
+                print(t.getName(), " finished " ,t.getPercentageFinished())
+            }
+        }
+        print("finish printing tasks in class manager")
     }
     
     public func getName ()-> String{

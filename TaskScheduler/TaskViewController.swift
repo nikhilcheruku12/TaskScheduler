@@ -146,7 +146,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
             present(alertController, animated: true, completion: nil)
             return false
         }
-        
+     
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return false
@@ -168,8 +168,8 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
             task1.setEarliestStartDate(earliestStartDate: earliestStartDate)
             
             self.navigationController?.popViewController(animated: true)//if task exist, go back to previous view
+            return false 
             
-            return false
         }
             
         else{
@@ -189,7 +189,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
             var earliestStartDate = earliestStartTimePicker.date;
             let timeIntervalEarliest = floor(earliestStartDate .timeIntervalSinceReferenceDate / 60) * 60 //truncate seconds
             earliestStartDate = Date(timeIntervalSinceReferenceDate: timeIntervalEarliest)
-            task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate, earliestStartDate:earliestStartDate, percentageFinished:percentageFinished, id:ClassManager.sharedInstance.generateNewTaskID());
+            task1 = Task(name: name!, percentage: percentage,  class1:class1!, duration:duration, dueDate:dueDate, earliestStartDate:earliestStartDate, percentageFinished:percentageFinished, id:Singleton.sharedSingleton.generateNewTaskID());
             if let classtemp = class1 {
                 classtemp.addTask(task: task1!)
                 os_log("task is being saved", log: OSLog.default, type: .debug)
@@ -198,7 +198,6 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
                 os_log("task is not being saved", log: OSLog.default, type: .debug)
             }
         }
-        
         
         return true
     }

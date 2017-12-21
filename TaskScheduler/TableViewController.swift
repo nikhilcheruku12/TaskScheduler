@@ -51,7 +51,9 @@ class TableViewController: UITableViewController {
         
         Singleton.sharedSingleton.sleepTime = 23
         Singleton.sharedSingleton.wakeUpTime = 8
-        loadSingleton()
+        
+        loadClassManager()
+        
         if let savedClasses = loadClasses() {
             classes += savedClasses
         }
@@ -59,7 +61,8 @@ class TableViewController: UITableViewController {
         else{
             loadSampleClasses()
         }
-        
+        loadSingleton()
+        print("classIDCounter is ",Singleton.sharedSingleton.classIDCounter,"taskIDCounter is ", Singleton.sharedSingleton.taskIDCounter)
     }
     
     
@@ -106,6 +109,7 @@ class TableViewController: UITableViewController {
         schedulingAlgorithm?.deleteTasksFromCalendar()
         let scheduleStatus = schedulingAlgorithm?.schedule()
         if scheduleStatus!.contains("failed") {
+            Singleton.sharedSingleton.pqTasks.removeAll()
             print("schedule task not success!!!!!!!!!!")
             let tasksRemaining = schedulingAlgorithm!.getTasksRemaining()
             let message = scheduleStatus! + " You still have \(tasksRemaining) tasks to schedule."
@@ -277,11 +281,11 @@ class TableViewController: UITableViewController {
     
     
     private func loadSampleClasses() {
-        guard let class1 = Class(name: "CS 201", importance: 9, colorNumber: 3, id:ClassManager.sharedInstance.generateNewClassID())
+        guard let class1 = Class(name: "CS 201", importance: 9, colorNumber: 3, id:Singleton.sharedSingleton.generateNewClassID())
             else {
                 fatalError("Unable to instantiate class1")
         }
-        guard let class2 = Class(name: "REL 135", importance: 4, colorNumber: 4, id:ClassManager.sharedInstance.generateNewClassID())
+        guard let class2 = Class(name: "REL 135", importance: 4, colorNumber: 4, id:Singleton.sharedSingleton.generateNewClassID())
             else {
                 fatalError("Unable to instantiate class2")
         }
@@ -310,10 +314,32 @@ class TableViewController: UITableViewController {
             Singleton.sharedSingleton.wakeUpTime = singleton.wakeUpTime
             Singleton.sharedSingleton.focusTime = singleton.focusTime
             Singleton.sharedSingleton.hoursToEat = singleton.hoursToEat
-            Singleton.sharedSingleton.pqTasks = singleton.pqTasks
+            //Singleton.sharedSingleton.pqTasks = singleton.pqTasks
             
+            var tempPQTask = [Task]()
+            for i in 0..<singleton.pqTasks.count{
+                var findTask = false
+                for class1 in self.classes{
+                    for task in class1.getTasks(){
+                        if task.getId() == singleton.pqTasks[i].getId(){
+                            tempPQTask.append(task)
+                            findTask = true
+                            break
+                        }
+                    }
+                    if findTask {
+                        break
+                    }
+                }
+            }
+            Singleton.sharedSingleton.pqTasks = tempPQTask
+            Singleton.sharedSingleton.classIDCounter = singleton.classIDCounter
+            Singleton.sharedSingleton.taskIDCounter = singleton.taskIDCounter
         }
         
+    }
+    private func loadClassManager(){
+        NSKeyedUnarchiver.unarchiveObject(withFile: ClassManager.ArchiveURL.path) as? ClassManager
     }
     
 }

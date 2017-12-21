@@ -28,8 +28,6 @@
 		9B1F413B1F104B17000B3076 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F413A1F104B17000B3076 /* Class.swift */; };
 		9B1F413F1F104CD9000B3076 /* ClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F413E1F104CD9000B3076 /* ClassViewController.swift */; };
 		9B1F41411F13E5CE000B3076 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F41401F13E5CE000B3076 /* TableViewController.swift */; };
-		9B24F4A11FB410AD00F83AEA /* KeychainSwiftDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B24F4A01FB410AD00F83AEA /* KeychainSwiftDistrib.swift */; };
-		9B24F4AF1FB510D000F83AEA /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B24F4AE1FB510D000F83AEA /* KeychainItemWrapper.swift */; };
 		9B513C3C1F1DA019005EA23C /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B513C3B1F1DA019005EA23C /* TaskViewController.swift */; };
 		9B513C3E1F1DA32C005EA23C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B513C3D1F1DA32C005EA23C /* Task.swift */; };
 		9B513C401F1DA6DE005EA23C /* TaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B513C3F1F1DA6DE005EA23C /* TaskTableViewController.swift */; };
@@ -76,10 +74,8 @@
 		9B1F412F1F0FDE3F000B3076 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B1F41381F0FE169000B3076 /* ClassTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassTableViewCell.swift; sourceTree = "<group>"; };
 		9B1F413A1F104B17000B3076 /* Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
-		9B1F413E1F104CD9000B3076 /* ClassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClassViewController.swift; path = ../ClassViewController.swift; sourceTree = "<group>"; };
+		9B1F413E1F104CD9000B3076 /* ClassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassViewController.swift; sourceTree = "<group>"; };
 		9B1F41401F13E5CE000B3076 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		9B24F4A01FB410AD00F83AEA /* KeychainSwiftDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftDistrib.swift; sourceTree = "<group>"; };
-		9B24F4AE1FB510D000F83AEA /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
 		9B24F4B01FB51A2900F83AEA /* TaskScheduler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaskScheduler.entitlements; sourceTree = "<group>"; };
 		9B513C3B1F1DA019005EA23C /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		9B513C3D1F1DA32C005EA23C /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -122,6 +118,52 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5E77287D1FDB574F00EC68B6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5E24CC2F1F649228001FD3C6 /* SchedulingAlgorithm.swift */,
+				5E8A62811FDB188F00715776 /* ClassManager.swift */,
+				9BCA7D5B1FB21A50003188C4 /* DataManager.swift */,
+				5E54EF871F912DDA007E4150 /* Singleton.swift */,
+				9B513C3D1F1DA32C005EA23C /* Task.swift */,
+				9B1F413A1F104B17000B3076 /* Class.swift */,
+				5E24CC2D1F6491A6001FD3C6 /* PriorityQueue.swift */,
+				5EF68FCC1F8EBD670017B074 /* Notifications.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5E77287E1FDB579B00EC68B6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5E340BDE1F9D477A005F9CC1 /* SettingView.storyboard */,
+				5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */,
+				5E340BDA1F9D4613005F9CC1 /* TaskViews.storyboard */,
+				9B1F411C1F0FDE3E000B3076 /* Main.storyboard */,
+				9B1F41211F0FDE3F000B3076 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		5E77287F1FDB57AB00EC68B6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9B1F413E1F104CD9000B3076 /* ClassViewController.swift */,
+				9B1F41181F0FDE3E000B3076 /* AppDelegate.swift */,
+				9B1F411A1F0FDE3E000B3076 /* ViewController.swift */,
+				9B1F41381F0FE169000B3076 /* ClassTableViewCell.swift */,
+				9B1F41401F13E5CE000B3076 /* TableViewController.swift */,
+				9B513C3B1F1DA019005EA23C /* TaskViewController.swift */,
+				9B513C3F1F1DA6DE005EA23C /* TaskTableViewController.swift */,
+				9BFF60481F1DC3BC0085DA4A /* TaskTableViewCell.swift */,
+				9BCA7D591FB1381B003188C4 /* SettingsViewController.swift */,
+				5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */,
+				5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */,
+				9BCF303A1FBFBA16008E135B /* TabViewControllers */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		9B1F410C1F0FDE3E000B3076 = {
 			isa = PBXGroup;
 			children = (
@@ -145,35 +187,12 @@
 		9B1F41171F0FDE3E000B3076 /* TaskScheduler */ = {
 			isa = PBXGroup;
 			children = (
-				9BCF303A1FBFBA16008E135B /* TabViewControllers */,
+				5E77287F1FDB57AB00EC68B6 /* Controller */,
+				5E77287E1FDB579B00EC68B6 /* Views */,
+				5E77287D1FDB574F00EC68B6 /* Model */,
 				9B24F4B01FB51A2900F83AEA /* TaskScheduler.entitlements */,
-				9B24F49F1FB4109100F83AEA /* KeyChain */,
-				5E340BDE1F9D477A005F9CC1 /* SettingView.storyboard */,
-				5E340BDC1F9D46D1005F9CC1 /* ClassViews.storyboard */,
-				5E340BDA1F9D4613005F9CC1 /* TaskViews.storyboard */,
-				9B1F413E1F104CD9000B3076 /* ClassViewController.swift */,
-				9B1F41181F0FDE3E000B3076 /* AppDelegate.swift */,
-				9B1F411A1F0FDE3E000B3076 /* ViewController.swift */,
-				9B1F411C1F0FDE3E000B3076 /* Main.storyboard */,
-				9B1F41381F0FE169000B3076 /* ClassTableViewCell.swift */,
 				9B1F411F1F0FDE3F000B3076 /* Assets.xcassets */,
-				9B1F41211F0FDE3F000B3076 /* LaunchScreen.storyboard */,
 				9B1F41241F0FDE3F000B3076 /* Info.plist */,
-				9B1F413A1F104B17000B3076 /* Class.swift */,
-				9B1F41401F13E5CE000B3076 /* TableViewController.swift */,
-				5EF68FCC1F8EBD670017B074 /* Notifications.swift */,
-				9B513C3B1F1DA019005EA23C /* TaskViewController.swift */,
-				9B513C3D1F1DA32C005EA23C /* Task.swift */,
-				9B513C3F1F1DA6DE005EA23C /* TaskTableViewController.swift */,
-				9BFF60481F1DC3BC0085DA4A /* TaskTableViewCell.swift */,
-				5E24CC2D1F6491A6001FD3C6 /* PriorityQueue.swift */,
-				5E24CC2F1F649228001FD3C6 /* SchedulingAlgorithm.swift */,
-				5E54EF871F912DDA007E4150 /* Singleton.swift */,
-				9BCA7D591FB1381B003188C4 /* SettingsViewController.swift */,
-				9BCA7D5B1FB21A50003188C4 /* DataManager.swift */,
-				5E995A251FB62BE1000604BF /* ScheduledTasksTableViewController.swift */,
-				5E995A271FB62C06000604BF /* ScheduledTasksTableViewCell.swift */,
-				5E8A62811FDB188F00715776 /* ClassManager.swift */,
 			);
 			path = TaskScheduler;
 			sourceTree = "<group>";
@@ -185,15 +204,6 @@
 				9B1F412F1F0FDE3F000B3076 /* Info.plist */,
 			);
 			path = TaskSchedulerTests;
-			sourceTree = "<group>";
-		};
-		9B24F49F1FB4109100F83AEA /* KeyChain */ = {
-			isa = PBXGroup;
-			children = (
-				9B24F4A01FB410AD00F83AEA /* KeychainSwiftDistrib.swift */,
-				9B24F4AE1FB510D000F83AEA /* KeychainItemWrapper.swift */,
-			);
-			name = KeyChain;
 			sourceTree = "<group>";
 		};
 		9BCF303A1FBFBA16008E135B /* TabViewControllers */ = {
@@ -399,8 +409,6 @@
 				9B513C3C1F1DA019005EA23C /* TaskViewController.swift in Sources */,
 				5EF68FCD1F8EBD670017B074 /* Notifications.swift in Sources */,
 				9B1F41411F13E5CE000B3076 /* TableViewController.swift in Sources */,
-				9B24F4A11FB410AD00F83AEA /* KeychainSwiftDistrib.swift in Sources */,
-				9B24F4AF1FB510D000F83AEA /* KeychainItemWrapper.swift in Sources */,
 				9BCA7D5A1FB1381B003188C4 /* SettingsViewController.swift in Sources */,
 				9B1F413F1F104CD9000B3076 /* ClassViewController.swift in Sources */,
 				5E24CC2E1F6491A6001FD3C6 /* PriorityQueue.swift in Sources */,

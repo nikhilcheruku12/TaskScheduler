@@ -101,7 +101,8 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
             class1.setImportance(importance: importanceSlider.value)
             class1.setColorNumber(colorNumber: colorSlider.value)
         } else{
-            class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, colorNumber: colorSlider.value, id: ClassManager.sharedInstance.generateNewClassID())
+            class1 = Class(name:nameTextField.text!, importance:importanceSlider.value, colorNumber: colorSlider.value, id: Singleton.sharedSingleton.generateNewClassID())
+            
         }
 
         if class1 != nil {

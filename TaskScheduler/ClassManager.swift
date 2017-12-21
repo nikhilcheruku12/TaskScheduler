@@ -20,8 +20,8 @@ class ClassManager{
     
     static var sharedInstance = ClassManager()
     private init() {}
-    private var classIDCounter = 0
-    private var taskIDCounter = 0
+    var classIDCounter = 0
+    var taskIDCounter = 0
     var classes = [Class] ()
     
     init(classIDCounter:Int, taskIDCounter:Int, classes: [Class]) {
@@ -30,8 +30,34 @@ class ClassManager{
         self.classes = classes
     }
     
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(classIDCounter, forKey: PropertyKey.classIDCounter)
+        aCoder.encode(taskIDCounter, forKey: PropertyKey.taskIDCounter)
+        aCoder.encode(classes, forKey: PropertyKey.classes)
+        
+    }
+    required convenience init?(coder aDecoder: NSCoder) {
+        let classIDCounter = aDecoder.decodeInteger(forKey: PropertyKey.classIDCounter)
+        let taskIDCounter = aDecoder.decodeInteger(forKey: PropertyKey.taskIDCounter)
+        guard let classes = aDecoder.decodeObject(forKey: PropertyKey.classes) as? [Class] else {
+            os_log("Unable to decode the classes for a class manager.", log: OSLog.default, type: .debug)
+            return nil
+            }
+        self.init(classIDCounter: classIDCounter, taskIDCounter: taskIDCounter, classes: classes)
+        
+    }
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("classManager")
     
-
+    public func saveClassManager(){
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ClassManager.sharedInstance, toFile: ClassManager.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("ClassManager successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save ClassManager...", log: OSLog.default, type: .error)
+        }
+    }
+    
     public func getAllTasks()-> ([Task]){
         var tasks = [Task]()
         for class1 in classes{

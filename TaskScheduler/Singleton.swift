@@ -17,11 +17,13 @@ class Singleton: NSObject, NSCoding{
         static let hoursToEat = "hoursToEat"
         static let focusTime = "focusTime"
         static let pqTasks = "pqTasks"
+        static let classIDCounter = "classIDCounter"
+        static let taskIDCounter = "taskIDCounter"
     }
     
     static let sharedSingleton = Singleton()
     private override init() {}
-    init(sleepTime: Int, wakeUpTime: Int, lunchTime: Int, dinnerTime: Int, hoursToEat: Int, focusTime: Int, pqTasks: [Task]){
+    init(sleepTime: Int, wakeUpTime: Int, lunchTime: Int, dinnerTime: Int, hoursToEat: Int, focusTime: Int, pqTasks: [Task],classIDCounter:Int, taskIDCounter:Int){
         self.sleepTime = sleepTime
         self.wakeUpTime = wakeUpTime
         self.lunchTime = lunchTime
@@ -29,6 +31,8 @@ class Singleton: NSObject, NSCoding{
         self.hoursToEat = hoursToEat
         self.focusTime = focusTime
         self.pqTasks = pqTasks
+        self.classIDCounter = classIDCounter
+        self.taskIDCounter = taskIDCounter
     }
     var sleepTime = -1
     var wakeUpTime  = -1
@@ -37,6 +41,9 @@ class Singleton: NSObject, NSCoding{
     var hoursToEat = -1
     var focusTime = -1
     var pqTasks = [Task]()
+    var classIDCounter = 0
+    var taskIDCounter = 0
+    
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(sleepTime, forKey: PropertyKey.sleepTime)
@@ -46,7 +53,8 @@ class Singleton: NSObject, NSCoding{
         aCoder.encode(hoursToEat, forKey: PropertyKey.hoursToEat)
         aCoder.encode(focusTime, forKey: PropertyKey.focusTime)
         aCoder.encode(pqTasks, forKey: PropertyKey.pqTasks)
-        
+        aCoder.encode(classIDCounter, forKey: PropertyKey.classIDCounter)
+        aCoder.encode(taskIDCounter, forKey: PropertyKey.taskIDCounter)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -60,7 +68,9 @@ class Singleton: NSObject, NSCoding{
             os_log("Unable to decode the pqTasks for a singleton object.", log: OSLog.default, type: .debug)
             return nil
         }
-        self.init(sleepTime: sleepTime, wakeUpTime: wakeUpTime, lunchTime: lunchTime, dinnerTime: dinnerTime, hoursToEat: hoursToEat, focusTime: focusTime, pqTasks: pqTasks)
+        let classIDCounter = aDecoder.decodeInteger(forKey: PropertyKey.classIDCounter)
+        let taskIDCounter = aDecoder.decodeInteger(forKey: PropertyKey.taskIDCounter)
+        self.init(sleepTime: sleepTime, wakeUpTime: wakeUpTime, lunchTime: lunchTime, dinnerTime: dinnerTime, hoursToEat: hoursToEat, focusTime: focusTime, pqTasks: pqTasks, classIDCounter: classIDCounter, taskIDCounter: taskIDCounter)
     }
     //MARK: Archiving Paths
     
@@ -76,5 +86,19 @@ class Singleton: NSObject, NSCoding{
         }
     }
     
+    public func generateNewClassID () -> Int{
+        classIDCounter += 1
+        Singleton.saveSingleton()
+        print("generate new class ID \(classIDCounter)")
+        return classIDCounter
+
+    }
+    
+    public func generateNewTaskID() -> Int{
+        taskIDCounter += 1
+        Singleton.saveSingleton()
+        print("generate new task ID \(taskIDCounter)")
+        return taskIDCounter
+    }
 }
 
