@@ -304,6 +304,7 @@ class TableViewController: UITableViewController {
     
     
     private func loadClasses() -> [Class]?  {
+        ClassManager.sharedInstance.setClasses(classes: (NSKeyedUnarchiver.unarchiveObject(withFile: Class.ArchiveURL.path) as? [Class])!)
         return NSKeyedUnarchiver.unarchiveObject(withFile: Class.ArchiveURL.path) as? [Class]
     }
     private func loadSingleton(){

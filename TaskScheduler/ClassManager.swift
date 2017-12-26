@@ -49,14 +49,14 @@ class ClassManager{
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("classManager")
     
-    public func saveClassManager(){
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ClassManager.sharedInstance, toFile: ClassManager.ArchiveURL.path)
-        if isSuccessfulSave {
-            os_log("ClassManager successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save ClassManager...", log: OSLog.default, type: .error)
-        }
-    }
+//    public func saveClassManager(){
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ClassManager.sharedInstance, toFile: ClassManager.ArchiveURL.path)
+//        if isSuccessfulSave {
+//            os_log("ClassManager successfully saved.", log: OSLog.default, type: .debug)
+//        } else {
+//            os_log("Failed to save ClassManager...", log: OSLog.default, type: .error)
+//        }
+//    }
     
     public func getAllTasks()-> ([Task]){
         var tasks = [Task]()
@@ -68,13 +68,17 @@ class ClassManager{
     }
     
     public func updateTask(task:Task) -> (){
+       
         let class1 = task.getClass()
+       
         for class2 in classes{
             if(class2.getId() == class1.getId()){
                 var tasks = class2.getTasks()
                 for i in 0..<tasks.count{
                     if (tasks[i].getId() == task.getId()){
                         tasks[i] = task
+                        class2.setTasks(tasks: tasks)
+                        updateClass(class1: class2)
                     }
                 }
             }
@@ -87,6 +91,7 @@ class ClassManager{
                 classes[i] = class1
             }
         }
+       saveClasses()
     }
     
     public func addClass (class1:Class){
@@ -134,6 +139,19 @@ class ClassManager{
     public func generateNewTaskID() -> Int{
         taskIDCounter += 1
         return taskIDCounter
+    }
+    
+    public func setClasses(classes: [Class]){
+        self.classes = classes
+    }
+    
+    public func saveClasses() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(classes, toFile: Class.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Classes successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save classes...", log: OSLog.default, type: .error)
+        }
     }
     
 //    init(dict: Dictionary<String, AnyObject>) {

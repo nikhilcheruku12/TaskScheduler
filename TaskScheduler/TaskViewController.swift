@@ -77,6 +77,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         }
         
         if let task1 = task1 {
+            print("task is not nil")
             navigationItem.title = task1.getName()
             nameTextField.text = task1.getName()
             percentageSlider.value = task1.getPercentage()
@@ -153,6 +154,7 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         }
         
         if let task1 = task1{
+            print("ffbrekfbrejkgbekrjgbejktgbtjkgbekjgbekrjgek")
             task1.setName(name: nameTextField.text!) ;
             task1.setPercentage(percentage: percentageSlider.value);
             task1.setPercentageFinished(percentageFinished: percentageFinishedSlider.value) ;
