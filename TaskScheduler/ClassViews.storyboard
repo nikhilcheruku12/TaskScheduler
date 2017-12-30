@@ -83,7 +83,8 @@
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bDL-Ik-NpB">
                                     <rect key="frame" x="239.5" y="7" width="83" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Test"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                    <state key="normal" title="Schedule "/>
                                     <connections>
                                         <action selector="testing:" destination="c3W-aS-ETF" eventType="touchUpInside" id="tBc-r6-t32"/>
                                     </connections>
@@ -161,7 +162,7 @@
                                     <constraint firstAttribute="height" constant="75" id="c1I-lh-LtZ"/>
                                 </constraints>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="sby-XG-51Y">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="13.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="sby-XG-51Y">
                                 <rect key="frame" x="53" y="496" width="308" height="31"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

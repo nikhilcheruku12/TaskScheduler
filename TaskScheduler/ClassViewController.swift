@@ -66,6 +66,7 @@ class ClassViewController: UIViewController,UITextFieldDelegate, UINavigationCon
         
         else{
             viewTasksButton.isHidden = true;
+            colorSlider.minimumTrackTintColor = uiColorFromHex(rgbValue: colorArray[Int(colorSlider.value)])
         }
 
         

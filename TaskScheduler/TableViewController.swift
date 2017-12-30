@@ -57,7 +57,7 @@ class TableViewController: UITableViewController {
         if let savedClasses = loadClasses() {
             classes += savedClasses
         }
-            
+
         else{
             loadSampleClasses()
         }
@@ -304,7 +304,13 @@ class TableViewController: UITableViewController {
     
     
     private func loadClasses() -> [Class]?  {
+        /*previous code exist bug
         ClassManager.sharedInstance.setClasses(classes: (NSKeyedUnarchiver.unarchiveObject(withFile: Class.ArchiveURL.path) as? [Class])!)
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Class.ArchiveURL.path) as? [Class]
+         */
+        if let classes = NSKeyedUnarchiver.unarchiveObject(withFile: Class.ArchiveURL.path) as? [Class]{
+            ClassManager.sharedInstance.setClasses(classes: classes )
+        }
         return NSKeyedUnarchiver.unarchiveObject(withFile: Class.ArchiveURL.path) as? [Class]
     }
     private func loadSingleton(){
