@@ -40,7 +40,12 @@ class TaskTableViewController: UITableViewController {
          loadSampletasks()
          }*/
         
-        
+        let image = UIImage(named: "thumb.png")
+        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0);
+        image?.draw(in: self.view.bounds)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+        self.view.backgroundColor = UIColor(patternImage: newImage!)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -14,6 +14,7 @@ class TaskTableViewCell: UITableViewCell {
     override func awakeFromNib() {
        
         super.awakeFromNib()
+        self.backgroundColor = UIColor.clear
         // Initialization code
     }
 

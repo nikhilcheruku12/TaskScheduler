@@ -22,6 +22,12 @@ class ScheduledTasksTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        let image = UIImage(named: "simpson.png")
+        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0);
+        image?.draw(in: self.view.bounds)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+        self.view.backgroundColor = UIColor(patternImage: newImage!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,7 +66,7 @@ class ScheduledTasksTableViewController: UITableViewController {
         }else{
             cell.taskPercentComplete.text = "\(percentageFinished)%"
         }
-        cell.backgroundColor = uiColorFromHex(rgbValue: colorArray[Int(task1.getClass().getColorNumber())])
+        cell.taskNameLabel.textColor = uiColorFromHex(rgbValue:colorArray[Int(task1.getClass().getColorNumber())])
         return cell
     }
     

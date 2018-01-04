@@ -63,6 +63,14 @@ class TableViewController: UITableViewController {
         }
         loadSingleton()
         print("classIDCounter is ",Singleton.sharedSingleton.classIDCounter,"taskIDCounter is ", Singleton.sharedSingleton.taskIDCounter)
+        
+        
+        let image = UIImage(named: "fish.png")
+        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0);
+        image?.draw(in: self.view.bounds)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+        self.view.backgroundColor = UIColor(patternImage: newImage!)
     }
     
     

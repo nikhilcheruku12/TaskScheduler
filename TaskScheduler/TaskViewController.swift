@@ -106,7 +106,14 @@ class TaskViewController: UIViewController,UITextFieldDelegate, UINavigationCont
         
         
         updateSaveButtonState()
-
+//        self.view.subviews[0].subviews[0].backgroundColor = UIColor(patternImage: UIImage(named:"bg3.png")!)
+//        
+        let image = UIImage(named: "pattern1.png")
+        UIGraphicsBeginImageContextWithOptions(self.view.subviews[0].frame.size, false, 0.0);
+        image?.draw(in: self.view.bounds)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+        self.view.subviews[0].subviews[0].backgroundColor = UIColor(patternImage: newImage!)
         // Do any additional setup after loading the view.
     }
 

@@ -36,6 +36,12 @@ class SettingsViewController: UIViewController {
             startTimePicker.date = dataManager.startTime
         }
         print("finish loading")
+        let image = UIImage(named: "spiderman")
+        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0);
+        image?.draw(in: self.view.bounds)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+        self.view.backgroundColor = UIColor(patternImage: newImage!)
     }
 
     override func didReceiveMemoryWarning() {

@@ -15,6 +15,8 @@ class ScheduledTasksTableViewCell: UITableViewCell {
     @IBOutlet weak var taskPercentComplete: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = UIColor.clear
+
         // Initialization code
     }
     

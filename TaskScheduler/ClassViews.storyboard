@@ -30,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ClassTableViewCell" rowHeight="90" id="1Ho-1W-9aR" customClass="ClassTableViewCell" customModule="TaskScheduler" customModuleProvider="target">
+                            <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ClassTableViewCell" rowHeight="90" id="1Ho-1W-9aR" customClass="ClassTableViewCell" customModule="TaskScheduler" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Ho-1W-9aR" id="mOb-Ks-M6e">
@@ -83,8 +83,10 @@
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bDL-Ik-NpB">
                                     <rect key="frame" x="239.5" y="7" width="83" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                    <state key="normal" title="Schedule "/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                    <state key="normal" title="Schedule ">
+                                        <color key="titleColor" red="1" green="0.5623585713" blue="0.34559984789999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </state>
                                     <connections>
                                         <action selector="testing:" destination="c3W-aS-ETF" eventType="touchUpInside" id="tBc-r6-t32"/>
                                     </connections>
@@ -112,7 +114,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Enter Class Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKy-lt-s6S" userLabel="Enter Class Name">
                                 <rect key="frame" x="55" y="105" width="304" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="0.88190314528626523" green="0.87764274361821559" blue="0.88616354695431476" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Importance: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPI-aJ-dyW">
@@ -122,7 +124,7 @@
                                     <constraint firstAttribute="width" constant="150" id="uIH-iV-Y1B"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.88229781230212068" green="0.87803550403012975" blue="0.8865601205741116" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vSk-iP-HMe">
@@ -136,9 +138,7 @@
                             </textField>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="7l4-is-JcT">
                                 <rect key="frame" x="58" y="351" width="298" height="31"/>
-                                <color key="backgroundColor" red="0.46115909312849274" green="0.18369685875373268" blue="0.78259218571149758" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" red="0.32605622513298604" green="0.10022065412963449" blue="0.37388959390862941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="minimumTrackTintColor" red="0.24101461953243317" green="0.074081219625522152" blue="0.27637214467005078" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="changeClassImportance:" destination="Mt0-Yq-PBH" eventType="valueChanged" id="ogf-f0-JLe"/>
@@ -150,7 +150,7 @@
                                     <constraint firstAttribute="height" constant="35" id="jiF-hL-EvQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.86562313154387194" green="0.86144137728520598" blue="0.86980488580253801" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfB-vQ-y5e">
@@ -174,14 +174,13 @@
                                 <rect key="frame" x="120" y="556" width="174" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="View Tasks">
-                                    <color key="titleColor" red="0.79793774101038895" green="0.79408296931468658" blue="0.80179251270609131" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" red="1" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="J3y-AW-vnP" kind="modal" id="Bzm-ku-5LC"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.4661133090934178" green="0.18567030766519271" blue="0.79099954611758894" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="30H-AM-xLh" secondAttribute="trailing" constant="50" id="2Rp-lu-61M"/>
                             <constraint firstItem="Csf-ec-Xqg" firstAttribute="leading" secondItem="aPy-hc-on2" secondAttribute="leadingMargin" constant="100" id="3Xb-iy-dJV"/>
