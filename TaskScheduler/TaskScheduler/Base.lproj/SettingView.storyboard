@@ -31,6 +31,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="bedtimePicker:" destination="0WK-ev-CXp" eventType="valueChanged" id="EoP-ie-UgS"/>
+                                </connections>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYY-Xz-hGq">
                                 <rect key="frame" x="20" y="317" width="170" height="50"/>
@@ -41,6 +44,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="lunchTimePIcker:" destination="0WK-ev-CXp" eventType="valueChanged" id="EsB-EJ-Fdr"/>
+                                </connections>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQd-Q7-atc">
                                 <rect key="frame" x="200" y="158" width="149" height="50"/>
@@ -50,6 +56,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="wakeupPicker:" destination="0WK-ev-CXp" eventType="valueChanged" id="2wH-04-47c"/>
+                                </connections>
                             </datePicker>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bedtime" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P2f-dw-Xje">
                                 <rect key="frame" x="10" y="104" width="160" height="29"/>
@@ -99,6 +108,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="531765010.76760501">
                                     <!--2017-11-07 16:30:10 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="hoursToEatPicker:" destination="0WK-ev-CXp" eventType="valueChanged" id="KLQ-QY-sPf"/>
+                                </connections>
                             </datePicker>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start Working" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HLj-5A-NQL">
                                 <rect key="frame" x="190" y="104" width="149" height="29"/>
@@ -114,6 +126,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="dinnerTimePicker:" destination="0WK-ev-CXp" eventType="valueChanged" id="zDV-0G-cEV"/>
+                                </connections>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="30" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCT-a5-Xm3">
                                 <rect key="frame" x="190" y="476" width="175" height="50"/>
@@ -123,6 +138,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="527460740.52537501">
                                     <!--2017-09-18 20:52:20 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="focusTimePicker:" destination="0WK-ev-CXp" eventType="valueChanged" id="Bv2-YG-XaU"/>
+                                </connections>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -160,20 +178,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Settings" id="vs1-K2-Kr1">
-                        <barButtonItem key="leftBarButtonItem" title="Revert" id="PeA-zi-m9m">
-                            <color key="tintColor" red="0.3699198796520678" green="0.26190339845294908" blue="0.45445352157360408" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <connections>
-                                <action selector="revertAction:" destination="0WK-ev-CXp" id="uTd-k8-5Mt"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="GAG-yk-eIs">
-                            <color key="tintColor" red="0.52312005396571548" green="0.25564144989038551" blue="0.67314403553299496" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <connections>
-                                <action selector="saveAction:" destination="0WK-ev-CXp" id="gMO-wc-8Yz"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Settings" id="vs1-K2-Kr1"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bedTimePicker" destination="p0C-yc-hkO" id="kJj-ow-zfl"/>
@@ -181,8 +186,6 @@
                         <outlet property="eatingTimePicker" destination="JEQ-Jm-ACe" id="gZS-2b-vLh"/>
                         <outlet property="focusTimePicker" destination="vCT-a5-Xm3" id="M6N-1D-fkz"/>
                         <outlet property="lunchTimePicker" destination="UYY-Xz-hGq" id="AcX-9t-EA3"/>
-                        <outlet property="revertButton" destination="PeA-zi-m9m" id="c0X-W6-f9V"/>
-                        <outlet property="saveButton" destination="GAG-yk-eIs" id="eAb-WC-21V"/>
                         <outlet property="startTimePicker" destination="RQd-Q7-atc" id="6Ju-2J-Sws"/>
                     </connections>
                 </viewController>

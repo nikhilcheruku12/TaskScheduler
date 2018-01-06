@@ -65,7 +65,7 @@ class TableViewController: UITableViewController {
         print("classIDCounter is ",Singleton.sharedSingleton.classIDCounter,"taskIDCounter is ", Singleton.sharedSingleton.taskIDCounter)
         
         
-        let image = UIImage(named: "fish.png")
+        let image = UIImage(named: "orangesmile.png")
         UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0);
         image?.draw(in: self.view.bounds)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -94,7 +94,7 @@ class TableViewController: UITableViewController {
     
     //james maya
     @IBAction func testing(_ sender: UIButton) {
-        notificationCenter.createMilkNotification() //testing
+        //notificationCenter.createMilkNotification() //testing
         var tasks = [Task]()
         for c in classes {
             tasks += c.getTasks()

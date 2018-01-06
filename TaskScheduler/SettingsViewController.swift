@@ -36,7 +36,7 @@ class SettingsViewController: UIViewController {
             startTimePicker.date = dataManager.startTime
         }
         print("finish loading")
-        let image = UIImage(named: "spiderman")
+        let image = UIImage(named: "orangecup.png")
         UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0);
         image?.draw(in: self.view.bounds)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -44,25 +44,34 @@ class SettingsViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: newImage!)
     }
 
+    @IBAction func bedtimePicker(_ sender: Any) {
+        self.saveChange()
+    }
+    
+    
+    @IBAction func wakeupPicker(_ sender: UIDatePicker) {
+        self.saveChange()
+    }
+    
+    @IBAction func lunchTimePIcker(_ sender: UIDatePicker) {
+        self.saveChange()
+    }
+    
+    @IBAction func dinnerTimePicker(_ sender: UIDatePicker) {
+        self.saveChange()
+    }
+    @IBAction func hoursToEatPicker(_ sender: UIDatePicker) {
+        self.saveChange()
+    }
+    @IBAction func focusTimePicker(_ sender: Any) {
+        self.saveChange()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
-    @IBAction func revertAction(_ sender: Any) {
-        
-    }
-    
-    
-    @IBAction func saveAction(_ sender: Any) {
-        /*DataManager.sharedInstance.bedTime = bedTimePicker.date
-        DataManager.sharedInstance.focusTime = Float(focusTimePicker.countDownDuration)
-        DataManager.sharedInstance.eatingTime = Float(eatingTimePicker.countDownDuration)
-        DataManager.sharedInstance.startTime = startTimePicker.date
-        DataManager.sharedInstance.lunchTime = lunchTimePicker.date
-        DataManager.sharedInstance.dinnerTime = dinnerTimePicker.date*/
-        
+    private func saveChange(){
         let bedTimeDate = bedTimePicker.date
         let focusTimeFloat = Float(focusTimePicker.countDownDuration)/3600
         let eatingTimeFloat = Float(eatingTimePicker.countDownDuration)/3600
@@ -80,6 +89,8 @@ class SettingsViewController: UIViewController {
         print(DataManager.sharedInstance.focusTime)
         print(DataManager.sharedInstance.eatingTime)
     }
+
+
     
 
     /*

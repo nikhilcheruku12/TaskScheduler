@@ -40,7 +40,7 @@ class TaskTableViewController: UITableViewController {
          loadSampletasks()
          }*/
         
-        let image = UIImage(named: "thumb.png")
+        let image = UIImage(named: "orangeglasses.png")
         UIGraphicsBeginImageContextWithOptions(self.view.frame.size, false, 0.0);
         image?.draw(in: self.view.bounds)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
