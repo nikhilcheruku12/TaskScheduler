@@ -58,9 +58,6 @@ class TableViewController: UITableViewController {
             classes += savedClasses
         }
 
-        else{
-            loadSampleClasses()
-        }
         loadSingleton()
         print("classIDCounter is ",Singleton.sharedSingleton.classIDCounter,"taskIDCounter is ", Singleton.sharedSingleton.taskIDCounter)
         
@@ -91,7 +88,7 @@ class TableViewController: UITableViewController {
             }
         }
     }
-    
+    /*
     //james maya
     @IBAction func testing(_ sender: UIButton) {
         //notificationCenter.createMilkNotification() //testing
@@ -144,7 +141,7 @@ class TableViewController: UITableViewController {
         schedulingAlgorithm?.printVirtualCalendar()
         
     }
-    
+    */
     
     
     

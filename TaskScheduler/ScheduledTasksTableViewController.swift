@@ -10,7 +10,7 @@ import UIKit
 
 class ScheduledTasksTableViewController: UITableViewController {
     var scheduledTasks = [Task]()
-    
+    var classes = [Class]();
     override func viewDidLoad() {
         super.viewDidLoad()
         scheduledTasks = Singleton.sharedSingleton.pqTasks
@@ -103,8 +103,100 @@ class ScheduledTasksTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-    
-    
+    private func loadClasses() -> [Class]?  {
+        /*previous code exist bug
+         ClassManager.sharedInstance.setClasses(classes: (NSKeyedUnarchiver.unarchiveObject(withFile: Class.ArchiveURL.path) as? [Class])!)
+         return NSKeyedUnarchiver.unarchiveObject(withFile: Class.ArchiveURL.path) as? [Class]
+         */
+        if let classes = NSKeyedUnarchiver.unarchiveObject(withFile: Class.ArchiveURL.path) as? [Class]{
+            ClassManager.sharedInstance.setClasses(classes: classes )
+        }
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Class.ArchiveURL.path) as? [Class]
+    }
+    private func loadSampleClasses() {
+        guard let class1 = Class(name: "CS 201", importance: 9, colorNumber: 3, id:Singleton.sharedSingleton.generateNewClassID())
+            else {
+                fatalError("Unable to instantiate class1")
+        }
+        guard let class2 = Class(name: "REL 135", importance: 4, colorNumber: 4, id:Singleton.sharedSingleton.generateNewClassID())
+            else {
+                fatalError("Unable to instantiate class2")
+        }
+        
+        classes += [class1,class2];
+    }
+    @IBAction func schedule(_ sender: Any) {
+        //notificationCenter.createMilkNotification() //testing
+        
+        if let savedClasses = loadClasses() {
+            classes = savedClasses
+        }
+        var tasks = [Task]()
+        for c in classes {
+            tasks += c.getTasks()
+        }
+        var tasksToSchedule = 0
+        for t in tasks {
+            if (Date() < t.getDueDate() && !t.isComplete()){
+                tasksToSchedule += 1
+            }
+        }
+        if(tasksToSchedule < 1){
+            Singleton.sharedSingleton.pqTasks.removeAll()
+            Singleton.saveSingleton()
+            return
+        }
+        
+        let schedulingAlgorithm : SchedulingAlgorithm?
+        schedulingAlgorithm = SchedulingAlgorithm(tasks: tasks)!
+        
+        schedulingAlgorithm?.deleteTasksFromCalendar()
+        let scheduleStatus = schedulingAlgorithm?.schedule()
+        if scheduleStatus!.contains("failed") {
+            Singleton.sharedSingleton.pqTasks.removeAll()
+            print("schedule task not success!!!!!!!!!!")
+            let tasksRemaining = schedulingAlgorithm!.getTasksRemaining()
+            let message = scheduleStatus! + " You still have \(tasksRemaining) tasks to schedule."
+            let alert = UIAlertController(title: "Scheduling Unsuccessful.", message: message, preferredStyle: .alert)
+            let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(OKAction)
+            self.present(alert, animated: true, completion: nil)
+        }else {
+            print("Scheduled task SUCCESS!!!!!!!!!!")
+            let scheduleMessage = schedulingAlgorithm!.getScheduleMessage()
+            //let numTasks = schedulingAlgorithm!.getNumTasks()
+            let message = "You have scheduled \(tasksToSchedule) task(s) and still have " +  scheduleMessage + " of free time to enjoy before your last task is due!\n Use that time wisely :)"
+            let alert = UIAlertController(title: scheduleStatus, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Go to Calendar", style: .default, handler: { action in
+                self.open(scheme: "calshow://")
+            }))
+            
+            //let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            //alert.addAction(OKAction)
+            self.present(alert, animated: true, completion: nil)
+            Singleton.sharedSingleton.pqTasks = (schedulingAlgorithm?.pqTasks)!
+            Singleton.saveSingleton()
+        }
+        schedulingAlgorithm?.printVirtualCalendar()
+        scheduledTasks = Singleton.sharedSingleton.pqTasks
+        self.tableView.reloadData()
+        Singleton.saveSingleton()
+
+    }
+    private func open(scheme: String) {
+        if let url = URL(string: scheme) {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(url, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                                            print("Open \(scheme): \(success)")
+                })
+            } else {
+                let success = UIApplication.shared.openURL(url)
+                print("Open \(scheme): \(success)")
+            }
+        }
+    }
     /*
      // Override to support rearranging the table view.
      override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
